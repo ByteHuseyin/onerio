@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'login_screen.dart'; 
 import 'history_screen.dart'; 
-
+import 'package:google_fonts/google_fonts.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -12,12 +12,47 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool _morningReminder = true;
+  TimeOfDay _reminderTime = TimeOfDay(hour: 8, minute: 0);
   bool _darkMode = true;
   bool _dreamAnalysis = true;
   double _notificationOpacity = 0.8;
   String _selectedLanguage = "Türkçe";
   bool _isSigningOut = false;
   final User? _currentUser = FirebaseAuth.instance.currentUser;
+
+  Widget _buildTimePickerTile({
+  required String title,
+  required TimeOfDay selectedTime,
+  required ValueChanged<TimeOfDay> onTimePicked,
+}) {
+  return ListTile(
+    title: Text(
+      title,
+      style: GoogleFonts.nunito(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    ),
+    trailing: Text(
+      selectedTime.format(context),
+      style: GoogleFonts.nunito(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.white70,
+      ),
+    ),
+    onTap: () async {
+      final picked = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+      );
+      if (picked != null) onTimePicked(picked);
+    },
+  );
+}
+
 
   // Çıkış yap fonksiyonu
   Future<void> _signOut() async {
@@ -91,46 +126,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 140,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: _darkMode
-                        ? [const Color(0xFF6A11CB), const Color(0xFF2575FC)]
-                        : [Colors.purple[300]!, Colors.blue[300]!],
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, bottom: 15),
-                    child: Text(
-                      "Rüya Evrenini Yönet",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        shadows: _darkMode
-                            ? [const Shadow(blurRadius: 10, color: Colors.black)]
-                            : null,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  _darkMode ? Icons.nightlight_round : Icons.wb_sunny,
-                  color: Colors.white,
-                ),
-                onPressed: () => setState(() => _darkMode = !_darkMode),
-              ),
-            ],
-          ),
+  expandedHeight: 140,
+  pinned: true,
+  backgroundColor: _darkMode ? const Color(0xFF6A11CB) : Colors.purple[300],
+  centerTitle: true,
+  
+  title: Text(
+    "Rüya Evrenini Yönet",
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      shadows: _darkMode
+          ? [const Shadow(blurRadius: 10, color: Colors.black)]
+          : null,
+    ),
+  ),
+  flexibleSpace: FlexibleSpaceBar(
+    background: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: _darkMode
+              ? [const Color(0xFF6A11CB), const Color(0xFF2575FC)]
+              : [Colors.purple[300]!, Colors.blue[300]!],
+        ),
+      ),
+    ),
+  ),
+),
+
+
 
           // Kullanıcı Bilgisi Bölümü
           SliverToBoxAdapter(
@@ -179,18 +204,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           SliverList(
             delegate: SliverChildListDelegate([
-              _buildSettingCard(
-                icon: Icons.palette,
-                title: "Tema & Görünüm",
-                children: [
-                  _buildToggle("Karanlık Mod", _darkMode,
-                      (v) => setState(() => _darkMode = v)),
-                  _buildSlider("Parlaklık", _notificationOpacity,
-                      (v) => setState(() => _notificationOpacity = v)),
-                  _buildLanguageSelector(),
-                ],
-              ),
-              
+             
               // Tıklanabilir Rüya Geçmişi Kartı
               InkWell(
                 onTap: () {
@@ -211,15 +225,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               
               _buildSettingCard(
-                icon: Icons.notifications_active,
-                title: "Bildirimler",
-                children: [
-                  _buildToggle("Sabah Hatırlatıcı", true, (_) {}),
-                  _buildToggle("Rüya Benzerlikleri", true, (_) {}),
-                  _buildSlider("Bildirim Opaklığı", _notificationOpacity,
-                      (v) => setState(() => _notificationOpacity = v)),
-                ],
-              ),
+  icon: Icons.notifications_active,
+  title: "Bildirimler",
+  children: [
+    _buildToggle(
+      "Sabah Hatırlatıcı",
+      _morningReminder,
+      (val) => setState(() => _morningReminder = val),
+    ),
+    _buildTimePickerTile(
+      title: "Hatırlatıcı Saati",
+      selectedTime: _reminderTime,
+      onTimePicked: (time) => setState(() => _reminderTime = time),
+    ),
+  ],
+),
+
 
               // GELİŞMİŞ AYARLAR
               Padding(

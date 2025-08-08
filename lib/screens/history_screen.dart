@@ -25,57 +25,29 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0F0525), // SettingsScreen ile aynı arkaplan
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        titleSpacing: 0,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [const Color(0xFF6A11CB), const Color(0xFF2575FC)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Image.asset('assets/images/icon.png', height: 30),
-              ),
-              const SizedBox(width: 12),
-              Text(
-                'Rüya Geçmişi',
-                style: GoogleFonts.nunito(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  shadows: [const Shadow(blurRadius: 6, color: Colors.black)],
-                ),
-              ),
-            ],
-          ),
-        ),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
-              );
-            },
-            tooltip: 'Geri dön',
-          ),
-        ],
+  backgroundColor: Colors.transparent,
+  elevation: 0,
+  flexibleSpace: Container(
+    decoration: const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       ),
+    ),
+  ),
+  centerTitle: true, // Ortalamak için burası yeterli
+  title: Text(
+    'Rüya Geçmişim',
+    style: GoogleFonts.nunito(
+      color: Colors.white,
+      fontSize: 22,
+      fontWeight: FontWeight.w800,
+      shadows: [Shadow(blurRadius: 6, color: Colors.black)],
+    ),
+  ),
+),
+
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: _historyStream(),
@@ -283,35 +255,10 @@ class _HistoryCardState extends State<_HistoryCard>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Başlık ve tarih
+              // Tarih ve genişletme butonu üstte
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.nightlight_round,
-                          color: Colors.amber[300],
-                          size: 24,
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            widget.prompt,
-                            style: GoogleFonts.nunito(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
                   Text(
                     dateStr,
                     style: GoogleFonts.nunito(
@@ -319,12 +266,38 @@ class _HistoryCardState extends State<_HistoryCard>
                       fontSize: 12,
                     ),
                   ),
-                  const SizedBox(width: 8),
                   RotationTransition(
                     turns: Tween(begin: 0.0, end: 0.5).animate(_ctrl),
                     child: Icon(
                       Icons.expand_more,
                       color: Colors.purple[200],
+                    ),
+                  ),
+                ],
+              ),
+              
+              const SizedBox(height: 12),
+              
+              // Rüya inputu ve ikon
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.nightlight_round,
+                    color: Colors.amber[300],
+                    size: 24,
+                  ),
+                  const SizedBox(width: 12),
+                  
+                  // Tüm inputu göstermek için genişletilmiş alan
+                  Expanded(
+                    child: Text(
+                      widget.prompt,
+                      style: GoogleFonts.nunito(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ],

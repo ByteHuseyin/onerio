@@ -256,19 +256,29 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     ),
     actions: [
-      IconButton(
-        icon: const Icon(
-          Icons.settings,
-          color: Colors.white70,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-          );
-        },
+  // Kullanıcı profil ikonu
+  GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const SettingsScreen()),
+      );
+    },
+    child: Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: CircleAvatar(
+        radius: 18,
+        backgroundColor: Colors.white24,
+        backgroundImage: FirebaseAuth.instance.currentUser?.photoURL != null
+            ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
+            : null,
+        child: FirebaseAuth.instance.currentUser?.photoURL == null
+            ? const Icon(Icons.person, size: 18, color: Colors.white70)
+            : null,
       ),
-    ],
+    ),
+  ),
+],
   );
 }
 
