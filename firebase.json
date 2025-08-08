@@ -1,0 +1,38 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "onerioapp",
+          "appId": "1:731455016634:android:9c7ee3f7e9ede3707b7c83",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "onerioapp",
+          "configurations": {
+            "android": "1:731455016634:android:9c7ee3f7e9ede3707b7c83",
+            "ios": "1:731455016634:ios:8fdbe90f2abffa087b7c83"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        
+      ]
+    }
+  ]
+}
