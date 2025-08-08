@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 
                   // Slogan
                   Text(
-                    'Yolculuk şimdi başlıyor',
+                    'Rüyanı keşfetmeye hazır mısın?',
                     textAlign: TextAlign.center,
                     style: textTheme.bodyLarge?.copyWith(
                       color: Colors.white70,

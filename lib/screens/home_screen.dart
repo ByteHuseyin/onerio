@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:oneiro/routes.dart';
-import 'package:oneiro/screens/history_screen.dart';
-
+import 'package:oneiro/screens/settings_screen.dart';
 import 'package:oneiro/services/chat_api.dart';
-import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -110,21 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       }
     });
-  }
-
-  // Çıkış yap
-  Future<void> _signOut() async {
-    await GoogleSignIn().signOut();
-    await FirebaseAuth.instance.signOut();
-    _dreamCards.clear();
-    _showInput = true;
-
-    if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-      );
-    }
   }
 
   @override
@@ -252,68 +233,47 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // AppBar
   AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset('assets/images/icon.png', height: 36),
-          const SizedBox(width: 12),
-          Text(
-            'Onerio',
-            style: GoogleFonts.nunito(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 1,
-            ),
+  return AppBar(
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    title: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset(
+          'assets/images/icon.png',
+          height: 36,
+        ),
+        const SizedBox(width: 12),
+        Text(
+          'Onerio',
+          style: GoogleFonts.nunito(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1,
           ),
-        ],
-      ),
-      actions: [
-        PopupMenuButton<String>(
-          icon: const Icon(Icons.settings, color: Colors.white70),
-          color: const Color(0xFF1A1A2A),
-          onSelected: (value) {
-            if (value == 'logout') {
-              _signOut();
-              }
-            // Diğer sayfalar burada yönlendirilir.
-            else if (value == 'history'){
-              Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HistoryScreen()),
-              );
-            }
-          },
-          itemBuilder: (context) => [
-            _popupItem(Icons.color_lens, 'Tema', 'theme'),
-            _popupItem(Icons.language, 'Dil', 'language'),
-            _popupItem(Icons.history, 'Geçmiş', 'history'),
-            const PopupMenuDivider(),
-            _popupItem(Icons.logout, 'Çıkış Yap', 'logout',
-                color: Colors.redAccent),
-          ],
         ),
       ],
-    );
-  }
-
-  PopupMenuItem<String> _popupItem(
-      IconData icon, String text, String value,
-      {Color color = Colors.white70}) {
-    return PopupMenuItem(
-      value: value,
-      child: Row(
-        children: [
-          Icon(icon, color: color),
-          const SizedBox(width: 10),
-          Text(text, style: TextStyle(color: color)),
-        ],
+    ),
+    actions: [
+      IconButton(
+        icon: const Icon(
+          Icons.settings,
+          color: Colors.white70,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const SettingsScreen()),
+          );
+        },
       ),
-    );
-  }
+    ],
+  );
+}
+
+
+  
 
   // Floating input
   Widget _buildFloatingInput() {
