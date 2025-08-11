@@ -1,13 +1,17 @@
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneiro/screens/home_screen.dart';
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
 
+  @override
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
   Stream<QuerySnapshot<Map<String, dynamic>>> _historyStream() {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
@@ -20,151 +24,172 @@ class HistoryScreen extends StatelessWidget {
         .snapshots();
   }
 
+  Future<bool> _onWillPop() async {
+    // Firestore’dan rüya sayısını alıp geri dön
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      Navigator.pop(context, 0);
+      return false;
+    }
+    final snapshot = await FirebaseFirestore.instance
+        .collection('user_logs')
+        .where('userId', isEqualTo: user.uid)
+        .get();
+    final dreamCount = snapshot.docs.length;
+    Navigator.pop(context, dreamCount);
+    return false; // manuel pop yaptık, false dön
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F0525), // SettingsScreen ile aynı arkaplan
-      appBar: AppBar(
-  backgroundColor: Colors.transparent,
-  elevation: 0,
-  flexibleSpace: Container(
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-    ),
-  ),
-  centerTitle: true, // Ortalamak için burası yeterli
-  title: Text(
-    'Rüya Geçmişim',
-    style: GoogleFonts.nunito(
-      color: Colors.white,
-      fontSize: 22,
-      fontWeight: FontWeight.w800,
-      shadows: [Shadow(blurRadius: 6, color: Colors.black)],
-    ),
-  ),
-),
-
-      body: SafeArea(
-        child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: _historyStream(),
-          builder: (context, snap) {
-            if (snap.hasError) {
-              return Center(
-                child: Text(
-                  'Veri alınırken hata oluştu:\n${snap.error}',
-                  style: GoogleFonts.nunito(
-                    color: Colors.redAccent,
-                    fontSize: 16,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        backgroundColor: const Color(0xFF0F0525),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+          centerTitle: true,
+          title: Text(
+            'Rüya Geçmişim',
+            style: GoogleFonts.nunito(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.w800,
+              shadows: [const Shadow(blurRadius: 6, color: Colors.black)],
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+            stream: _historyStream(),
+            builder: (context, snap) {
+              if (snap.hasError) {
+                return Center(
+                  child: Text(
+                    'Veri alınırken hata oluştu:\n${snap.error}',
+                    style: GoogleFonts.nunito(
+                      color: Colors.redAccent,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-              );
-            }
-            if (snap.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator(
-                      color: Colors.purpleAccent,
-                      strokeWidth: 3,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Rüya geçmişi yükleniyor...',
-                      style: GoogleFonts.nunito(
-                        color: Colors.white70,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
-            final docs = snap.data!.docs;
-            if (docs.isEmpty) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
+                );
+              }
+              if (snap.connectionState == ConnectionState.waiting) {
+                return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.nights_stay,
-                        size: 60,
-                        color: Colors.purple[200],
+                      const CircularProgressIndicator(
+                        color: Colors.purpleAccent,
+                        strokeWidth: 3,
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Henüz kayıtlı rüyan yok',
+                        'Rüya geçmişi yükleniyor...',
                         style: GoogleFonts.nunito(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Rüyalarını kaydetmeye başladığında\nburada görünecekler',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                          color: Colors.white54,
+                          color: Colors.white70,
                           fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.purple,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (_) => const HomeScreen()),
-                          );
-                        },
-                        child: Text(
-                          'İlk Rüyanı Kaydet',
-                          style: GoogleFonts.nunito(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              );
-            }
-
-            return ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              itemCount: docs.length,
-              itemBuilder: (ctx, i) {
-                final data = docs[i].data();
-                return _HistoryCard(
-                  prompt: data['prompt'] as String? ?? '',
-                  interpretation: data['response'] as String? ?? '',
-                  timestamp: (data['timestamp'] as Timestamp?)?.toDate(),
                 );
-              },
-            );
-          },
+              }
+              final docs = snap.data!.docs;
+              if (docs.isEmpty) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.nights_stay,
+                          size: 60,
+                          color: Colors.purple[200],
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          'Henüz kayıtlı rüyan yok',
+                          style: GoogleFonts.nunito(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Rüyalarını kaydetmeye başladığında\nburada görünecekler',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.nunito(
+                            color: Colors.white54,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.purple,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const HomeScreen()),
+                            );
+                          },
+                          child: Text(
+                            'İlk Rüyanı Kaydet',
+                            style: GoogleFonts.nunito(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
+
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                itemCount: docs.length,
+                itemBuilder: (ctx, i) {
+                  final data = docs[i].data();
+                  return _HistoryCard(
+                    prompt: data['prompt'] as String? ?? '',
+                    interpretation: data['response'] as String? ?? '',
+                    timestamp: (data['timestamp'] as Timestamp?)?.toDate(),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
 
+// Senin mevcut _HistoryCard widget'ını buraya olduğu gibi alabilirsin
+// (Kodun uzun olduğu için burada kısaltıyorum ama aynı kalacak)
 class _HistoryCard extends StatefulWidget {
   final String prompt;
   final String interpretation;
@@ -275,9 +300,9 @@ class _HistoryCardState extends State<_HistoryCard>
                   ),
                 ],
               ),
-              
+
               const SizedBox(height: 12),
-              
+
               // Rüya inputu ve ikon
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +313,7 @@ class _HistoryCardState extends State<_HistoryCard>
                     size: 24,
                   ),
                   const SizedBox(width: 12),
-                  
+
                   // Tüm inputu göstermek için genişletilmiş alan
                   Expanded(
                     child: Text(
