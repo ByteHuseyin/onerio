@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_screen.dart';
+import 'package:oneiro/services/permission_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,8 +22,22 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   void initState() {
     super.initState();
     _initAnimations();
+    _askNotificationPermission(); // 📌 İzin kontrolü 
     _checkLoginStatus();
   }
+
+  Future<void> _askNotificationPermission() async {
+  final permissionService = PermissionService();
+  final hasPermission = await permissionService.requestNotificationPermission();
+  
+  if (!hasPermission && mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Bildirim izni verilmedi, hatırlatmalar çalışmayabilir.'),
+      ),
+    );
+  }
+}
 
   void _initAnimations() {
     _controller = AnimationController(
