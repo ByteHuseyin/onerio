@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneiro/screens/about_us.dart';
+import 'package:oneiro/screens/privacy_policy.dart';
 import 'login_screen.dart';
 import 'history_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -378,8 +380,20 @@ Future<void> _loadUserSettings() async {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    _buildActionTile("Gizlilik Politikası", Icons.lock, () {}),
-                    _buildActionTile("Hakkında", Icons.info, () {}),
+                    _buildActionTile("Gizlilik Politikası", Icons.lock, () {
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const PrivacyPolicyScreen()),
+                          );
+                    }),
+                    _buildActionTile("Hakkında", Icons.info, () {
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const AboutUsScreen()),
+                          );
+                    }),
                     const SizedBox(height: 10),
                     Center(
                       child: _isSigningOut
