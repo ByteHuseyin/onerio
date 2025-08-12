@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_screen.dart';
 import 'history_screen.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -89,6 +89,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+
+  Future<void> saveReminderTime(TimeOfDay time) async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+      'reminderTime': '${time.hour}:${time.minute}',
+      'notificationsEnabled': _morningReminder
+    });
+  }
+}
+  Future<void> saveFcmToken() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    final token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        'fcmToken': token,
+      });
+    }
+  }
+}
 
   String _formatRelativeDate(DateTime date) {
     final now = DateTime.now();
@@ -229,7 +250,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           : Colors.amber[700]),
                                   const SizedBox(width: 10),
                                   Text(
-                                    "Rüya Geçmişim",
+                                    "Rüya Geçmişimi Görüntüle",
                                     style: TextStyle(
                                         color: _darkMode
                                             ? Colors.white

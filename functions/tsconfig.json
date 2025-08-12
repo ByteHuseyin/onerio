@@ -5,7 +5,10 @@
     "lib": ["ES2020"],
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "lib"
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
   },
   "include": ["src"]
 }
