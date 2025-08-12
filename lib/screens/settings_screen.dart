@@ -89,14 +89,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+  @override
+void initState() {
+  super.initState();
+  _loadUserSettings();
+}
 
+Future<void> _loadUserSettings() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    if (doc.exists) {
+      final data = doc.data();
+      if (data != null) {
+        // Bildirim açık mı?
+        final notificationsEnabled = data['notificationsEnabled'] as bool? ?? true;
+        // Hatırlatma zamanı (string "HH:mm" formatında)
+        final reminderTimeStr = data['reminderTime'] as String? ?? '08:00';
+
+        // Saat ve dakika ayrıştırması
+        final parts = reminderTimeStr.split(':');
+        int hour = 8;
+        int minute = 0;
+        if (parts.length == 2) {
+          hour = int.tryParse(parts[0]) ?? 8;
+          minute = int.tryParse(parts[1]) ?? 0;
+        }
+
+        setState(() {
+          _morningReminder = notificationsEnabled;
+          _reminderTime = TimeOfDay(hour: hour, minute: minute);
+        });
+      }
+    }
+  }
+}
   Future<void> saveReminderTime(TimeOfDay time) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
     await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-      'reminderTime': '${time.hour}:${time.minute}',
-      'notificationsEnabled': _morningReminder
-    });
+    'reminderTime': '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}',
+    'notificationsEnabled': _morningReminder
+});
   }
 }
   Future<void> saveFcmToken() async {
@@ -302,16 +336,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 icon: Icons.notifications_active,
                 title: "Bildirimler",
                 children: [
-                  _buildToggle(
-                    "Sabah Hatırlatıcı",
-                    _morningReminder,
-                    (val) => setState(() => _morningReminder = val),
-                  ),
+                 _buildToggle(
+                "Sabah Hatırlatıcı",
+                 _morningReminder,
+                  (val) {
+                setState(() => _morningReminder = val);
+                saveReminderTime(_reminderTime);
+                  },
+                ),
                   _buildTimePickerTile(
-                    title: "Hatırlatıcı Saati",
-                    selectedTime: _reminderTime,
-                    onTimePicked: (time) =>
-                        setState(() => _reminderTime = time),
+                  title: "Hatırlatıcı Saati",
+                  selectedTime: _reminderTime,
+                  onTimePicked: (time) {
+                  setState(() => _reminderTime = time);
+                  saveReminderTime(time); // Yeni zamanı kaydet
+                  },
                   ),
                 ],
               ),
