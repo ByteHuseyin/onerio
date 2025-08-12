@@ -93,6 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 void initState() {
   super.initState();
   _loadUserSettings();
+  saveFcmToken();
 }
 
 Future<void> _loadUserSettings() async {
@@ -142,6 +143,15 @@ Future<void> _loadUserSettings() async {
         'fcmToken': token,
       });
     }
+  }
+} 
+  Future<void> _saveNotificationEnabled(bool enabled) async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+      'notificationsEnabled': enabled,
+    });
+    // Gerekirse topic subscribe/unsubscribe işlemi burada yapılabilir
   }
 }
 
@@ -341,6 +351,7 @@ Future<void> _loadUserSettings() async {
                  _morningReminder,
                   (val) {
                 setState(() => _morningReminder = val);
+                 _saveNotificationEnabled(val);
                 saveReminderTime(_reminderTime);
                   },
                 ),
