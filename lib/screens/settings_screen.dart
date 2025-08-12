@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_screen.dart';
+import 'history_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -13,9 +14,8 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _morningReminder = true;
-  TimeOfDay _reminderTime = TimeOfDay(hour: 8, minute: 0);
+  TimeOfDay _reminderTime = const TimeOfDay(hour: 8, minute: 0);
   bool _darkMode = true;
-  bool _dreamAnalysis = true;
   bool _isSigningOut = false;
   final User? _currentUser = FirebaseAuth.instance.currentUser;
 
@@ -31,7 +31,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _signOut() async {
     setState(() => _isSigningOut = true);
-
     try {
       await FirebaseAuth.instance.signOut();
       if (mounted) {
@@ -70,9 +69,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: Text("İptal",
-                style: TextStyle(
-                    color: _darkMode ? Colors.purple[200] : Colors.purple)),
+            child: Text(
+              "İptal",
+              style: TextStyle(
+                  color: _darkMode ? Colors.purple[200] : Colors.purple),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -92,18 +93,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String _formatRelativeDate(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date).inDays;
-
-    if (difference == 0) {
-      return "Bugün";
-    } else if (difference == 1) {
-      return "Dün";
-    } else if (difference <= 7) {
-      return "$difference gün önce";
-    } else {
-      return "${date.day.toString().padLeft(2, '0')}/"
-          "${date.month.toString().padLeft(2, '0')}/"
-          "${date.year}";
-    }
+    if (difference == 0) return "Bugün";
+    if (difference == 1) return "Dün";
+    if (difference <= 7) return "$difference gün önce";
+    return "${date.day.toString().padLeft(2, '0')}/"
+        "${date.month.toString().padLeft(2, '0')}/"
+        "${date.year}";
   }
 
   @override
@@ -115,17 +110,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SliverAppBar(
             expandedHeight: 140,
             pinned: true,
-            backgroundColor: _darkMode ? const Color(0xFF6A11CB) : Colors.purple[300],
+            backgroundColor:
+                _darkMode ? const Color(0xFF6A11CB) : Colors.purple[300],
             centerTitle: true,
-            title: Text(
+            title: const Text(
               "Rüya Evrenini Yönet",
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                shadows:
-                    _darkMode ? [const Shadow(blurRadius: 10, color: Colors.black)] : null,
-              ),
+                  color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -140,6 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
+          // Profil Alanı
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -184,13 +176,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
+          // Rüyalarım Kartı
           SliverToBoxAdapter(
             child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: _historyStream(),
               builder: (context, snapshot) {
                 int dreamCount = 0;
                 DateTime? lastDreamDate;
-
                 if (snapshot.hasData) {
                   final docs = snapshot.data!.docs;
                   dreamCount = docs.length;
@@ -199,10 +191,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (ts != null) lastDreamDate = ts.toDate();
                   }
                 }
-
-                double progressPercent = (dreamCount / 7);
-                if (progressPercent > 1.0) progressPercent = 1.0;
-                final progressPercentStr = (progressPercent * 100).toStringAsFixed(0);
+                double progressPercent = (dreamCount / 7).clamp(0, 1).toDouble();
+                final progressPercentStr =
+                    (progressPercent * 100).toStringAsFixed(0);
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -210,50 +201,64 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: Icons.history,
                     title: "Rüya Geçmişi",
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: _darkMode
-                              ? Colors.purple[900]!.withOpacity(0.3)
-                              : Colors.purple[50],
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.nights_stay,
+                      InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const HistoryScreen()),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: _darkMode
+                                ? Colors.purple[900]!.withOpacity(0.3)
+                                : Colors.purple[50],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.nights_stay,
+                                      color: _darkMode
+                                          ? Colors.amber[200]
+                                          : Colors.amber[700]),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "Rüya Geçmişim",
+                                    style: TextStyle(
+                                        color: _darkMode
+                                            ? Colors.white
+                                            : Colors.black87,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              LinearProgressIndicator(
+                                value: progressPercent,
+                                backgroundColor: _darkMode
+                                    ? Colors.deepPurple[800]
+                                    : Colors.purple[100],
+                                color: Colors.amber,
+                                minHeight: 6,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Hafıza Tamamlama: %$progressPercentStr",
+                                style: TextStyle(
+                                    fontSize: 12,
                                     color: _darkMode
-                                        ? Colors.amber[200]
-                                        : Colors.amber[700]),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "Rüyalarım",
-                                  style: TextStyle(
-                                      color: _darkMode ? Colors.white : Colors.black87,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            LinearProgressIndicator(
-                              value: progressPercent,
-                              backgroundColor:
-                                  _darkMode ? Colors.deepPurple[800] : Colors.purple[100],
-                              color: Colors.amber,
-                              minHeight: 6,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "Hafıza Tamamlama: %$progressPercentStr",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color:
-                                      _darkMode ? Colors.amber[100] : Colors.amber[800]),
-                            )
-                          ],
+                                        ? Colors.amber[100]
+                                        : Colors.amber[800]),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -269,6 +274,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
+          // Bildirimler Bölümü
           SliverList(
             delegate: SliverChildListDelegate([
               _buildSettingCard(
@@ -283,11 +289,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _buildTimePickerTile(
                     title: "Hatırlatıcı Saati",
                     selectedTime: _reminderTime,
-                    onTimePicked: (time) => setState(() => _reminderTime = time),
+                    onTimePicked: (time) =>
+                        setState(() => _reminderTime = time),
                   ),
                 ],
               ),
-
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -350,8 +356,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         _buildStatItem(Icons.bookmark, dreamCount.toString(), "Kayıtlı"),
         _buildStatItem(Icons.auto_awesome, "$progressPercentStr%", "Gelişim"),
-        _buildStatItem(
-            Icons.history,
+        _buildStatItem(Icons.history,
             lastDreamDate != null ? _formatRelativeDate(lastDreamDate) : "-",
             "Son Rüya"),
       ],
@@ -434,7 +439,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // EKSİK OLAN BU FONKSİYON:
   Widget _buildSettingCard({
     required IconData icon,
     required String title,
