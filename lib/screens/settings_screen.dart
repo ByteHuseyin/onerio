@@ -99,7 +99,7 @@ void initState() {
 Future<void> _loadUserSettings() async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
-    final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    final doc = await FirebaseFirestore.instance.collection('user_table').doc(user.uid).get();
     if (doc.exists) {
       final data = doc.data();
       if (data != null) {
@@ -128,7 +128,7 @@ Future<void> _loadUserSettings() async {
   Future<void> saveReminderTime(TimeOfDay time) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
-    await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+    await FirebaseFirestore.instance.collection('user_table').doc(user.uid).update({
     'reminderTime': '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}',
     'notificationsEnabled': _morningReminder
 });
@@ -139,7 +139,7 @@ Future<void> _loadUserSettings() async {
   if (user != null) {
     final token = await FirebaseMessaging.instance.getToken();
     if (token != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+      await FirebaseFirestore.instance.collection('user_table').doc(user.uid).update({
         'fcmToken': token,
       });
     }
@@ -148,7 +148,7 @@ Future<void> _loadUserSettings() async {
   Future<void> _saveNotificationEnabled(bool enabled) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
-    await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+    await FirebaseFirestore.instance.collection('user_table').doc(user.uid).update({
       'notificationsEnabled': enabled,
     });
     // Gerekirse topic subscribe/unsubscribe işlemi burada yapılabilir
