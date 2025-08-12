@@ -344,28 +344,31 @@ Future<void> _loadUserSettings() async {
           // Bildirimler Bölümü
           SliverList(
             delegate: SliverChildListDelegate([
-              _buildSettingCard(
-                icon: Icons.notifications_active,
-                title: "Bildirimler",
-                children: [
-                 _buildToggle(
-                "Sabah Hatırlatıcı",
-                 _morningReminder,
-                  (val) {
-                setState(() => _morningReminder = val);
-                 _saveNotificationEnabled(val);
-                saveReminderTime(_reminderTime);
-                  },
-                ),
-                  _buildTimePickerTile(
-                  title: "Hatırlatıcı Saati",
-                  selectedTime: _reminderTime,
-                  onTimePicked: (time) {
-                  setState(() => _reminderTime = time);
-                  saveReminderTime(time); // Yeni zamanı kaydet
-                  },
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: _buildSettingCard(
+                  icon: Icons.notifications_active,
+                  title: "Bildirimler",
+                  children: [
+                   _buildToggle(
+                  "Sabah Hatırlatıcı",
+                   _morningReminder,
+                    (val) {
+                  setState(() => _morningReminder = val);
+                   _saveNotificationEnabled(val);
+                  saveReminderTime(_reminderTime);
+                    },
                   ),
-                ],
+                    _buildTimePickerTile(
+                    title: "Hatırlatıcı Saati",
+                    selectedTime: _reminderTime,
+                    onTimePicked: (time) {
+                    setState(() => _reminderTime = time);
+                    saveReminderTime(time); // Yeni zamanı kaydet
+                    },
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(20),

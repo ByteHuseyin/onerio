@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:oneiro/screens/settings_screen.dart';
 import 'package:oneiro/services/chat_api.dart';
-
 import 'package:shimmer/shimmer.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'response': result.reply,
         'timestamp': FieldValue.serverTimestamp(),
         'prompt_tokens': result.promptTokens,
-        'response_tokens': result.responseTokens
+        'response_tokens': result.responseTokens,
       });
     } catch (e) {
       setState(() {
@@ -109,8 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void _startCardEdit(int index) {
     setState(() {
       _editingIndex = index;
-      _editControllers[index] =
-          TextEditingController(text: _dreamCards[index]['content'] ?? '');
+      _editControllers[index] = TextEditingController(
+        text: _dreamCards[index]['content'] ?? '',
+      );
       _editControllers[index]!.selection = TextSelection.fromPosition(
         TextPosition(offset: _editControllers[index]!.text.length),
       );
@@ -170,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'response': result.reply,
           'timestamp': FieldValue.serverTimestamp(),
           'prompt_tokens': result.promptTokens,
-          'response_tokens': result.responseTokens
+          'response_tokens': result.responseTokens,
         });
       }
     } catch (e) {
@@ -256,8 +257,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.blueAccent.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.nightlight_round,
-                    color: Colors.blueAccent, size: 24),
+                child: const Icon(
+                  Icons.nightlight_round,
+                  color: Colors.blueAccent,
+                  size: 24,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -273,8 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // Düzenle butonu (kart içi düzenleme başlat)
               if (!isEditing)
                 IconButton(
-                  icon:
-                      const Icon(Icons.edit, color: Colors.white70, size: 20),
+                  icon: const Icon(Icons.edit, color: Colors.white70, size: 20),
                   onPressed: () => _startCardEdit(index),
                 ),
             ],
@@ -298,7 +301,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderSide: BorderSide.none,
                     ),
                     contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 12),
+                      horizontal: 12,
+                      vertical: 12,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -309,7 +314,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF6A3BED),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
                       child: _isLoading
                           ? const SizedBox(
@@ -324,9 +330,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(width: 8),
                     TextButton(
-                      onPressed: _isLoading ? null : () => _cancelCardEdit(index),
-                      child: const Text('İptal',
-                          style: TextStyle(color: Colors.white70)),
+                      onPressed: _isLoading
+                          ? null
+                          : () => _cancelCardEdit(index),
+                      child: const Text(
+                        'İptal',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
                   ],
                 ),
@@ -348,12 +358,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Yorum kartı (aynı kaldı)
   Widget _buildInterpretationCard(String content) => _buildCard(
-        title: 'Onerio Yorumu',
-        iconAsset: 'assets/images/icon.png',
-        iconColor: Colors.purpleAccent,
-        gradient: const [Color(0xFF2A1B4D), Color(0xFF3D2A6F)],
-        content: content,
-      );
+    title: 'Onerio Yorumu',
+    iconAsset: 'assets/images/icon.png',
+    iconColor: Colors.purpleAccent,
+    gradient: const [Color(0xFF2A1B4D), Color(0xFF3D2A6F)],
+    content: content,
+  );
 
   // Genel kart oluşturucu (yorumlar ve hatalar için)
   Widget _buildCard({
@@ -465,11 +475,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       decoration: InputDecoration(
                         hintText: 'Dün gece rüyamda...',
-                        hintStyle:
-                            TextStyle(color: Colors.white.withOpacity(0.6)),
+                        hintStyle: TextStyle(
+                          color: Colors.white.withOpacity(0.6),
+                        ),
                         border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 16),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
                       ),
                     ),
                   ),
@@ -509,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
             blurRadius: 10,
             spreadRadius: 2,
             offset: const Offset(0, 4),
-          )
+          ),
         ],
       ),
       child: IconButton(
@@ -543,55 +555,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // AppBar
   AppBar _buildAppBar() {
-  return AppBar(
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    automaticallyImplyLeading: false, // geri butonu istemiyorsan false
-    leading: Padding(
-      padding: const EdgeInsets.only(left: 12.0),
-      child: Image.asset(
-        'assets/images/icon.png',
-        height: 36,
-        fit: BoxFit.contain,
-      ),
-    ),
-    centerTitle: true,
-    title: Text(
-      'Onerio',
-      style: GoogleFonts.nunito(
-        color: Colors.white,
-        fontSize: 24,
-        fontWeight: FontWeight.w800,
-        letterSpacing: 1,
-      ),
-    ),
-    actions: [
-      GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: CircleAvatar(
-            radius: 18,
-            backgroundColor: Colors.white24,
-            backgroundImage: FirebaseAuth.instance.currentUser?.photoURL != null
-                ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
-                : null,
-            child: FirebaseAuth.instance.currentUser?.photoURL == null
-                ? const Icon(Icons.person, size: 18, color: Colors.white70)
-                : null,
-          ),
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      automaticallyImplyLeading: false, // geri butonu istemiyorsan false
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 12.0),
+        child: Image.asset(
+          'assets/images/icon.png',
+          height: 36,
+          fit: BoxFit.contain,
         ),
       ),
-    ],
-  );
-}
-
-
+      centerTitle: true,
+      title: Text(
+        'Onerio',
+        style: GoogleFonts.nunito(
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 1,
+        ),
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.white24,
+              backgroundImage:
+                  FirebaseAuth.instance.currentUser?.photoURL != null
+                  ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
+                  : null,
+              child: FirebaseAuth.instance.currentUser?.photoURL == null
+                  ? const Icon(Icons.person, size: 18, color: Colors.white70)
+                  : null,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -601,36 +612,37 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0F0F1A),
       appBar: _buildAppBar(),
-body: ListView.builder(
-  controller: _scrollController,
-  physics: listPhysics,
-  itemCount: _dreamCards.length + (_isLoading ? 1 : 0),
-  itemBuilder: (context, index) {
-    // Eğer yükleme devam ediyorsa ve son eklenen kart yorum değilse shimmer göster
-    if (_isLoading && index == _dreamCards.length) {
-      return _buildShimmerCard();
-    }
+      body: ListView.builder(
+        controller: _scrollController,
+        physics: listPhysics,
+        itemCount: _dreamCards.length + (_isLoading ? 1 : 0),
+        itemBuilder: (context, index) {
+          // Eğer yükleme devam ediyorsa ve son eklenen kart yorum değilse shimmer göster
+          if (_isLoading && index == _dreamCards.length) {
+            return _buildShimmerCard();
+          }
 
-    // Normal kart gösterimi
-    if (index < _dreamCards.length) {
-      final card = _dreamCards[index];
-      if (card['type'] == 'dream') {
-        return _buildDreamCard(card['content'], index);
-      } else if (card['type'] == 'interpretation') {
-        return _buildInterpretationCard(card['content']);
-      }
-    }
 
-    // Default hata kartı
-    return _buildCard(
-      title: 'Hata',
-      icon: Icons.error_outline,
-      iconColor: Colors.redAccent,
-      gradient: const [Color(0xFF2D1B1B), Color(0xFF4A2A2A)],
-      content: 'Beklenmeyen bir hata oluştu',
-    );
-  },
-),
+          // Normal kart gösterimi
+          if (index < _dreamCards.length) {
+            final card = _dreamCards[index];
+            if (card['type'] == 'dream') {
+              return _buildDreamCard(card['content'], index);
+            } else if (card['type'] == 'interpretation') {
+              return _buildInterpretationCard(card['content']);
+            }
+          }
+
+          // Default hata kartı
+          return _buildCard(
+            title: 'Hata',
+            icon: Icons.error_outline,
+            iconColor: Colors.redAccent,
+            gradient: const [Color(0xFF2D1B1B), Color(0xFF4A2A2A)],
+            content: 'Beklenmeyen bir hata oluştu',
+          );
+        },
+      ),
 
       // Floating action: eğer düzenleme yapılıyorsa gizle, değilse input veya + butonu göster
       floatingActionButton: _editingIndex != null
@@ -642,12 +654,17 @@ body: ListView.builder(
     );
   }
 }
+
 Widget _buildShimmerCard() {
   return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // yorum kartı ile aynı
+    margin: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 8,
+    ), // yorum kartı ile aynı
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
-      color: Colors.transparent, // yorum kartındaki arka plan rengi neyse onu kullan
+      color: Colors
+          .transparent, // yorum kartındaki arka plan rengi neyse onu kullan
     ),
     child: Shimmer.fromColors(
       baseColor: Colors.blueGrey[900]!,
@@ -656,7 +673,9 @@ Widget _buildShimmerCard() {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.blueGrey[900]!.withOpacity(0.8), // yorum kartının iç rengi
+          color: Colors.blueGrey[900]!.withOpacity(
+            0.8,
+          ), // yorum kartının iç rengi
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -691,5 +710,3 @@ Widget _buildShimmerCard() {
     ),
   );
 }
-
-
