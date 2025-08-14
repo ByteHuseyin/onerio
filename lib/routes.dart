@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oneiro/screens/history_screen.dart';
-import 'package:oneiro/screens/home_screen.dart';
+import 'package:oneiro/screens/home/home_screen.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 
