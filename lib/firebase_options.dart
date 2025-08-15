@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBtb4uqb9fTiWE9aCv7Buh5QBkhZMNu-GE',
-    appId: '1:731455016634:android:9c7ee3f7e9ede3707b7c83',
+    appId: '1:731455016634:android:fd4a3c014c4a592d7b7c83',
     messagingSenderId: '731455016634',
     projectId: 'onerioapp',
     storageBucket: 'onerioapp.firebasestorage.app',
@@ -59,10 +59,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBK2ujOgAmVgM5jf5cAwLJRA_MqDlnoywU',
-    appId: '1:731455016634:ios:8fdbe90f2abffa087b7c83',
+    appId: '1:731455016634:ios:a32c3788e83c491e7b7c83',
     messagingSenderId: '731455016634',
     projectId: 'onerioapp',
     storageBucket: 'onerioapp.firebasestorage.app',
+    androidClientId: '731455016634-ht6tb99f6kcnvs7l7ak6ov8lgcgnlo7j.apps.googleusercontent.com',
+    iosClientId: '731455016634-avbki8tu63pi2migfs2lmhjl9j6n7k2c.apps.googleusercontent.com',
     iosBundleId: 'com.codinglab.oneiro',
   );
+
 }

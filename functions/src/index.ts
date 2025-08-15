@@ -80,8 +80,8 @@ export const chatWithOpenAI = onRequest(
   }
 );
 
-export const sendScheduledReminders = onSchedule(
-  { schedule: "every 1 minutes",region: "europe-west1", timeZone: "Europe/Istanbul" },
+export const sendRemindersV2 = onSchedule(
+  { schedule: "every minute",region: "europe-west1", timeZone: "Europe/Istanbul" },
   async () => {
     console.log("sendScheduledReminders çalıştı!");
     const now = new Date();
@@ -160,3 +160,4 @@ export const sendScheduledReminders = onSchedule(
     }
   }
 );
+

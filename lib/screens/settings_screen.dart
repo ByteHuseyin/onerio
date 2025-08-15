@@ -96,6 +96,9 @@ void initState() {
   super.initState();
   _loadUserSettings();
   saveFcmToken();
+  FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
+    await saveFcmToken(); // Yeni token'ı kaydet
+  });
 }
 
 Future<void> _loadUserSettings() async {
@@ -137,16 +140,29 @@ Future<void> _loadUserSettings() async {
   }
 }
   Future<void> saveFcmToken() async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    final token = await FirebaseMessaging.instance.getToken();
-    if (token != null) {
-      await FirebaseFirestore.instance.collection('user_table').doc(user.uid).update({
-        'fcmToken': token,
-      });
+  try {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String? token = await FirebaseMessaging.instance.getToken();
+      if (token == null) {
+        // Token yoksa yenilemeyi zorla
+        await FirebaseMessaging.instance.deleteToken();
+        token = await FirebaseMessaging.instance.getToken();
+      }
+      if (token != null) {
+        await FirebaseFirestore.instance
+            .collection('user_table')
+            .doc(user.uid)
+            .set({'fcmToken': token}, SetOptions(merge: true));
+        print('FCM Token kaydedildi: $token');
+      } else {
+        print('Token alınamadı');
+      }
     }
+  } catch (e) {
+    print('FCM Token kaydetme hatası: $e');
   }
-} 
+}
   Future<void> _saveNotificationEnabled(bool enabled) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {

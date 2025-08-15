@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731455016634:android:9c7ee3f7e9ede3707b7c83",
+        "mobilesdk_app_id": "1:731455016634:android:fd4a3c014c4a592d7b7c83",
         "android_client_info": {
           "package_name": "com.codinglab.oneiro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731455016634-ht6tb99f6kcnvs7l7ak6ov8lgcgnlo7j.apps.googleusercontent.com",
+          "client_id": "731455016634-k09ojq6pdfcnn70if200o16014cfsah3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.codinglab.oneiro",
@@ -42,43 +42,7 @@
               "client_id": "731455016634-2lkpmocn9j8jv2f584sr0rsn5m804e1h.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.codinglab.oneiro"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:731455016634:android:e9b32dbace756b837b7c83",
-        "android_client_info": {
-          "package_name": "com.codinglab.oneiroapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "731455016634-nfura33cg334cnctrnm1kv5bcj6purpn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBtb4uqb9fTiWE9aCv7Buh5QBkhZMNu-GE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "731455016634-nfura33cg334cnctrnm1kv5bcj6purpn.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "731455016634-2lkpmocn9j8jv2f584sr0rsn5m804e1h.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.codinglab.oneiro"
+                "bundle_id": "com.example.oneiro"
               }
             }
           ]
