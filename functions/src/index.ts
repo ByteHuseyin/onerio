@@ -10,6 +10,89 @@ initializeApp();
 const db = getFirestore();
 const auth = getAuth();
 
+export const bildirim = onSchedule(
+  { schedule: "every minute",region: "europe-west1", timeZone: "Europe/Istanbul" },
+  async () => {
+    const now = new Date();
+    const hh = now.getHours().toString().padStart(2, "0");
+    const mm = now.getMinutes().toString().padStart(2, "0");
+    const currentTime = `${hh}:${mm}`; // Kullanıcının hatırlatma zamanı formatı
+    console.log("Tam tarih ve saat:", now, "Kullanılan zaman:", currentTime);
+    // Hatırlatma açık ve zamanı eşleşen kullanıcıları çek
+    const snapshot = await db
+      .collection("user_table")
+      .where("notificationsEnabled", "==", true)
+      .where("reminderTime", "==", currentTime)
+      .get();
+    console.log("Şu anki timeZone saati:", currentTime);
+      if (snapshot.empty) {
+      console.log("Bildirim gönderecek kullanıcı yok. Toplam belge sayısı:", snapshot.size)
+      return;
+    }
+
+    // Tokenları ve kullanıcı ID'lerini eşleştir (tokenMap ile başarısız token temizlemek için)
+    const tokenMap = new Map<string, string>();
+    const tokens: string[] = [];
+
+    snapshot.docs.forEach(doc => {
+      const token = doc.data().fcmToken;
+      if (typeof token === "string") {
+        tokens.push(token);
+        tokenMap.set(token, doc.id);
+      }
+    });
+
+    if (tokens.length === 0) {
+      console.log("Geçerli fcmToken bulunamadı.");
+      return;
+    }
+
+    // Bildirim mesajını hazırla
+    const message: MulticastMessage = {
+      tokens,
+      notification: {
+        title: "Rüya Hatırlatıcı 🌙",
+        body: "Bugünkü rüyanı yazmayı unutma!",
+      },
+    };
+
+    try {
+      // Toplu bildirim gönder (sendEachForMulticast kullanılır)
+      const response = await getMessaging().sendEachForMulticast(message);
+
+      console.log(`${response.successCount} kullanıcıya bildirim gönderildi.`);
+
+      // Başarısız olan tokenları kontrol et ve temizle
+      if (response.failureCount > 0) {
+        response.responses.forEach((sendResponse, idx) => {
+          if (!sendResponse.success) {
+            const failedToken = tokens[idx];
+            const userId = tokenMap.get(failedToken);
+            console.error(`Token: ${failedToken} için hata:`, sendResponse.error);
+
+            // Geçersiz token ise Firestore'dan temizle
+            if (
+              sendResponse.error?.code === "messaging/invalid-registration-token" ||
+              sendResponse.error?.code === "messaging/registration-token-not-registered"
+            ) {
+              if (userId) {
+                db.collection("user_table").doc(userId).update({ fcmToken: null })
+                  .then(() => console.log(`Geçersiz token temizlendi: ${userId}`))
+                  .catch(err => console.error(`Token temizleme hatası (${userId}):`, err));
+              }
+            }
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Bildirim gönderilirken hata:", error);
+    }
+  }
+);
+
+
+
+
 export const chatWithOpenAI = onRequest(
   { region: "europe-west1" },
   async (req, res) => {
@@ -80,84 +163,4 @@ export const chatWithOpenAI = onRequest(
   }
 );
 
-export const sendRemindersV2 = onSchedule(
-  { schedule: "every minute",region: "europe-west1", timeZone: "Europe/Istanbul" },
-  async () => {
-    console.log("sendScheduledReminders çalıştı!");
-    const now = new Date();
-    const hh = now.getHours().toString().padStart(2, "0");
-    const mm = now.getMinutes().toString().padStart(2, "0");
-    const currentTime = `${hh}:${mm}`; // Kullanıcının hatırlatma zamanı formatı
-
-    // Hatırlatma açık ve zamanı eşleşen kullanıcıları çek
-    const snapshot = await db
-      .collection("user_table")
-      .where("notificationsEnabled", "==", true)
-      .where("reminderTime", "==", currentTime)
-      .get();
-
-    if (snapshot.empty) {
-      console.log("Bildirim gönderecek kullanıcı yok.");
-      return;
-    }
-
-    // Tokenları ve kullanıcı ID'lerini eşleştir (tokenMap ile başarısız token temizlemek için)
-    const tokenMap = new Map<string, string>();
-    const tokens: string[] = [];
-
-    snapshot.docs.forEach(doc => {
-      const token = doc.data().fcmToken;
-      if (typeof token === "string") {
-        tokens.push(token);
-        tokenMap.set(token, doc.id);
-      }
-    });
-
-    if (tokens.length === 0) {
-      console.log("Geçerli fcmToken bulunamadı.");
-      return;
-    }
-
-    // Bildirim mesajını hazırla
-    const message: MulticastMessage = {
-      tokens,
-      notification: {
-        title: "Rüya Hatırlatıcı 🌙",
-        body: "Bugünkü rüyanı yazmayı unutma!",
-      },
-    };
-
-    try {
-      // Toplu bildirim gönder (sendEachForMulticast kullanılır)
-      const response = await getMessaging().sendEachForMulticast(message);
-
-      console.log(`${response.successCount} kullanıcıya bildirim gönderildi.`);
-
-      // Başarısız olan tokenları kontrol et ve temizle
-      if (response.failureCount > 0) {
-        response.responses.forEach((sendResponse, idx) => {
-          if (!sendResponse.success) {
-            const failedToken = tokens[idx];
-            const userId = tokenMap.get(failedToken);
-            console.error(`Token: ${failedToken} için hata:`, sendResponse.error);
-
-            // Geçersiz token ise Firestore'dan temizle
-            if (
-              sendResponse.error?.code === "messaging/invalid-registration-token" ||
-              sendResponse.error?.code === "messaging/registration-token-not-registered"
-            ) {
-              if (userId) {
-                db.collection("user_table").doc(userId).update({ fcmToken: null })
-                  .then(() => console.log(`Geçersiz token temizlendi: ${userId}`))
-                  .catch(err => console.error(`Token temizleme hatası (${userId}):`, err));
-              }
-            }
-          }
-        });
-      }
-    } catch (error) {
-      console.error("Bildirim gönderilirken hata:", error);
-    }
-  }
-);
 
