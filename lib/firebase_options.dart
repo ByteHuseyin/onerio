@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '731455016634',
     projectId: 'onerioapp',
     storageBucket: 'onerioapp.firebasestorage.app',
-    iosBundleId: 'com.example.oneiro',
+    iosBundleId: 'com.codinglab.oneiro',
   );
 }

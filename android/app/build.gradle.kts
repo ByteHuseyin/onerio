@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.oneiro"
+    namespace = "com.codinglab.oneiro"
     
     compileSdk = 35  // Burayı 35 yap
 
     defaultConfig {
-        applicationId = "com.example.oneiro"
+        applicationId = "com.codinglab.oneiro"
         minSdk = 24
         targetSdk = 35  // Burayı da 35 yapabilirsin (önerilir)
         versionCode = 1

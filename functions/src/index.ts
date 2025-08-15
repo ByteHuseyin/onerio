@@ -79,9 +79,11 @@ export const chatWithOpenAI = onRequest(
     }
   }
 );
+
 export const sendScheduledReminders = onSchedule(
-  { schedule: "every 1 minutes", timeZone: "Europe/Istanbul" },
+  { schedule: "every 1 minutes",region: "europe-west1", timeZone: "Europe/Istanbul" },
   async () => {
+    console.log("sendScheduledReminders çalıştı!");
     const now = new Date();
     const hh = now.getHours().toString().padStart(2, "0");
     const mm = now.getMinutes().toString().padStart(2, "0");
@@ -89,7 +91,7 @@ export const sendScheduledReminders = onSchedule(
 
     // Hatırlatma açık ve zamanı eşleşen kullanıcıları çek
     const snapshot = await db
-      .collection("users")
+      .collection("user_table")
       .where("notificationsEnabled", "==", true)
       .where("reminderTime", "==", currentTime)
       .get();
@@ -145,7 +147,7 @@ export const sendScheduledReminders = onSchedule(
               sendResponse.error?.code === "messaging/registration-token-not-registered"
             ) {
               if (userId) {
-                db.collection("users").doc(userId).update({ fcmToken: null })
+                db.collection("user_table").doc(userId).update({ fcmToken: null })
                   .then(() => console.log(`Geçersiz token temizlendi: ${userId}`))
                   .catch(err => console.error(`Token temizleme hatası (${userId}):`, err));
               }
