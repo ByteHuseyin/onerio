@@ -23,7 +23,7 @@ class FloatingInput extends StatelessWidget {
         opacity: 1,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: const Color(0xFF1A1A2A),
             borderRadius: BorderRadius.circular(25),
@@ -70,15 +70,15 @@ class FloatingInput extends StatelessWidget {
                   _buildSendButton(),
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Rüyanızı detaylı şekilde anlatın, Onerio yorumlasın',
-                style: GoogleFonts.nunito(
-                  color: Colors.white70,
-                  fontSize: 13,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
+              //const SizedBox(height: 8),
+      //Text(
+      //  'Rüyanızı detaylı şekilde anlatın, Onerio yorumlasın',
+      //  style: GoogleFonts.nunito(
+      //    color: Colors.white70,
+      //    fontSize: 13,
+      //    fontStyle: FontStyle.italic,
+      //    ),
+              //   ),
             ],
           ),
         ),
