@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,8 @@ import 'package:oneiro/screens/home/error_card.dart';
 import 'package:oneiro/screens/home/shimmer_card.dart';
 import 'package:oneiro/screens/home/floating_input.dart';
 import 'package:oneiro/screens/home/plus_button.dart';
+import 'package:oneiro/services/permission_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,9 +40,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    _askNotificationPermission(); // 📌 İzin kontrolü
     _scrollController.addListener(_scrollListener);
   }
+  Future<void> _askNotificationPermission() async {
+    final permissionService = PermissionService();
+    final hasPermission = await permissionService.requestNotificationPermission();
 
+    if (!hasPermission && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Bildirim izni verilmedi, hatırlatmalar çalışmayabilir.'),
+        ),
+      );
+    }
+  }
   void _scrollListener() {
     final current = _scrollController.offset;
     final scrollingDown = current > _lastScrollPosition;
@@ -59,7 +74,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-    
+
+    // 📌 İnternet bağlantısını kontrol et
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('İnternet bağlantınızı kontrol edin.'),
+            backgroundColor: Color(0xFFFFFFFF),
+          ),
+        );
+      }
+      return; // İnternet yoksa işlemi durdur
+    }
     setState(() {
       // Önceki konuşmayı geçmişe kaydet
       if (_currentConversation.isNotEmpty) {
@@ -110,7 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
         'prompt_tokens': result.promptTokens,
         'response_tokens': result.responseTokens,
       });
-    } catch (e) {
+    } on SocketException catch (_) { // � Sadece SocketException'ı yakala
+      setState(() {
+        // Hata kartını kaldır ve yerine "bağlantınızı kontrol edin" hatası ver
+        _currentConversation.removeLast();
+        _currentConversation.add({
+          'type': 'error',
+          'content': 'İnternet bağlantınızı kontrol edin.', // Kullanıcı dostu mesaj
+          'timestamp': DateTime.now(),
+        });
+      });
+    } catch (e) { // 📌 Diğer tüm hataları yakala
       setState(() {
         _currentConversation.removeLast();
         _currentConversation.add({

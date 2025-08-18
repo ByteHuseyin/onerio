@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart'; // firebase_options dosyanızı içe aktarmayı unutmayın
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +16,9 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _fadeController;
   late final Animation<double> _fadeAnimation;
   late final Animation<double> _scaleAnimation;
-  Timer? _timer;
+
+  // Asenkron işlemin tamamlanıp tamamlanmadığını takip etmek için bir Completer kullanın.
+  final Completer<void> _startupCompleter = Completer<void>();
 
   @override
   void initState() {
@@ -37,16 +41,40 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _fadeController.forward();
-
-    _timer = Timer(const Duration(seconds: 3), () {
-      if (mounted) Navigator.pushReplacementNamed(context, '/login');
+    // Animasyon tamamlandığında, asenkron işlemin de tamamlandığından emin olun.
+    _fadeController.forward().whenComplete(() {
+      _startupCompleter.complete();
     });
+
+    // Uygulamanın başlangıçta yapması gereken asenkron işlemleri burada başlatın.
+    _initializeApp();
+  }
+
+  // Bu fonksiyon, Firebase kimlik doğrulama kontrolünü ve yönlendirmeyi yönetir.
+  Future<void> _initializeApp() async {
+    // Firebase authStateChanges() akışını dinleyerek kullanıcının oturum durumunu bekleyin.
+    // .first ifadesi, akışın ilk değerini alıp işlemi tamamlamasını sağlar.
+    // Bu, uygulamanın kimlik doğrulama durumunu beklemesini garanti eder.
+    final user = await FirebaseAuth.instance.authStateChanges().first;
+
+    // _startupCompleter'ın tamamlanmasını bekleyin. Bu, hem animasyonun hem de Firebase
+    // kontrolünün tamamlandığı anlamına gelir.
+    await _startupCompleter.future;
+
+    // Yönlendirme işlemini sadece widget ekrana bağlandığında (mounted) gerçekleştirin.
+    if (mounted) {
+      if (user != null) {
+        // Kullanıcı oturum açmışsa ana sayfaya yönlendir.
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        // Oturum açmamışsa giriş sayfasına yönlendir.
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    }
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _fadeController.dispose();
     super.dispose();
   }
@@ -79,6 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
                 opacity: _fadeAnimation,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Logo
                     Container(
@@ -127,20 +156,26 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 8),
 
                     // Slogan
+                    // Slogan
                     AnimatedBuilder(
                       animation: _fadeController,
                       builder: (_, __) => Opacity(
                         opacity: _fadeController.value > 0.5 ? 1.0 : 0.0,
-                        child: const Text(
-                          'Uyandın. Ama ya rüya hâlâ konuşuyorsa?',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 18,
-                            letterSpacing: 1.2,
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24), // yanlardan boşluk
+                          child: Text(
+                            'Kendinize bir adım daha yaklaşın.',
+                            textAlign: TextAlign.center, // ortalama
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 20, // 📌 Font boyutu büyütüldü
+                              letterSpacing: 1.2,
+                            ),
                           ),
                         ),
                       ),
                     ),
+
                     const SizedBox(height: 40),
 
                     // İlerleme çubuğu
