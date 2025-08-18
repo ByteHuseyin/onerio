@@ -24,10 +24,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  
-  // Yalnızca aktif konuşmayı tutan liste
+
   final List<Map<String, dynamic>> _currentConversation = [];
-  // Geçmiş konuşmaları tutan liste
   final List<List<Map<String, dynamic>>> _chatHistory = [];
 
   bool _isLoading = false;
@@ -40,12 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _askNotificationPermission(); // 📌 İzin kontrolü
+    _askNotificationPermission();
     _scrollController.addListener(_scrollListener);
   }
+
   Future<void> _askNotificationPermission() async {
     final permissionService = PermissionService();
-    final hasPermission = await permissionService.requestNotificationPermission();
+    final hasPermission =
+    await permissionService.requestNotificationPermission();
 
     if (!hasPermission && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
   }
+
   void _scrollListener() {
     final current = _scrollController.offset;
     final scrollingDown = current > _lastScrollPosition;
@@ -75,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
-    // 📌 İnternet bağlantısını kontrol et
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
       if (mounted) {
@@ -86,14 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       }
-      return; // İnternet yoksa işlemi durdur
+      return;
     }
+
     setState(() {
-      // Önceki konuşmayı geçmişe kaydet
       if (_currentConversation.isNotEmpty) {
         _chatHistory.insert(0, List.from(_currentConversation));
       }
-      // Yeni rüya için listeyi temizle
       _currentConversation.clear();
       _isLoading = true;
       _currentConversation.add({
@@ -105,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _showInput = false;
     });
 
-    // Yükleme efekti için shimmer kartını ekle
     setState(() {
       _currentConversation.add({
         'type': 'loading',
@@ -119,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
       final ChatResponse result = await ChatApi.sendPrompt(prompt);
 
       setState(() {
-        // Shimmer'ı kaldır ve yorum kartını ekle
         _currentConversation.removeLast();
         _currentConversation.add({
           'type': 'interpretation',
@@ -138,17 +135,16 @@ class _HomeScreenState extends State<HomeScreen> {
         'prompt_tokens': result.promptTokens,
         'response_tokens': result.responseTokens,
       });
-    } on SocketException catch (_) { // � Sadece SocketException'ı yakala
+    } on SocketException catch (_) {
       setState(() {
-        // Hata kartını kaldır ve yerine "bağlantınızı kontrol edin" hatası ver
         _currentConversation.removeLast();
         _currentConversation.add({
           'type': 'error',
-          'content': 'İnternet bağlantınızı kontrol edin.', // Kullanıcı dostu mesaj
+          'content': 'İnternet bağlantınızı kontrol edin.',
           'timestamp': DateTime.now(),
         });
       });
-    } catch (e) { // 📌 Diğer tüm hataları yakala
+    } catch (e) {
       setState(() {
         _currentConversation.removeLast();
         _currentConversation.add({
@@ -159,17 +155,16 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     } finally {
       setState(() => _isLoading = false);
+      _scrollToBottom();
     }
   }
 
-  // Bu metot, geçmiş konuşmaları tekrar ekrana getirir
   void _loadHistoryChat(int index) {
     setState(() {
-      // Mevcut konuşmayı kaydetmeden geçmişten yükle
       _currentConversation.clear();
       _currentConversation.addAll(List.from(_chatHistory[index]));
     });
-    Navigator.pop(context); // Menüyü kapat
+    Navigator.pop(context);
   }
 
   void _showHistoryDrawer() {
@@ -199,15 +194,109 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _startCardEdit(int index) {
-    // ... Düzenleme mantığı aynı
+    final currentText = _currentConversation[index]['content'];
+    _editControllers[index] = TextEditingController(text: currentText);
+    setState(() => _editingIndex = index);
   }
 
   Future<void> _saveCardEdit(int index) async {
-    // ... Düzenleme kaydetme mantığı aynı
+    final controller = _editControllers[index];
+    if (controller == null) return;
+    final newText = controller.text.trim();
+    if (newText.isEmpty) {
+      _cancelCardEdit(index);
+      return;
+    }
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      _cancelCardEdit(index);
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _currentConversation[index]['content'] = newText;
+      _editingIndex = null;
+    });
+
+    _scrollToBottom();
+
+    try {
+      _currentConversation.insert(index + 1, {
+        'type': 'loading',
+        'content': '',
+      });
+      final ChatResponse result = await ChatApi.sendPrompt(newText);
+      _currentConversation.removeAt(index + 1);
+
+      setState(() {
+        // Yükleme efekti kartını listeden kaldırır.
+        _currentConversation.removeAt(index + 1);
+
+        // Eğer mevcut rüya kartından sonra bir yorum kartı varsa, içeriğini günceller.
+        if (index + 1 < _currentConversation.length &&
+            _currentConversation[index + 1]['type'] == 'interpretation') {
+          _currentConversation[index + 1] = {
+            'type': 'interpretation',
+            'content': result.reply,
+            'timestamp': DateTime.now(),
+          };
+        } else {
+          // Aksi takdirde, yeni bir yorum kartı ekler.
+          _currentConversation.insert(index + 1, {
+            'type': 'interpretation',
+            'content': result.reply,
+            'timestamp': DateTime.now(),
+          });
+        }
+
+        // Düzenleme modundan çıkar.
+        _editingIndex = null;
+      });
+
+// Düzenleme kontrolcüsünü temizler ve bellekten serbest bırakır.
+      controller.dispose();
+      _editControllers.remove(index);
+
+      await FirebaseFirestore.instance.collection('user_logs').add({
+        'userId': user.uid,
+        'email': user.email,
+        'prompt': newText,
+        'response': result.reply,
+        'timestamp': FieldValue.serverTimestamp(),
+        'prompt_tokens': result.promptTokens,
+        'response_tokens': result.responseTokens,
+      });
+    } catch (e) {
+      if (index + 1 < _currentConversation.length &&
+          _currentConversation[index + 1]['type'] == 'loading') {
+        _currentConversation.removeAt(index + 1);
+      }
+      setState(() {
+        _currentConversation.insert(index + 1, {
+          'type': 'error',
+          'content': 'Güncelleme sırasında hata: $e',
+          'timestamp': DateTime.now(),
+        });
+      });
+    } finally {
+      setState(() => _isLoading = false);
+      _scrollToBottom();
+      controller.dispose();
+      _editControllers.remove(index);
+    }
   }
 
   void _cancelCardEdit(int index) {
-    // ... Düzenleme iptal etme mantığı aynı
+    final controller = _editControllers[index];
+    if (controller != null) {
+      controller.dispose();
+      _editControllers.remove(index);
+    }
+    setState(() {
+      _editingIndex = null;
+    });
   }
 
   void _scrollToBottom() {
@@ -249,13 +338,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              // ListView artık tersine çevrilmeyecek
               reverse: false,
               physics: const BouncingScrollPhysics(),
               itemCount: _currentConversation.length,
               itemBuilder: (context, index) {
                 final card = _currentConversation[index];
-                
                 if (card['type'] == 'dream') {
                   return DreamCard(
                     content: card['content'],
@@ -274,28 +361,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (card['type'] == 'error') {
                   return ErrorCard(message: card['content']);
                 }
-      
                 return ErrorCard(message: 'Beklenmeyen bir hata oluştu');
               },
             ),
           ),
-          if (_editingIndex == null) 
+          if (_editingIndex == null)
             Align(
-              alignment: _showInput ? Alignment.bottomCenter : Alignment.bottomRight,
+              alignment:
+              _showInput ? Alignment.bottomCenter : Alignment.bottomRight,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: _showInput
                     ? FloatingInput(
-                        controller: _controller,
-                        isLoading: _isLoading,
-                        onSend: _sendPrompt,
-                      )
+                  controller: _controller,
+                  isLoading: _isLoading,
+                  onSend: _sendPrompt,
+                )
                     : PlusButton(
-                        onPressed: () {
-                          setState(() => _showInput = true);
-                          _scrollToBottom();
-                        },
-                      ),
+                  onPressed: () {
+                    setState(() => _showInput = true);
+                    _scrollToBottom();
+                  },
+                ),
               ),
             ),
         ],
