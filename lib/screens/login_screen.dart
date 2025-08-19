@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   void initState() {
     super.initState();
     _initAnimations();
-    //_askNotificationPermission(); // 📌 İzin kontrolü
+    //_askNotificationPermission(); // İzin kontrolü
     _checkLoginStatus();
   }
 
