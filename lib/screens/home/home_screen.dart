@@ -13,7 +13,7 @@ import 'package:oneiro/screens/home/floating_input.dart';
 import 'package:oneiro/screens/home/plus_button.dart';
 import 'package:oneiro/services/permission_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-
+import 'package:flutter/services.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -42,6 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.addListener(_scrollListener);
   }
 
+
+
+
   Future<void> _askNotificationPermission() async {
     final permissionService = PermissionService();
     final hasPermission =
@@ -55,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
   }
+
 
   void _scrollListener() {
     final current = _scrollController.offset;
@@ -158,7 +162,34 @@ class _HomeScreenState extends State<HomeScreen> {
       _scrollToBottom();
     }
   }
-
+  // UYGULAMADAN ÇIKIŞ ONAY DİYALOĞU METODU
+  Future<bool> _onWillPop() async {
+    final shouldPop = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF0F0F1A),
+        title: const Text(
+          'Uygulamadan Çıkılsın mı?',
+          style: TextStyle(color: Colors.white),
+        ),
+        content: const Text(
+          'Uygulamadan çıkmak istediğinizden emin misiniz?',
+          style: TextStyle(color: Colors.white70),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Hayır', style: TextStyle(color: Colors.white70)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Evet', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+    return shouldPop ?? false;
+  }
   void _loadHistoryChat(int index) {
     setState(() {
       _currentConversation.clear();
@@ -228,13 +259,11 @@ class _HomeScreenState extends State<HomeScreen> {
         'content': '',
       });
       final ChatResponse result = await ChatApi.sendPrompt(newText);
-      _currentConversation.removeAt(index + 1);
 
       setState(() {
-        // Yükleme efekti kartını listeden kaldırır.
+        // Yükleme efekti kartını listeden kaldırır ve yorumu ekler.
         _currentConversation.removeAt(index + 1);
 
-        // Eğer mevcut rüya kartından sonra bir yorum kartı varsa, içeriğini günceller.
         if (index + 1 < _currentConversation.length &&
             _currentConversation[index + 1]['type'] == 'interpretation') {
           _currentConversation[index + 1] = {
@@ -243,19 +272,14 @@ class _HomeScreenState extends State<HomeScreen> {
             'timestamp': DateTime.now(),
           };
         } else {
-          // Aksi takdirde, yeni bir yorum kartı ekler.
           _currentConversation.insert(index + 1, {
             'type': 'interpretation',
             'content': result.reply,
             'timestamp': DateTime.now(),
           });
         }
-
-        // Düzenleme modundan çıkar.
-        _editingIndex = null;
       });
 
-// Düzenleme kontrolcüsünü temizler ve bellekten serbest bırakır.
       controller.dispose();
       _editControllers.remove(index);
 
@@ -283,8 +307,8 @@ class _HomeScreenState extends State<HomeScreen> {
     } finally {
       setState(() => _isLoading = false);
       _scrollToBottom();
-      controller.dispose();
-      _editControllers.remove(index);
+      // Yalnızca hata durumunda dispose ve remove çağrısı
+      // try bloğunda zaten yapıldığı için burayı siliyoruz.
     }
   }
 
@@ -322,70 +346,86 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F0F1A),
-      appBar: HomeAppBar(
-        onSettingsPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-          );
-        },
-       // onHistoryPressed: _showHistoryDrawer,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              reverse: false,
-              physics: const BouncingScrollPhysics(),
-              itemCount: _currentConversation.length,
-              itemBuilder: (context, index) {
-                final card = _currentConversation[index];
-                if (card['type'] == 'dream') {
-                  return DreamCard(
-                    content: card['content'],
-                    index: index,
-                    isEditing: _editingIndex == index,
-                    editController: _editControllers[index],
-                    isLoading: _isLoading,
-                    onEdit: _startCardEdit,
-                    onSave: _saveCardEdit,
-                    onCancel: _cancelCardEdit,
-                  );
-                } else if (card['type'] == 'interpretation') {
-                  return InterpretationCard(content: card['content']);
-                } else if (card['type'] == 'loading') {
-                  return const ShimmerCard();
-                } else if (card['type'] == 'error') {
-                  return ErrorCard(message: card['content']);
-                }
-                return ErrorCard(message: 'Beklenmeyen bir hata oluştu');
-              },
-            ),
-          ),
-          if (_editingIndex == null)
-            Align(
-              alignment:
-              _showInput ? Alignment.bottomCenter : Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: _showInput
-                    ? FloatingInput(
-                  controller: _controller,
-                  isLoading: _isLoading,
-                  onSend: _sendPrompt,
-                )
-                    : PlusButton(
-                  onPressed: () {
-                    setState(() => _showInput = true);
-                    _scrollToBottom();
-                  },
-                ),
+    // Scaffold'ı PopScope ile sarıyoruz
+    return PopScope(
+      canPop: false, // Varsayılan geri gitme eylemini engeller
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+
+        final shouldPop = await _onWillPop();
+
+        if (shouldPop) {
+          if (Navigator.of(context).canPop()) {
+            SystemNavigator.pop();
+          } else {
+            SystemNavigator.pop();
+          }
+        }
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFF0F0F1A),
+        appBar: HomeAppBar(
+          onSettingsPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            );
+          },
+          // onHistoryPressed: _showHistoryDrawer, // opsiyonel
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                controller: _scrollController,
+                physics: const BouncingScrollPhysics(),
+                itemCount: _currentConversation.length,
+                itemBuilder: (context, index) {
+                  final card = _currentConversation[index];
+                  if (card['type'] == 'dream') {
+                    return DreamCard(
+                      content: card['content'],
+                      index: index,
+                      isEditing: _editingIndex == index,
+                      editController: _editControllers[index],
+                      isLoading: _isLoading,
+                      onEdit: _startCardEdit,
+                      onSave: _saveCardEdit,
+                      onCancel: _cancelCardEdit,
+                    );
+                  } else if (card['type'] == 'interpretation') {
+                    return InterpretationCard(content: card['content']);
+                  } else if (card['type'] == 'loading') {
+                    return const ShimmerCard();
+                  } else if (card['type'] == 'error') {
+                    return ErrorCard(message: card['content']);
+                  }
+                  return const ErrorCard(message: 'Beklenmeyen bir hata oluştu');
+                },
               ),
             ),
-        ],
+            if (_editingIndex == null)
+              Align(
+                alignment:
+                _showInput ? Alignment.bottomCenter : Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: _showInput
+                      ? FloatingInput(
+                    controller: _controller,
+                    isLoading: _isLoading,
+                    onSend: _sendPrompt,
+                  )
+                      : PlusButton(
+                    onPressed: () {
+                      setState(() => _showInput = true);
+                      _scrollToBottom();
+                    },
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
