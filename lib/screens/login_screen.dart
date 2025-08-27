@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home/home_screen.dart';
 import 'package:oneiro/services/permission_service.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   
   if (!hasPermission && mounted) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Bildirim izni verilmedi, hatırlatmalar çalışmayabilir.'),
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.notificationPermissionDescription),
       ),
     );
   }
@@ -125,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     }
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Giriş başarısız: $e')),
+      SnackBar(content: Text('${AppLocalizations.of(context)!.error}: $e')),
     );
   }
 }
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 
                   // Slogan
                   Text(
-                    'Rüyanı keşfetmeye hazır mısın?',
+                    AppLocalizations.of(context)!.onboardingSubtitle1,
                     textAlign: TextAlign.center,
                     style: textTheme.bodyLarge?.copyWith(
                       color: Colors.white70,
@@ -189,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                     child: ElevatedButton.icon(
                       onPressed: _signInWithGoogle,
                       icon: const Icon(FontAwesomeIcons.google, color: Colors.red, size: 20),
-                      label: const Text('Google ile devam et', style: TextStyle(fontSize: 16)),
+                      label: Text(AppLocalizations.of(context)!.continueWithGoogle, style: const TextStyle(fontSize: 16)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.05),
                         foregroundColor: Colors.white,

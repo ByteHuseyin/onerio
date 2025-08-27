@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneiro/screens/home/home_screen.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -60,7 +61,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ),
           centerTitle: true,
           title: Text(
-            'Rüya Geçmişim',
+            AppLocalizations.of(context)!.history,
             style: GoogleFonts.nunito(
               color: Colors.white,
               fontSize: 22,
@@ -95,7 +96,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Rüya geçmişi yükleniyor...',
+                        AppLocalizations.of(context)!.loading,
                         style: GoogleFonts.nunito(
                           color: Colors.white70,
                           fontSize: 16,
@@ -120,7 +121,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'Henüz kayıtlı rüyan yok',
+                          AppLocalizations.of(context)!.noDreamsYet,
                           style: GoogleFonts.nunito(
                             color: Colors.white,
                             fontSize: 22,
@@ -129,7 +130,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Rüyalarını kaydetmeye başladığında\nburada görünecekler',
+                          AppLocalizations.of(context)!.startAnalyzing,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.nunito(
                             color: Colors.white54,
@@ -154,7 +155,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             );
                           },
                           child: Text(
-                            'İlk Rüyanı Kaydet',
+                            AppLocalizations.of(context)!.analyzeDream,
                             style: GoogleFonts.nunito(
                               color: Colors.white,
                               fontSize: 16,

@@ -10,6 +10,7 @@ import 'package:oneiro/screens/home/error_card.dart';
 import 'package:oneiro/screens/home/shimmer_card.dart';
 import 'package:oneiro/screens/home/floating_input.dart';
 import 'package:oneiro/screens/home/plus_button.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _lastScrollPosition = current;
   }
 
-  Future<void> _sendPrompt() async {
+  Future<void> _sendPrompt(String character) async {
     final prompt = _controller.text.trim();
     if (prompt.isEmpty || _isLoading) return;
 
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollToBottom();
 
     try {
-      final ChatResponse result = await ChatApi.sendPrompt(prompt);
+      final ChatResponse result = await ChatApi.sendPrompt(prompt, character);
 
       setState(() {
         // Shimmer'ı kaldır ve yorum kartını ekle
@@ -96,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _currentConversation.add({
           'type': 'interpretation',
           'content': result.reply,
+          'character': character,
           'timestamp': DateTime.now(),
         });
         _isLoading = false;
@@ -106,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'email': user.email,
         'prompt': prompt,
         'response': result.reply,
+        'character': character,
         'timestamp': FieldValue.serverTimestamp(),
         'prompt_tokens': result.promptTokens,
         'response_tokens': result.responseTokens,
@@ -172,6 +175,14 @@ class _HomeScreenState extends State<HomeScreen> {
     // ... Düzenleme iptal etme mantığı aynı
   }
 
+  void _editWithFloatingInput(String content) {
+    setState(() {
+      _controller.text = content;
+      _showInput = true;
+    });
+    _scrollToBottom();
+  }
+
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
@@ -228,9 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     onEdit: _startCardEdit,
                     onSave: _saveCardEdit,
                     onCancel: _cancelCardEdit,
+                    onEditWithFloatingInput: _editWithFloatingInput,
                   );
                 } else if (card['type'] == 'interpretation') {
-                  return InterpretationCard(content: card['content']);
+                  return InterpretationCard(
+                    content: card['content'],
+                    character: card['character'],
+                  );
                 } else if (card['type'] == 'loading') {
                   return const ShimmerCard();
                 } else if (card['type'] == 'error') {

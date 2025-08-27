@@ -10,6 +10,7 @@ class DreamCard extends StatelessWidget {
   final Function(int) onEdit;
   final Function(int) onSave;
   final Function(int) onCancel;
+  final Function(String) onEditWithFloatingInput;
 
   const DreamCard({
     super.key,
@@ -21,6 +22,7 @@ class DreamCard extends StatelessWidget {
     required this.onEdit,
     required this.onSave,
     required this.onCancel,
+    required this.onEditWithFloatingInput,
   });
 
   @override
@@ -74,7 +76,7 @@ class DreamCard extends StatelessWidget {
               if (!isEditing)
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.white70, size: 20),
-                  onPressed: () => onEdit(index),
+                  onPressed: () => onEditWithFloatingInput(content),
                 ),
             ],
           ),

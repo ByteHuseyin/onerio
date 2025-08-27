@@ -7,6 +7,9 @@ import 'package:oneiro/screens/privacy_policy.dart';
 import 'login_screen.dart';
 import 'history_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
+import 'package:oneiro/services/language_service.dart';
+import 'package:provider/provider.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -61,18 +64,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (ctx) => AlertDialog(
         backgroundColor: _darkMode ? const Color(0xFF1D0C3D) : Colors.white,
         title: Text(
-          "Çıkış Yap",
+          AppLocalizations.of(context)!.logout,
           style: TextStyle(color: _darkMode ? Colors.white : Colors.black),
         ),
         content: Text(
-          "Hesabınızdan çıkmak istediğinize emin misiniz?",
+          AppLocalizations.of(context)!.deleteAccountWarning,
           style: TextStyle(color: _darkMode ? Colors.white70 : Colors.black54),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(
-              "İptal",
+              AppLocalizations.of(context)!.cancel,
               style: TextStyle(
                   color: _darkMode ? Colors.purple[200] : Colors.purple),
             ),
@@ -85,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Navigator.pop(ctx);
               _signOut();
             },
-            child: const Text("Çıkış Yap", style: TextStyle(color: Colors.white)),
+            child: Text(AppLocalizations.of(context)!.logout, style: const TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -196,9 +199,9 @@ Future<void> _loadUserSettings() async {
             backgroundColor:
                 _darkMode ? const Color(0xFF6A11CB) : Colors.purple[300],
             centerTitle: true,
-            title: const Text(
-              "Rüya Evrenini Yönet",
-              style: TextStyle(
+            title: Text(
+              AppLocalizations.of(context)!.settings,
+              style: const TextStyle(
                   color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -236,7 +239,7 @@ Future<void> _loadUserSettings() async {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          _currentUser?.displayName ?? "Misafir Kullanıcı",
+                          _currentUser?.displayName ?? AppLocalizations.of(context)!.welcome,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -282,7 +285,7 @@ Future<void> _loadUserSettings() async {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: _buildSettingCard(
                     icon: Icons.history,
-                    title: "Rüya Geçmişi",
+                    title: AppLocalizations.of(context)!.history,
                     children: [
                       InkWell(
                         borderRadius: BorderRadius.circular(16),
@@ -312,7 +315,7 @@ Future<void> _loadUserSettings() async {
                                           : Colors.amber[700]),
                                   const SizedBox(width: 10),
                                   Text(
-                                    "Rüya Geçmişimi Görüntüle",
+                                    AppLocalizations.of(context)!.yourDreamHistory,
                                     style: TextStyle(
                                         color: _darkMode
                                             ? Colors.white
@@ -364,17 +367,17 @@ Future<void> _loadUserSettings() async {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: _buildSettingCard(
                   icon: Icons.notifications_active,
-                  title: "Bildirimler",
+                  title: AppLocalizations.of(context)!.notifications,
                   children: [
-                   _buildToggle(
-                  "Sabah Hatırlatıcı",
-                   _morningReminder,
-                    (val) {
-                  setState(() => _morningReminder = val);
-                   _saveNotificationEnabled(val);
-                  saveReminderTime(_reminderTime);
-                    },
-                  ),
+                                       _buildToggle(
+                   AppLocalizations.of(context)!.notifications,
+                    _morningReminder,
+                     (val) {
+                   setState(() => _morningReminder = val);
+                    _saveNotificationEnabled(val);
+                   saveReminderTime(_reminderTime);
+                     },
+                   ),
                     _buildTimePickerTile(
                     title: "Hatırlatıcı Saati",
                     selectedTime: _reminderTime,
@@ -382,6 +385,40 @@ Future<void> _loadUserSettings() async {
                     setState(() => _reminderTime = time);
                     saveReminderTime(time); // Yeni zamanı kaydet
                     },
+                    ),
+                  ],
+                ),
+              ),
+              // Dil Seçimi Bölümü
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: _buildSettingCard(
+                  icon: Icons.language,
+                  title: AppLocalizations.of(context)!.language,
+                  children: [
+                    Consumer<LanguageService>(
+                      builder: (context, languageService, child) {
+                        return Column(
+                          children: languageService.getSupportedLanguages().map((lang) {
+                            return RadioListTile<String>(
+                              title: Text(
+                                lang['name']!,
+                                style: TextStyle(
+                                  color: _darkMode ? Colors.white : Colors.black87,
+                                ),
+                              ),
+                              value: lang['code']!,
+                              groupValue: languageService.currentLocale.languageCode,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  languageService.changeLanguage(value);
+                                }
+                              },
+                              activeColor: Colors.purple,
+                            );
+                          }).toList(),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -399,14 +436,14 @@ Future<void> _loadUserSettings() async {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    _buildActionTile("Gizlilik Politikası", Icons.lock, () {
+                    _buildActionTile(AppLocalizations.of(context)!.privacyPolicy, Icons.lock, () {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (_) => const PrivacyPolicyScreen()),
                           );
                     }),
-                    _buildActionTile("Hakkında", Icons.info, () {
+                    _buildActionTile(AppLocalizations.of(context)!.aboutUs, Icons.info, () {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -429,9 +466,9 @@ Future<void> _loadUserSettings() async {
                                 ),
                               ),
                               onPressed: _showLogoutConfirmation,
-                              child: const Text(
-                                "HESAPTAN ÇIKIŞ YAP",
-                                style: TextStyle(
+                              child: Text(
+                                AppLocalizations.of(context)!.logout,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,

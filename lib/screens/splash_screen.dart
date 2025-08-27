@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -131,9 +132,10 @@ class _SplashScreenState extends State<SplashScreen>
                       animation: _fadeController,
                       builder: (_, __) => Opacity(
                         opacity: _fadeController.value > 0.5 ? 1.0 : 0.0,
-                        child: const Text(
-                          'Uyandın. Ama ya rüya hâlâ konuşuyorsa?',
-                          style: TextStyle(
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          AppLocalizations.of(context)!.onboardingSubtitle1,
+                          style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 18,
                             letterSpacing: 1.2,

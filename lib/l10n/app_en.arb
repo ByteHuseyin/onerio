@@ -1,0 +1,137 @@
+{
+  "@@locale": "en",
+  "appTitle": "Oneiro",
+  "appDescription": "Dream analysis and tracking app",
+  
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+  
+  "welcome": "Welcome",
+  "login": "Login",
+  "signup": "Sign Up",
+  "logout": "Logout",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "forgotPassword": "Forgot Password?",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithApple": "Continue with Apple",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "signUpHere": "Sign up here",
+  "loginHere": "Login here",
+  
+  "home": "Home",
+  "history": "History",
+  "settings": "Settings",
+  "aboutUs": "About Us",
+  "privacyPolicy": "Privacy Policy",
+  
+  "dreamAnalysis": "Dream Analysis",
+  "analyzeDream": "Analyze Dream",
+  "dreamDescription": "Describe your dream...",
+  "analyze": "Analyze",
+  "analyzing": "Analyzing...",
+  "interpretation": "Interpretation",
+  "saveDream": "Save Dream",
+  "dreamSaved": "Dream saved successfully",
+  "dreamDeleted": "Dream deleted successfully",
+  
+  "noDreamsYet": "No dreams yet",
+  "startAnalyzing": "Start analyzing your dreams to see them here",
+  "noHistory": "No history",
+  "yourDreamHistory": "Your dream history will appear here",
+  
+  "language": "Language",
+  "theme": "Theme",
+  "notifications": "Notifications",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "systemDefault": "System Default",
+  
+  "turkish": "Turkish",
+  "english": "English",
+  
+  "aboutOneiro": "About Oneiro",
+  "oneiroDescription": "Oneiro is an AI-powered dream analysis application that helps you understand the meaning behind your dreams.",
+  "version": "Version",
+  "contactUs": "Contact Us",
+  
+  "error": "Error",
+  "success": "Success",
+  "warning": "Warning",
+  "info": "Information",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "save": "Save",
+  "close": "Close",
+  
+  "networkError": "Network error occurred",
+  "tryAgain": "Try again",
+  "somethingWentWrong": "Something went wrong",
+  "pleaseTryAgain": "Please try again",
+  
+  "loading": "Loading...",
+  "pleaseWait": "Please wait...",
+  
+  "dreamTitle": "Dream Title",
+  "dreamDate": "Dream Date",
+  "dreamTags": "Dream Tags",
+  "addTags": "Add tags...",
+  "searchDreams": "Search dreams...",
+  
+  "emotionalState": "Emotional State",
+  "dreamType": "Dream Type",
+  "lucidDream": "Lucid Dream",
+  "recurringDream": "Recurring Dream",
+  "nightmare": "Nightmare",
+  "normalDream": "Normal Dream",
+  
+  "veryHappy": "Very Happy",
+  "happy": "Happy",
+  "neutral": "Neutral",
+  "sad": "Sad",
+  "verySad": "Very Sad",
+  "anxious": "Anxious",
+  "excited": "Excited",
+  "confused": "Confused",
+  
+  "dreamInsights": "Dream Insights",
+  "psychologicalAnalysis": "Psychological Analysis",
+  "symbolicMeaning": "Symbolic Meaning",
+  "emotionalImpact": "Emotional Impact",
+  "recommendations": "Recommendations",
+  
+  "exportData": "Export Data",
+  "importData": "Import Data",
+  "backupData": "Backup Data",
+  "restoreData": "Restore Data",
+  
+  "accountSettings": "Account Settings",
+  "profile": "Profile",
+  "changePassword": "Change Password",
+  "deleteAccount": "Delete Account",
+  "deleteAccountWarning": "This action cannot be undone. All your data will be permanently deleted.",
+  
+  "onboardingTitle1": "Welcome to Oneiro",
+  "onboardingSubtitle1": "Discover the hidden meanings in your dreams with AI-powered analysis",
+  "onboardingTitle2": "Track Your Dreams",
+  "onboardingSubtitle2": "Keep a detailed record of your dreams and their interpretations",
+  "onboardingTitle3": "Understand Yourself",
+  "onboardingSubtitle3": "Gain insights into your subconscious mind and emotional state",
+  "getStarted": "Get Started",
+  "skip": "Skip",
+  "next": "Next",
+  
+  "permissionRequired": "Permission Required",
+  "notificationPermission": "Notification Permission",
+  "notificationPermissionDescription": "We need notification permission to send you dream reminders and updates",
+  "grantPermission": "Grant Permission",
+  "later": "Later"
+}

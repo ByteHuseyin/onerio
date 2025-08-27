@@ -18,7 +18,7 @@ class ChatApi {
   static const String _cloudFunctionUrl =
       'https://europe-west1-onerioapp.cloudfunctions.net/chatWithOpenAI';
 
-  static Future<ChatResponse> sendPrompt(String prompt) async {
+  static Future<ChatResponse> sendPrompt(String prompt, String character) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception('Kullanıcı giriş yapmamış.');
 
@@ -30,7 +30,10 @@ class ChatApi {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $idToken',
       },
-      body: jsonEncode({'prompt': prompt}),
+      body: jsonEncode({
+        'prompt': prompt,
+        'character': character,
+      }),
     );
 
     if (response.statusCode == 200) {
