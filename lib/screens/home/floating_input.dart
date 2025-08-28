@@ -6,12 +6,14 @@ class FloatingInput extends StatelessWidget {
   final TextEditingController controller;
   final bool isLoading;
   final Function(String character) onSend;
+  final FocusNode? focusNode;
 
   const FloatingInput({
     super.key,
     required this.controller,
     required this.isLoading,
     required this.onSend,
+    this.focusNode,
   });
 
   @override
@@ -47,8 +49,9 @@ class FloatingInput extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                                         child: TextField(
+                                                              child: TextField(
                        controller: controller,
+                       focusNode: focusNode,
                        maxLines: 3,
                        minLines: 1,
                        textInputAction: TextInputAction.send,
@@ -56,7 +59,7 @@ class FloatingInput extends StatelessWidget {
                          color: Colors.white,
                          fontSize: 17,
                        ),
-                                               onSubmitted: (value) {
+                       onSubmitted: (value) {
                           if (!isLoading && value.trim().isNotEmpty) {
                             _showCharacterSelectionDialog(context);
                           }

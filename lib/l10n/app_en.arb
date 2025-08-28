@@ -133,5 +133,15 @@
   "notificationPermission": "Notification Permission",
   "notificationPermissionDescription": "We need notification permission to send you dream reminders and updates",
   "grantPermission": "Grant Permission",
-  "later": "Later"
+  "later": "Later",
+  
+  "dreamInspiration": "Dream Inspiration",
+  "dreamAnalysisCompleted": "Dream analysis completed",
+  
+  "dreamQuote1": "Dreams are the secret mirror that whispers what the soul cannot say while awake.",
+  "dreamQuote2": "Dreams are the poetry that the subconscious writes in darkness.",
+  "dreamQuote3": "Dreams are the free journey of the mind liberated from the chains of time and space.",
+  "dreamQuote4": "Dreams are the silent stage of truths hidden behind the curtain of the mind.",
+  "dreamQuote5": "Dreams are an invisible language coming from the depths of the heart.",
+  "dreamQuote6": "Dreams are a mysterious painting drawn by the mind at night."
 }

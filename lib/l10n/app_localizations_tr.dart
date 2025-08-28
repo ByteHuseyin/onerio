@@ -341,4 +341,32 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get later => 'Sonra';
+
+  @override
+  String get dreamInspiration => 'Rüya İlhamı';
+
+  @override
+  String get dreamAnalysisCompleted => 'Rüya analizi tamamlandı';
+
+  @override
+  String get dreamQuote1 =>
+      'Rüya, ruhun uyanıkken söyleyemediklerini fısıldayan gizli bir aynadır.';
+
+  @override
+  String get dreamQuote2 => 'Rüya, bilinçaltının karanlıkta yazdığı şiirdir.';
+
+  @override
+  String get dreamQuote3 =>
+      'Rüya, zamanın ve mekânın zincirlerinden kurtulmuş zihnin özgür yolculuğudur.';
+
+  @override
+  String get dreamQuote4 =>
+      'Rüya, zihnin perde arkasında sakladığı hakikatlerin sessiz sahnesidir.';
+
+  @override
+  String get dreamQuote5 =>
+      'Rüya, kalbin derinliklerinden gelen görünmez bir dildir.';
+
+  @override
+  String get dreamQuote6 => 'Rüya, zihnin gecede çizdiği gizemli bir tabludur.';
 }

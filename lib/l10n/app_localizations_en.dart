@@ -340,4 +340,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get later => 'Later';
+
+  @override
+  String get dreamInspiration => 'Dream Inspiration';
+
+  @override
+  String get dreamAnalysisCompleted => 'Dream analysis completed';
+
+  @override
+  String get dreamQuote1 =>
+      'Dreams are the secret mirror that whispers what the soul cannot say while awake.';
+
+  @override
+  String get dreamQuote2 =>
+      'Dreams are the poetry that the subconscious writes in darkness.';
+
+  @override
+  String get dreamQuote3 =>
+      'Dreams are the free journey of the mind liberated from the chains of time and space.';
+
+  @override
+  String get dreamQuote4 =>
+      'Dreams are the silent stage of truths hidden behind the curtain of the mind.';
+
+  @override
+  String get dreamQuote5 =>
+      'Dreams are an invisible language coming from the depths of the heart.';
+
+  @override
+  String get dreamQuote6 =>
+      'Dreams are a mysterious painting drawn by the mind at night.';
 }

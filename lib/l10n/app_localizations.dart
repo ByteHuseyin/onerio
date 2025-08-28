@@ -751,6 +751,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Later'**
   String get later;
+
+  /// No description provided for @dreamInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Inspiration'**
+  String get dreamInspiration;
+
+  /// No description provided for @dreamAnalysisCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream analysis completed'**
+  String get dreamAnalysisCompleted;
+
+  /// No description provided for @dreamQuote1.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are the secret mirror that whispers what the soul cannot say while awake.'**
+  String get dreamQuote1;
+
+  /// No description provided for @dreamQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are the poetry that the subconscious writes in darkness.'**
+  String get dreamQuote2;
+
+  /// No description provided for @dreamQuote3.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are the free journey of the mind liberated from the chains of time and space.'**
+  String get dreamQuote3;
+
+  /// No description provided for @dreamQuote4.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are the silent stage of truths hidden behind the curtain of the mind.'**
+  String get dreamQuote4;
+
+  /// No description provided for @dreamQuote5.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are an invisible language coming from the depths of the heart.'**
+  String get dreamQuote5;
+
+  /// No description provided for @dreamQuote6.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams are a mysterious painting drawn by the mind at night.'**
+  String get dreamQuote6;
 }
 
 class _AppLocalizationsDelegate

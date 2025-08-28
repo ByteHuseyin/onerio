@@ -126,5 +126,15 @@
   "notificationPermission": "Bildirim İzni",
   "notificationPermissionDescription": "Rüya hatırlatıcıları ve güncellemeler göndermek için bildirim iznine ihtiyacımız var",
   "grantPermission": "İzin Ver",
-  "later": "Sonra"
+  "later": "Sonra",
+  
+  "dreamInspiration": "Rüya İlhamı",
+  "dreamAnalysisCompleted": "Rüya analizi tamamlandı",
+  
+  "dreamQuote1": "Rüya, ruhun uyanıkken söyleyemediklerini fısıldayan gizli bir aynadır.",
+  "dreamQuote2": "Rüya, bilinçaltının karanlıkta yazdığı şiirdir.",
+  "dreamQuote3": "Rüya, zamanın ve mekânın zincirlerinden kurtulmuş zihnin özgür yolculuğudur.",
+  "dreamQuote4": "Rüya, zihnin perde arkasında sakladığı hakikatlerin sessiz sahnesidir.",
+  "dreamQuote5": "Rüya, kalbin derinliklerinden gelen görünmez bir dildir.",
+  "dreamQuote6": "Rüya, zihnin gecede çizdiği gizemli bir tabludur."
 }

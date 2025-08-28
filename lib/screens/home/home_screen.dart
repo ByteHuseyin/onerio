@@ -11,6 +11,7 @@ import 'package:oneiro/screens/home/shimmer_card.dart';
 import 'package:oneiro/screens/home/floating_input.dart';
 import 'package:oneiro/screens/home/plus_button.dart';
 import 'package:oneiro/l10n/app_localizations.dart';
+import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
   
   // Yalnızca aktif konuşmayı tutan liste
   final List<Map<String, dynamic>> _currentConversation = [];
@@ -34,11 +36,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int? _editingIndex;
   final Map<int, TextEditingController> _editControllers = {};
+  
+  // Rastgele rüya cümleleri
+  List<String> _getDreamQuotes(BuildContext context) {
+    return [
+      AppLocalizations.of(context)!.dreamQuote1,
+      AppLocalizations.of(context)!.dreamQuote2,
+      AppLocalizations.of(context)!.dreamQuote3,
+      AppLocalizations.of(context)!.dreamQuote4,
+      AppLocalizations.of(context)!.dreamQuote5,
+      AppLocalizations.of(context)!.dreamQuote6,
+    ];
+  }
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
+    
+    // Uygulama açıldığında input'a odaklan ve klavyeyi aç
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _focusNode.requestFocus();
+      }
+    });
+  }
+  
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    
+    // İlk kez çağrıldığında rastgele rüya cümlesi ekle
+    if (_currentConversation.isEmpty) {
+      _addRandomDreamQuote();
+    }
   }
 
   void _scrollListener() {
@@ -53,6 +84,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _lastScrollPosition = current;
   }
+  
+  void _addRandomDreamQuote() {
+    final random = Random();
+    final dreamQuotes = _getDreamQuotes(context);
+    final randomQuote = dreamQuotes[random.nextInt(dreamQuotes.length)];
+    
+    setState(() {
+      _currentConversation.add({
+        'type': 'dream',
+        'content': randomQuote,
+        'timestamp': DateTime.now(),
+        'isQuote': true, // Bu bir alıntı olduğunu belirtmek için
+      });
+    });
+  }
 
   Future<void> _sendPrompt(String character) async {
     final prompt = _controller.text.trim();
@@ -66,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (_currentConversation.isNotEmpty) {
         _chatHistory.insert(0, List.from(_currentConversation));
       }
-      // Yeni rüya için listeyi temizle
+      // Yeni rüya için listeyi temizle (alıntı kartı da dahil)
       _currentConversation.clear();
       _isLoading = true;
       _currentConversation.add({
@@ -181,6 +227,13 @@ class _HomeScreenState extends State<HomeScreen> {
       _showInput = true;
     });
     _scrollToBottom();
+    
+    // Düzenleme modunda da input'a odaklan
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _focusNode.requestFocus();
+      }
+    });
   }
 
   void _scrollToBottom() {
@@ -196,6 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     for (final c in _editControllers.values) {
       c.dispose();
     }
@@ -240,6 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onSave: _saveCardEdit,
                     onCancel: _cancelCardEdit,
                     onEditWithFloatingInput: _editWithFloatingInput,
+                    isQuote: card['isQuote'] ?? false,
                   );
                 } else if (card['type'] == 'interpretation') {
                   return InterpretationCard(
@@ -262,15 +317,23 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: _showInput
-                    ? FloatingInput(
+                                          ? FloatingInput(
                         controller: _controller,
                         isLoading: _isLoading,
                         onSend: _sendPrompt,
+                        focusNode: _focusNode,
                       )
                     : PlusButton(
                         onPressed: () {
                           setState(() => _showInput = true);
                           _scrollToBottom();
+                          
+                          // Plus button tıklandığında da input'a odaklan
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (mounted) {
+                              _focusNode.requestFocus();
+                            }
+                          });
                         },
                       ),
               ),

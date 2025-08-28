@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -23,6 +24,9 @@ class ChatApi {
     if (user == null) throw Exception('Kullanıcı giriş yapmamış.');
 
     final idToken = await user.getIdToken();
+    
+    // Kullanıcının telefon dilini al
+    final userLanguage = PlatformDispatcher.instance.locale.languageCode;
 
     final response = await http.post(
       Uri.parse(_cloudFunctionUrl),
@@ -33,6 +37,7 @@ class ChatApi {
       body: jsonEncode({
         'prompt': prompt,
         'character': character,
+        'userLanguage': userLanguage,
       }),
     );
 
