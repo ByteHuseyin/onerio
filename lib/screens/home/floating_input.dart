@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneiro/l10n/app_localizations.dart';
 
-class FloatingInput extends StatelessWidget {
+class FloatingInput extends StatefulWidget {
   final TextEditingController controller;
   final bool isLoading;
   final Function(String character) onSend;
@@ -17,6 +17,12 @@ class FloatingInput extends StatelessWidget {
   });
 
   @override
+  State<FloatingInput> createState() => _FloatingInputState();
+}
+
+class _FloatingInputState extends State<FloatingInput> {
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedSlide(
       duration: const Duration(milliseconds: 300),
@@ -25,7 +31,7 @@ class FloatingInput extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         opacity: 1,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: const Color(0xFF1A1A2A),
@@ -49,21 +55,24 @@ class FloatingInput extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                                                              child: TextField(
-                       controller: controller,
-                       focusNode: focusNode,
-                       maxLines: 3,
-                       minLines: 1,
-                       textInputAction: TextInputAction.send,
-                       style: GoogleFonts.nunito(
-                         color: Colors.white,
-                         fontSize: 17,
-                       ),
-                       onSubmitted: (value) {
-                          if (!isLoading && value.trim().isNotEmpty) {
-                            _showCharacterSelectionDialog(context);
-                          }
+                                                                                   child: TextField(
+                        controller: widget.controller,
+                        focusNode: widget.focusNode,
+                        maxLines: 3,
+                        minLines: 1,
+                        textInputAction: TextInputAction.send,
+                        style: GoogleFonts.nunito(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                        onChanged: (value) {
+                          setState(() {});
                         },
+                        onSubmitted: (value) {
+                           if (!widget.isLoading && value.trim().length >= 4) {
+                             _showCharacterSelectionDialog(context);
+                           }
+                         },
                        decoration: InputDecoration(
                          hintText: AppLocalizations.of(context)!.dreamDescription,
                          hintStyle: TextStyle(
@@ -71,7 +80,7 @@ class FloatingInput extends StatelessWidget {
                          ),
                          border: InputBorder.none,
                          contentPadding: const EdgeInsets.symmetric(
-                           horizontal: 16,
+                           horizontal: 4,
                          ),
                        ),
                      ),
@@ -80,15 +89,15 @@ class FloatingInput extends StatelessWidget {
                   _buildSendButton(context),
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                AppLocalizations.of(context)!.onboardingSubtitle2,
-                style: GoogleFonts.nunito(
-                  color: Colors.white70,
-                  fontSize: 13,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
+              // const SizedBox(height: 8),
+              // Text(
+              //   AppLocalizations.of(context)!.onboardingSubtitle2,
+              //   style: GoogleFonts.nunito(
+              //     color: Colors.white70,
+              //     fontSize: 13,
+              //     fontStyle: FontStyle.italic,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -136,10 +145,10 @@ class FloatingInput extends StatelessWidget {
 
   Widget _buildCharacterOption(BuildContext context, String character, String name) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).pop();
-        onSend(name);
-      },
+             onTap: () {
+         Navigator.of(context).pop();
+         widget.onSend(name);
+       },
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -190,37 +199,46 @@ class FloatingInput extends StatelessWidget {
     );
   }
 
-  Widget _buildSendButton(BuildContext context) {
+         Widget _buildSendButton(BuildContext context) {
+     final bool isEnabled = !widget.isLoading && widget.controller.text.trim().length >= 4;
+    
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: const LinearGradient(
-          colors: [Color(0xFF9D50BB), Color(0xFF6A3BED)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        boxShadow: [
+        gradient: isEnabled 
+          ? const LinearGradient(
+              colors: [Color(0xFF9D50BB), Color(0xFF6A3BED)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            )
+          : null,
+        color: isEnabled ? null : Colors.grey.withOpacity(0.3),
+        boxShadow: isEnabled ? [
           BoxShadow(
             color: Colors.purpleAccent.withOpacity(0.4),
             blurRadius: 10,
             spreadRadius: 2,
             offset: const Offset(0, 4),
           ),
-        ],
+        ] : null,
       ),
-             child: IconButton(
-         icon: isLoading
-             ? const SizedBox(
-                 width: 24,
-                 height: 24,
-                 child: CircularProgressIndicator(
-                   strokeWidth: 2,
-                   color: Colors.white,
-                 ),
-               )
-             : const Icon(Icons.send_rounded, color: Colors.white, size: 28),
-         onPressed: isLoading ? null : () => _showCharacterSelectionDialog(context),
-       ),
+      child: IconButton(
+                 icon: widget.isLoading
+            ? const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
+            : Icon(
+                Icons.send_rounded, 
+                color: isEnabled ? Colors.white : Colors.white.withOpacity(0.3), 
+                size: 28
+              ),
+        onPressed: isEnabled ? () => _showCharacterSelectionDialog(context) : null,
+      ),
     );
   }
 }
