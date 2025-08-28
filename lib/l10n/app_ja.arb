@@ -1,0 +1,147 @@
+{
+  "@@locale": "ja",
+  "appTitle": "Oneiro",
+  "appDescription": "夢の分析と追跡アプリ",
+
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+
+  "welcome": "ようこそ",
+  "login": "ログイン",
+  "signup": "サインアップ",
+  "logout": "ログアウト",
+  "email": "メール",
+  "password": "パスワード",
+  "confirmPassword": "パスワードを確認",
+  "forgotPassword": "パスワードを忘れましたか？",
+  "continueWithGoogle": "Googleで続行",
+  "continueWithApple": "Appleで続行",
+  "dontHaveAccount": "アカウントをお持ちでないですか？",
+  "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+  "signUpHere": "ここでサインアップ",
+  "loginHere": "ここでログイン",
+
+  "home": "ホーム",
+  "history": "履歴",
+  "settings": "設定",
+  "aboutUs": "私たちについて",
+  "privacyPolicy": "プライバシーポリシー",
+
+  "dreamAnalysis": "夢の分析",
+  "analyzeDream": "夢を分析",
+  "dreamDescription": "夢を説明してください...",
+  "analyze": "分析",
+  "analyzing": "分析中...",
+  "interpretation": "解釈",
+  "saveDream": "夢を保存",
+  "dreamSaved": "夢が正常に保存されました",
+  "dreamDeleted": "夢が正常に削除されました",
+
+  "noDreamsYet": "まだ夢はありません",
+  "startAnalyzing": "夢の分析を始めて、ここで確認してください",
+  "noHistory": "履歴なし",
+  "yourDreamHistory": "あなたの夢の履歴はここに表示されます",
+
+  "language": "言語",
+  "theme": "テーマ",
+  "notifications": "通知",
+  "darkMode": "ダークモード",
+  "lightMode": "ライトモード",
+  "systemDefault": "システムデフォルト",
+
+  "turkish": "トルコ語",
+  "english": "英語",
+
+  "aboutOneiro": "Oneiroについて",
+  "oneiroDescription": "OneiroはAI搭載の夢分析アプリで、夢の意味を理解するのに役立ちます。",
+  "version": "バージョン",
+  "contactUs": "お問い合わせ",
+
+  "error": "エラー",
+  "success": "成功",
+  "warning": "警告",
+  "info": "情報",
+  "ok": "OK",
+  "cancel": "キャンセル",
+  "delete": "削除",
+  "edit": "編集",
+  "save": "保存",
+  "close": "閉じる",
+
+  "networkError": "ネットワークエラーが発生しました",
+  "tryAgain": "もう一度試してください",
+  "somethingWentWrong": "問題が発生しました",
+  "pleaseTryAgain": "もう一度お試しください",
+
+  "loading": "読み込み中...",
+  "pleaseWait": "お待ちください...",
+
+  "dreamTitle": "夢のタイトル",
+  "dreamDate": "夢の日付",
+  "dreamTags": "夢のタグ",
+  "addTags": "タグを追加...",
+  "searchDreams": "夢を検索...",
+
+  "emotionalState": "感情状態",
+  "dreamType": "夢の種類",
+  "lucidDream": "明晰夢",
+  "recurringDream": "反復夢",
+  "nightmare": "悪夢",
+  "normalDream": "普通の夢",
+
+  "veryHappy": "非常に幸せ",
+  "happy": "幸せ",
+  "neutral": "中立",
+  "sad": "悲しい",
+  "verySad": "とても悲しい",
+  "anxious": "不安",
+  "excited": "興奮",
+  "confused": "混乱",
+
+  "dreamInsights": "夢の洞察",
+  "psychologicalAnalysis": "心理分析",
+  "symbolicMeaning": "象徴的意味",
+  "emotionalImpact": "感情的影響",
+  "recommendations": "おすすめ",
+
+  "exportData": "データをエクスポート",
+  "importData": "データをインポート",
+  "backupData": "データをバックアップ",
+  "restoreData": "データを復元",
+
+  "accountSettings": "アカウント設定",
+  "profile": "プロフィール",
+  "changePassword": "パスワードを変更",
+  "deleteAccount": "アカウントを削除",
+  "deleteAccountWarning": "この操作は元に戻せません。すべてのデータが永久に削除されます。",
+
+  "onboardingTitle1": "Oneiroへようこそ",
+  "onboardingSubtitle1": "AIによる分析で夢の隠れた意味を発見",
+  "onboardingTitle2": "夢を追跡",
+  "onboardingSubtitle2": "夢とその解釈を詳細に記録",
+  "onboardingTitle3": "自分を理解",
+  "onboardingSubtitle3": "潜在意識と感情状態を理解する",
+  "getStarted": "始める",
+  "skip": "スキップ",
+  "next": "次へ",
+
+  "permissionRequired": "権限が必要です",
+  "notificationPermission": "通知の権限",
+  "notificationPermissionDescription": "夢のリマインダーと更新を送信するために通知の権限が必要です",
+  "grantPermission": "権限を付与",
+  "later": "後で",
+
+  "dreamInspiration": "夢のインスピレーション",
+  "dreamAnalysisCompleted": "夢の分析が完了しました",
+
+  "dreamQuote1": "夢は魂が目覚めているときに言えないことをささやく秘密の鏡です。",
+  "dreamQuote2": "夢は潜在意識が闇の中で書く詩です。",
+  "dreamQuote3": "夢は時間と空間の鎖から解放された心の自由な旅です。",
+  "dreamQuote4": "夢は心のカーテンの裏に隠された真実の静かな舞台です。",
+  "dreamQuote5": "夢は心の奥深くから来る見えない言語です。",
+  "dreamQuote6": "夢は夜に心によって描かれた神秘的な絵です。"
+}

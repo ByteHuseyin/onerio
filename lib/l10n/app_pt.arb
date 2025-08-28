@@ -1,0 +1,147 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Oneiro",
+  "appDescription": "Aplicativo para análise e acompanhamento de sonhos",
+
+  "@appTitle": {
+    "description": "O título do aplicativo"
+  },
+  "@appDescription": {
+    "description": "A descrição do aplicativo"
+  },
+
+  "welcome": "Bem-vindo",
+  "login": "Entrar",
+  "signup": "Cadastrar-se",
+  "logout": "Sair",
+  "email": "Email",
+  "password": "Senha",
+  "confirmPassword": "Confirmar senha",
+  "forgotPassword": "Esqueceu a senha?",
+  "continueWithGoogle": "Continuar com Google",
+  "continueWithApple": "Continuar com Apple",
+  "dontHaveAccount": "Não tem uma conta?",
+  "alreadyHaveAccount": "Já tem uma conta?",
+  "signUpHere": "Cadastre-se aqui",
+  "loginHere": "Entrar aqui",
+
+  "home": "Início",
+  "history": "Histórico",
+  "settings": "Configurações",
+  "aboutUs": "Sobre nós",
+  "privacyPolicy": "Política de Privacidade",
+
+  "dreamAnalysis": "Análise de Sonhos",
+  "analyzeDream": "Analisar Sonho",
+  "dreamDescription": "Descreva seu sonho...",
+  "analyze": "Analisar",
+  "analyzing": "Analisando...",
+  "interpretation": "Interpretação",
+  "saveDream": "Salvar Sonho",
+  "dreamSaved": "Sonho salvo com sucesso",
+  "dreamDeleted": "Sonho excluído com sucesso",
+
+  "noDreamsYet": "Ainda não há sonhos",
+  "startAnalyzing": "Comece a analisar seus sonhos para vê-los aqui",
+  "noHistory": "Sem histórico",
+  "yourDreamHistory": "O histórico de seus sonhos aparecerá aqui",
+
+  "language": "Idioma",
+  "theme": "Tema",
+  "notifications": "Notificações",
+  "darkMode": "Modo Escuro",
+  "lightMode": "Modo Claro",
+  "systemDefault": "Padrão do Sistema",
+
+  "turkish": "Turco",
+  "english": "Inglês",
+
+  "aboutOneiro": "Sobre Oneiro",
+  "oneiroDescription": "Oneiro é um aplicativo de análise de sonhos com IA que ajuda você a entender o significado dos seus sonhos.",
+  "version": "Versão",
+  "contactUs": "Contate-nos",
+
+  "error": "Erro",
+  "success": "Sucesso",
+  "warning": "Aviso",
+  "info": "Informações",
+  "ok": "OK",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "edit": "Editar",
+  "save": "Salvar",
+  "close": "Fechar",
+
+  "networkError": "Ocorreu um erro de rede",
+  "tryAgain": "Tente novamente",
+  "somethingWentWrong": "Algo deu errado",
+  "pleaseTryAgain": "Por favor, tente novamente",
+
+  "loading": "Carregando...",
+  "pleaseWait": "Aguarde...",
+
+  "dreamTitle": "Título do Sonho",
+  "dreamDate": "Data do Sonho",
+  "dreamTags": "Tags do Sonho",
+  "addTags": "Adicionar tags...",
+  "searchDreams": "Pesquisar sonhos...",
+
+  "emotionalState": "Estado Emocional",
+  "dreamType": "Tipo de Sonho",
+  "lucidDream": "Sonho Lúcido",
+  "recurringDream": "Sonho Recorrente",
+  "nightmare": "Pesadelo",
+  "normalDream": "Sonho Normal",
+
+  "veryHappy": "Muito Feliz",
+  "happy": "Feliz",
+  "neutral": "Neutro",
+  "sad": "Triste",
+  "verySad": "Muito Triste",
+  "anxious": "Ansioso",
+  "excited": "Animado",
+  "confused": "Confuso",
+
+  "dreamInsights": "Insights sobre Sonhos",
+  "psychologicalAnalysis": "Análise Psicológica",
+  "symbolicMeaning": "Significado Simbólico",
+  "emotionalImpact": "Impacto Emocional",
+  "recommendations": "Recomendações",
+
+  "exportData": "Exportar Dados",
+  "importData": "Importar Dados",
+  "backupData": "Backup de Dados",
+  "restoreData": "Restaurar Dados",
+
+  "accountSettings": "Configurações da Conta",
+  "profile": "Perfil",
+  "changePassword": "Alterar Senha",
+  "deleteAccount": "Excluir Conta",
+  "deleteAccountWarning": "Esta ação não pode ser desfeita. Todos os seus dados serão permanentemente excluídos.",
+
+  "onboardingTitle1": "Bem-vindo ao Oneiro",
+  "onboardingSubtitle1": "Descubra os significados ocultos de seus sonhos com análise baseada em IA",
+  "onboardingTitle2": "Acompanhe seus Sonhos",
+  "onboardingSubtitle2": "Mantenha um registro detalhado de seus sonhos e suas interpretações",
+  "onboardingTitle3": "Entenda a si mesmo",
+  "onboardingSubtitle3": "Obtenha insights sobre seu subconsciente e estado emocional",
+  "getStarted": "Começar",
+  "skip": "Pular",
+  "next": "Próximo",
+
+  "permissionRequired": "Permissão Necessária",
+  "notificationPermission": "Permissão de Notificação",
+  "notificationPermissionDescription": "Precisamos de permissão para notificações para enviar lembretes e atualizações sobre seus sonhos",
+  "grantPermission": "Conceder Permissão",
+  "later": "Mais tarde",
+
+  "dreamInspiration": "Inspiração de Sonhos",
+  "dreamAnalysisCompleted": "Análise de sonhos concluída",
+
+  "dreamQuote1": "Os sonhos são o espelho secreto que sussurra o que a alma não pode dizer acordada.",
+  "dreamQuote2": "Os sonhos são a poesia que o subconsciente escreve na escuridão.",
+  "dreamQuote3": "Os sonhos são a jornada livre da mente, libertada das correntes do tempo e do espaço.",
+  "dreamQuote4": "Os sonhos são o palco silencioso das verdades escondidas atrás da cortina da mente.",
+  "dreamQuote5": "Os sonhos são uma linguagem invisível vinda das profundezas do coração.",
+  "dreamQuote6": "Os sonhos são uma pintura misteriosa feita pela mente à noite."
+}

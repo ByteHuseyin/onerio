@@ -1,0 +1,147 @@
+{
+  "@@locale": "hi",
+  "appTitle": "Oneiro",
+  "appDescription": "सपनों का विश्लेषण और ट्रैकिंग एप्लिकेशन",
+
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+
+  "welcome": "स्वागत है",
+  "login": "लॉगिन",
+  "signup": "साइन अप करें",
+  "logout": "लॉगआउट",
+  "email": "ईमेल",
+  "password": "पासवर्ड",
+  "confirmPassword": "पासवर्ड की पुष्टि करें",
+  "forgotPassword": "पासवर्ड भूल गए?",
+  "continueWithGoogle": "Google के साथ जारी रखें",
+  "continueWithApple": "Apple के साथ जारी रखें",
+  "dontHaveAccount": "खाता नहीं है?",
+  "alreadyHaveAccount": "पहले से खाता है?",
+  "signUpHere": "यहाँ साइन अप करें",
+  "loginHere": "यहाँ लॉगिन करें",
+
+  "home": "होम",
+  "history": "इतिहास",
+  "settings": "सेटिंग्स",
+  "aboutUs": "हमारे बारे में",
+  "privacyPolicy": "गोपनीयता नीति",
+
+  "dreamAnalysis": "सपनों का विश्लेषण",
+  "analyzeDream": "सपना विश्लेषण करें",
+  "dreamDescription": "अपने सपने का विवरण दें...",
+  "analyze": "विश्लेषण करें",
+  "analyzing": "विश्लेषण हो रहा है...",
+  "interpretation": "व्याख्या",
+  "saveDream": "सपना सेव करें",
+  "dreamSaved": "सपना सफलतापूर्वक सेव हो गया",
+  "dreamDeleted": "सपना सफलतापूर्वक हटाया गया",
+
+  "noDreamsYet": "अभी तक कोई सपना नहीं",
+  "startAnalyzing": "अपने सपनों का विश्लेषण करना शुरू करें और उन्हें यहाँ देखें",
+  "noHistory": "कोई इतिहास नहीं",
+  "yourDreamHistory": "आपके सपनों का इतिहास यहाँ दिखाई देगा",
+
+  "language": "भाषा",
+  "theme": "थीम",
+  "notifications": "सूचनाएँ",
+  "darkMode": "डार्क मोड",
+  "lightMode": "लाइट मोड",
+  "systemDefault": "सिस्टम डिफ़ॉल्ट",
+
+  "turkish": "तुर्की",
+  "english": "अंग्रेज़ी",
+
+  "aboutOneiro": "Oneiro के बारे में",
+  "oneiroDescription": "Oneiro एक AI-संचालित सपना विश्लेषण ऐप है जो आपको आपके सपनों के पीछे का अर्थ समझने में मदद करता है।",
+  "version": "संस्करण",
+  "contactUs": "संपर्क करें",
+
+  "error": "त्रुटि",
+  "success": "सफलता",
+  "warning": "चेतावनी",
+  "info": "जानकारी",
+  "ok": "ठीक है",
+  "cancel": "रद्द करें",
+  "delete": "हटाएँ",
+  "edit": "संपादित करें",
+  "save": "सहेजें",
+  "close": "बंद करें",
+
+  "networkError": "नेटवर्क त्रुटि हुई",
+  "tryAgain": "फिर से प्रयास करें",
+  "somethingWentWrong": "कुछ गलत हो गया",
+  "pleaseTryAgain": "कृपया फिर से प्रयास करें",
+
+  "loading": "लोड हो रहा है...",
+  "pleaseWait": "कृपया प्रतीक्षा करें...",
+
+  "dreamTitle": "सपने का शीर्षक",
+  "dreamDate": "सपने की तारीख",
+  "dreamTags": "सपने के टैग",
+  "addTags": "टैग जोड़ें...",
+  "searchDreams": "सपनों को खोजें...",
+
+  "emotionalState": "भावनात्मक स्थिति",
+  "dreamType": "सपने का प्रकार",
+  "lucidDream": "लूसिड सपना",
+  "recurringDream": "दोहराया सपना",
+  "nightmare": "दुर्लभ सपना",
+  "normalDream": "सामान्य सपना",
+
+  "veryHappy": "बहुत खुश",
+  "happy": "खुश",
+  "neutral": "तटस्थ",
+  "sad": "उदास",
+  "verySad": "बहुत उदास",
+  "anxious": "चिंतित",
+  "excited": "उत्साहित",
+  "confused": "भ्रमित",
+
+  "dreamInsights": "सपनों की अंतर्दृष्टि",
+  "psychologicalAnalysis": "मनोवैज्ञानिक विश्लेषण",
+  "symbolicMeaning": "प्रतीकात्मक अर्थ",
+  "emotionalImpact": "भावनात्मक प्रभाव",
+  "recommendations": "सिफारिशें",
+
+  "exportData": "डेटा निर्यात करें",
+  "importData": "डेटा आयात करें",
+  "backupData": "डेटा बैकअप",
+  "restoreData": "डेटा पुनर्स्थापित करें",
+
+  "accountSettings": "खाता सेटिंग्स",
+  "profile": "प्रोफ़ाइल",
+  "changePassword": "पासवर्ड बदलें",
+  "deleteAccount": "खाता हटाएँ",
+  "deleteAccountWarning": "यह क्रिया पूर्ववत नहीं की जा सकती। आपका सारा डेटा स्थायी रूप से हटा दिया जाएगा।",
+
+  "onboardingTitle1": "Oneiro में आपका स्वागत है",
+  "onboardingSubtitle1": "AI-संचालित विश्लेषण के साथ अपने सपनों के छिपे अर्थ खोजें",
+  "onboardingTitle2": "अपने सपनों को ट्रैक करें",
+  "onboardingSubtitle2": "अपने सपनों और उनकी व्याख्याओं का विस्तृत रिकॉर्ड रखें",
+  "onboardingTitle3": "खुद को समझें",
+  "onboardingSubtitle3": "अपने अवचेतन और भावनात्मक स्थिति के बारे में अंतर्दृष्टि प्राप्त करें",
+  "getStarted": "शुरू करें",
+  "skip": "छोड़ें",
+  "next": "अगला",
+
+  "permissionRequired": "अनुमति आवश्यक",
+  "notificationPermission": "सूचना अनुमति",
+  "notificationPermissionDescription": "आपको सपनों के रिमाइंडर और अपडेट भेजने के लिए हमें सूचना अनुमति की आवश्यकता है",
+  "grantPermission": "अनुमति दें",
+  "later": "बाद में",
+
+  "dreamInspiration": "सपनों की प्रेरणा",
+  "dreamAnalysisCompleted": "सपनों का विश्लेषण पूरा हुआ",
+
+  "dreamQuote1": "सपने वह गुप्त दर्पण हैं जो फुसफुसाते हैं कि आत्मा जागते समय क्या नहीं कह सकती।",
+  "dreamQuote2": "सपने वह कविता हैं जो अवचेतन अंधकार में लिखता है।",
+  "dreamQuote3": "सपने समय और स्थान की जंजीरों से मुक्त मन की स्वतंत्र यात्रा हैं।",
+  "dreamQuote4": "सपने मन के परदे के पीछे छिपी सच्चाइयों का शांत मंच हैं।",
+  "dreamQuote5": "सपने हृदय की गहराइयों से आने वाली अदृश्य भाषा हैं।",
+  "dreamQuote6": "सपने रात में मन द्वारा बनाई गई एक रहस्यमय पेंटिंग हैं।"
+}

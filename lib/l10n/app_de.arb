@@ -1,0 +1,147 @@
+{
+  "@@locale": "de",
+  "appTitle": "Oneiro",
+  "appDescription": "Anwendung zur Analyse und Verfolgung von Träumen",
+
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+
+  "welcome": "Willkommen",
+  "login": "Anmelden",
+  "signup": "Registrieren",
+  "logout": "Abmelden",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "confirmPassword": "Passwort bestätigen",
+  "forgotPassword": "Passwort vergessen?",
+  "continueWithGoogle": "Mit Google fortfahren",
+  "continueWithApple": "Mit Apple fortfahren",
+  "dontHaveAccount": "Noch kein Konto?",
+  "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+  "signUpHere": "Hier registrieren",
+  "loginHere": "Hier anmelden",
+
+  "home": "Startseite",
+  "history": "Verlauf",
+  "settings": "Einstellungen",
+  "aboutUs": "Über uns",
+  "privacyPolicy": "Datenschutzrichtlinie",
+
+  "dreamAnalysis": "Traumanalyse",
+  "analyzeDream": "Traum analysieren",
+  "dreamDescription": "Beschreibe deinen Traum...",
+  "analyze": "Analysieren",
+  "analyzing": "Analyse läuft...",
+  "interpretation": "Interpretation",
+  "saveDream": "Traum speichern",
+  "dreamSaved": "Traum erfolgreich gespeichert",
+  "dreamDeleted": "Traum erfolgreich gelöscht",
+
+  "noDreamsYet": "Noch keine Träume",
+  "startAnalyzing": "Beginne damit, deine Träume zu analysieren, um sie hier zu sehen",
+  "noHistory": "Kein Verlauf",
+  "yourDreamHistory": "Der Verlauf deiner Träume wird hier angezeigt",
+
+  "language": "Sprache",
+  "theme": "Thema",
+  "notifications": "Benachrichtigungen",
+  "darkMode": "Dunkler Modus",
+  "lightMode": "Heller Modus",
+  "systemDefault": "Systemstandard",
+
+  "turkish": "Türkisch",
+  "english": "Englisch",
+
+  "aboutOneiro": "Über Oneiro",
+  "oneiroDescription": "Oneiro ist eine KI-gestützte Traumanalyse-App, die dir hilft, die Bedeutung deiner Träume zu verstehen.",
+  "version": "Version",
+  "contactUs": "Kontaktiere uns",
+
+  "error": "Fehler",
+  "success": "Erfolg",
+  "warning": "Warnung",
+  "info": "Information",
+  "ok": "OK",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "edit": "Bearbeiten",
+  "save": "Speichern",
+  "close": "Schließen",
+
+  "networkError": "Netzwerkfehler",
+  "tryAgain": "Erneut versuchen",
+  "somethingWentWrong": "Etwas ist schiefgelaufen",
+  "pleaseTryAgain": "Bitte erneut versuchen",
+
+  "loading": "Lädt...",
+  "pleaseWait": "Bitte warten...",
+
+  "dreamTitle": "Traumtitel",
+  "dreamDate": "Traumdatum",
+  "dreamTags": "Traum-Tags",
+  "addTags": "Tags hinzufügen...",
+  "searchDreams": "Träume suchen...",
+
+  "emotionalState": "Emotionale Verfassung",
+  "dreamType": "Traumtyp",
+  "lucidDream": "Klartraum",
+  "recurringDream": "Wiederkehrender Traum",
+  "nightmare": "Albtraum",
+  "normalDream": "Normaler Traum",
+
+  "veryHappy": "Sehr glücklich",
+  "happy": "Glücklich",
+  "neutral": "Neutral",
+  "sad": "Traurig",
+  "verySad": "Sehr traurig",
+  "anxious": "Ängstlich",
+  "excited": "Aufgeregt",
+  "confused": "Verwirrt",
+
+  "dreamInsights": "Traumeinblicke",
+  "psychologicalAnalysis": "Psychologische Analyse",
+  "symbolicMeaning": "Symbolische Bedeutung",
+  "emotionalImpact": "Emotionale Auswirkung",
+  "recommendations": "Empfehlungen",
+
+  "exportData": "Daten exportieren",
+  "importData": "Daten importieren",
+  "backupData": "Daten sichern",
+  "restoreData": "Daten wiederherstellen",
+
+  "accountSettings": "Kontoeinstellungen",
+  "profile": "Profil",
+  "changePassword": "Passwort ändern",
+  "deleteAccount": "Konto löschen",
+  "deleteAccountWarning": "Diese Aktion kann nicht rückgängig gemacht werden. Alle deine Daten werden dauerhaft gelöscht.",
+
+  "onboardingTitle1": "Willkommen bei Oneiro",
+  "onboardingSubtitle1": "Entdecke die verborgenen Bedeutungen deiner Träume mit KI-gestützter Analyse",
+  "onboardingTitle2": "Verfolge deine Träume",
+  "onboardingSubtitle2": "Führe ein detailliertes Protokoll deiner Träume und ihrer Interpretationen",
+  "onboardingTitle3": "Verstehe dich selbst",
+  "onboardingSubtitle3": "Erhalte Einblicke in dein Unterbewusstsein und deinen emotionalen Zustand",
+  "getStarted": "Loslegen",
+  "skip": "Überspringen",
+  "next": "Weiter",
+
+  "permissionRequired": "Berechtigung erforderlich",
+  "notificationPermission": "Benachrichtigungsberechtigung",
+  "notificationPermissionDescription": "Wir benötigen die Benachrichtigungsberechtigung, um dir Erinnerungen und Updates zu deinen Träumen zu senden",
+  "grantPermission": "Berechtigung erteilen",
+  "later": "Später",
+
+  "dreamInspiration": "Traum-Inspiration",
+  "dreamAnalysisCompleted": "Traumanalyse abgeschlossen",
+
+  "dreamQuote1": "Träume sind der geheime Spiegel, der flüstert, was die Seele im Wachzustand nicht sagen kann.",
+  "dreamQuote2": "Träume sind die Poesie, die das Unterbewusstsein in der Dunkelheit schreibt.",
+  "dreamQuote3": "Träume sind die freie Reise des Geistes, befreit von den Ketten von Zeit und Raum.",
+  "dreamQuote4": "Träume sind die stille Bühne der Wahrheiten, die hinter dem Vorhang des Geistes verborgen sind.",
+  "dreamQuote5": "Träume sind eine unsichtbare Sprache, die aus den Tiefen des Herzens kommt.",
+  "dreamQuote6": "Träume sind ein geheimnisvolles Gemälde, das vom Geist in der Nacht erschaffen wird."
+}

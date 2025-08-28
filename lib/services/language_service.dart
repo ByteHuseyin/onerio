@@ -22,7 +22,9 @@ class LanguageService extends ChangeNotifier {
     } else {
       // İlk kez açılıyorsa telefon dilini kontrol et
       final deviceLocale = PlatformDispatcher.instance.locale;
-      final supportedLanguages = ['tr', 'en'];
+      final supportedLanguages = [
+        'en', 'tr', 'fr', 'it', 'hi', 'es', 'de', 'pt', 'el', 'ru', 'ja', 'ko', 'zh'
+      ];
       
       if (supportedLanguages.contains(deviceLocale.languageCode)) {
         _currentLocale = deviceLocale;
@@ -53,8 +55,30 @@ class LanguageService extends ChangeNotifier {
         return 'Türkçe';
       case 'en':
         return 'English';
+      case 'fr':
+        return 'Français';
+      case 'it':
+        return 'Italiano';
+      case 'hi':
+        return 'हिन्दी';
+      case 'es':
+        return 'Español';
+      case 'de':
+        return 'Deutsch';
+      case 'pt':
+        return 'Português';
+      case 'el':
+        return 'Ελληνικά';
+      case 'ru':
+        return 'Русский';
+      case 'ja':
+        return '日本語';
+      case 'ko':
+        return '한국어';
+      case 'zh':
+        return '中文';
       default:
-        return 'Türkçe';
+        return 'English';
     }
   }
 
@@ -62,6 +86,17 @@ class LanguageService extends ChangeNotifier {
     return [
       {'code': 'en', 'name': 'English'},
       {'code': 'tr', 'name': 'Türkçe'},
+      {'code': 'fr', 'name': 'Français'},
+      {'code': 'it', 'name': 'Italiano'},
+      {'code': 'hi', 'name': 'हिन्दी'},
+      {'code': 'es', 'name': 'Español'},
+      {'code': 'de', 'name': 'Deutsch'},
+      {'code': 'pt', 'name': 'Português'},
+      {'code': 'el', 'name': 'Ελληνικά'},
+      {'code': 'ru', 'name': 'Русский'},
+      {'code': 'ja', 'name': '日本語'},
+      {'code': 'ko', 'name': '한국어'},
+      {'code': 'zh', 'name': '中文'},
     ];
   }
 }

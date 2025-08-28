@@ -61,9 +61,20 @@ class OneiroApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en', ''), // English (default)
-            Locale('tr', ''), // Turkish
-          ],
+            Locale('en'), // English (default)
+            Locale('tr'), // Turkish
+            Locale('fr'), // French
+            Locale('it'), // Italian
+            Locale('hi'), // Hindi
+            Locale('es'), // Spanish
+            Locale('de'), // German
+            Locale('pt'), // Portuguese
+            Locale('el'), // greek
+            Locale('ru'), // Russian
+            Locale('ja'), // Japanese
+            Locale('ko'), // korean
+            Locale('zh'), // Chinese
+            ],
           locale: languageService.currentLocale,
          
           theme: ThemeData.dark().copyWith(

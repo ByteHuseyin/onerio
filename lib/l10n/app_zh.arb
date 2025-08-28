@@ -1,0 +1,147 @@
+{
+  "@@locale": "zh",
+  "appTitle": "Oneiro",
+  "appDescription": "梦境分析和追踪应用",
+  
+  "@appTitle": {
+    "description": "应用标题"
+  },
+  "@appDescription": {
+    "description": "应用描述"
+  },
+  
+  "welcome": "欢迎",
+  "login": "登录",
+  "signup": "注册",
+  "logout": "登出",
+  "email": "电子邮箱",
+  "password": "密码",
+  "confirmPassword": "确认密码",
+  "forgotPassword": "忘记密码？",
+  "continueWithGoogle": "使用 Google 继续",
+  "continueWithApple": "使用 Apple 继续",
+  "dontHaveAccount": "还没有账号？",
+  "alreadyHaveAccount": "已经有账号？",
+  "signUpHere": "在此注册",
+  "loginHere": "在此登录",
+  
+  "home": "首页",
+  "history": "历史",
+  "settings": "设置",
+  "aboutUs": "关于我们",
+  "privacyPolicy": "隐私政策",
+  
+  "dreamAnalysis": "梦境分析",
+  "analyzeDream": "分析梦境",
+  "dreamDescription": "描述你的梦...",
+  "analyze": "分析",
+  "analyzing": "分析中...",
+  "interpretation": "解读",
+  "saveDream": "保存梦境",
+  "dreamSaved": "梦境保存成功",
+  "dreamDeleted": "梦境删除成功",
+  
+  "noDreamsYet": "暂无梦境",
+  "startAnalyzing": "开始分析你的梦境以显示在这里",
+  "noHistory": "暂无历史记录",
+  "yourDreamHistory": "你的梦境历史将显示在这里",
+  
+  "language": "语言",
+  "theme": "主题",
+  "notifications": "通知",
+  "darkMode": "深色模式",
+  "lightMode": "浅色模式",
+  "systemDefault": "系统默认",
+  
+  "turkish": "土耳其语",
+  "english": "英语",
+  
+  "aboutOneiro": "关于 Oneiro",
+  "oneiroDescription": "Oneiro 是一款 AI 驱动的梦境分析应用，帮助你理解梦境背后的意义。",
+  "version": "版本",
+  "contactUs": "联系我们",
+  
+  "error": "错误",
+  "success": "成功",
+  "warning": "警告",
+  "info": "信息",
+  "ok": "确认",
+  "cancel": "取消",
+  "delete": "删除",
+  "edit": "编辑",
+  "save": "保存",
+  "close": "关闭",
+  
+  "networkError": "网络错误",
+  "tryAgain": "重试",
+  "somethingWentWrong": "出了点问题",
+  "pleaseTryAgain": "请再试一次",
+  
+  "loading": "加载中...",
+  "pleaseWait": "请稍候...",
+  
+  "dreamTitle": "梦境标题",
+  "dreamDate": "梦境日期",
+  "dreamTags": "梦境标签",
+  "addTags": "添加标签...",
+  "searchDreams": "搜索梦境...",
+  
+  "emotionalState": "情绪状态",
+  "dreamType": "梦境类型",
+  "lucidDream": "清醒梦",
+  "recurringDream": "重复梦",
+  "nightmare": "噩梦",
+  "normalDream": "普通梦",
+  
+  "veryHappy": "非常高兴",
+  "happy": "高兴",
+  "neutral": "中立",
+  "sad": "悲伤",
+  "verySad": "非常悲伤",
+  "anxious": "焦虑",
+  "excited": "兴奋",
+  "confused": "困惑",
+  
+  "dreamInsights": "梦境洞察",
+  "psychologicalAnalysis": "心理分析",
+  "symbolicMeaning": "象征意义",
+  "emotionalImpact": "情绪影响",
+  "recommendations": "建议",
+  
+  "exportData": "导出数据",
+  "importData": "导入数据",
+  "backupData": "备份数据",
+  "restoreData": "恢复数据",
+  
+  "accountSettings": "账户设置",
+  "profile": "个人资料",
+  "changePassword": "修改密码",
+  "deleteAccount": "删除账户",
+  "deleteAccountWarning": "此操作不可撤销，所有数据将被永久删除。",
+  
+  "onboardingTitle1": "欢迎使用 Oneiro",
+  "onboardingSubtitle1": "通过 AI 分析发现梦境中的隐藏意义",
+  "onboardingTitle2": "追踪你的梦境",
+  "onboardingSubtitle2": "详细记录梦境及其解读",
+  "onboardingTitle3": "了解自己",
+  "onboardingSubtitle3": "洞察潜意识和情绪状态",
+  "getStarted": "开始使用",
+  "skip": "跳过",
+  "next": "下一步",
+  
+  "permissionRequired": "需要权限",
+  "notificationPermission": "通知权限",
+  "notificationPermissionDescription": "我们需要通知权限来发送梦境提醒和更新",
+  "grantPermission": "授予权限",
+  "later": "稍后",
+  
+  "dreamInspiration": "梦境灵感",
+  "dreamAnalysisCompleted": "梦境分析完成",
+  
+  "dreamQuote1": "梦境是秘密的镜子，低声诉说着灵魂醒着时无法表达的事。",
+  "dreamQuote2": "梦是潜意识在黑暗中写下的诗。",
+  "dreamQuote3": "梦是心灵从时间与空间束缚中解放的自由旅程。",
+  "dreamQuote4": "梦是心灵帷幕后隐藏真理的静默舞台。",
+  "dreamQuote5": "梦是来自内心深处的无形语言。",
+  "dreamQuote6": "梦是夜晚心灵描绘的神秘画作。"
+}

@@ -1,0 +1,147 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Oneiro",
+  "appDescription": "Application d'analyse et de suivi des rêves",
+  
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+  
+  "welcome": "Bienvenue",
+  "login": "Connexion",
+  "signup": "S'inscrire",
+  "logout": "Déconnexion",
+  "email": "Email",
+  "password": "Mot de passe",
+  "confirmPassword": "Confirmer le mot de passe",
+  "forgotPassword": "Mot de passe oublié ?",
+  "continueWithGoogle": "Continuer avec Google",
+  "continueWithApple": "Continuer avec Apple",
+  "dontHaveAccount": "Vous n'avez pas de compte ?",
+  "alreadyHaveAccount": "Vous avez déjà un compte ?",
+  "signUpHere": "Inscrivez-vous ici",
+  "loginHere": "Connectez-vous ici",
+  
+  "home": "Accueil",
+  "history": "Historique",
+  "settings": "Paramètres",
+  "aboutUs": "À propos de nous",
+  "privacyPolicy": "Politique de confidentialité",
+  
+  "dreamAnalysis": "Analyse des rêves",
+  "analyzeDream": "Analyser le rêve",
+  "dreamDescription": "Décrivez votre rêve...",
+  "analyze": "Analyser",
+  "analyzing": "Analyse en cours...",
+  "interpretation": "Interprétation",
+  "saveDream": "Sauvegarder le rêve",
+  "dreamSaved": "Rêve sauvegardé avec succès",
+  "dreamDeleted": "Rêve supprimé avec succès",
+  
+  "noDreamsYet": "Aucun rêve pour le moment",
+  "startAnalyzing": "Commencez à analyser vos rêves pour les voir ici",
+  "noHistory": "Aucun historique",
+  "yourDreamHistory": "L'historique de vos rêves apparaîtra ici",
+  
+  "language": "Langue",
+  "theme": "Thème",
+  "notifications": "Notifications",
+  "darkMode": "Mode sombre",
+  "lightMode": "Mode clair",
+  "systemDefault": "Par défaut du système",
+  
+  "turkish": "Turc",
+  "english": "Anglais",
+  
+  "aboutOneiro": "À propos d'Oneiro",
+  "oneiroDescription": "Oneiro est une application d'analyse des rêves alimentée par l'IA qui vous aide à comprendre la signification de vos rêves.",
+  "version": "Version",
+  "contactUs": "Nous contacter",
+  
+  "error": "Erreur",
+  "success": "Succès",
+  "warning": "Avertissement",
+  "info": "Information",
+  "ok": "OK",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "edit": "Modifier",
+  "save": "Sauvegarder",
+  "close": "Fermer",
+  
+  "networkError": "Erreur réseau",
+  "tryAgain": "Réessayer",
+  "somethingWentWrong": "Quelque chose s'est mal passé",
+  "pleaseTryAgain": "Veuillez réessayer",
+  
+  "loading": "Chargement...",
+  "pleaseWait": "Veuillez patienter...",
+  
+  "dreamTitle": "Titre du rêve",
+  "dreamDate": "Date du rêve",
+  "dreamTags": "Tags du rêve",
+  "addTags": "Ajouter des tags...",
+  "searchDreams": "Rechercher des rêves...",
+  
+  "emotionalState": "État émotionnel",
+  "dreamType": "Type de rêve",
+  "lucidDream": "Rêve lucide",
+  "recurringDream": "Rêve récurrent",
+  "nightmare": "Cauchemar",
+  "normalDream": "Rêve normal",
+  
+  "veryHappy": "Très heureux",
+  "happy": "Heureux",
+  "neutral": "Neutre",
+  "sad": "Triste",
+  "verySad": "Très triste",
+  "anxious": "Anxieux",
+  "excited": "Excité",
+  "confused": "Confus",
+  
+  "dreamInsights": "Aperçus du rêve",
+  "psychologicalAnalysis": "Analyse psychologique",
+  "symbolicMeaning": "Signification symbolique",
+  "emotionalImpact": "Impact émotionnel",
+  "recommendations": "Recommandations",
+  
+  "exportData": "Exporter les données",
+  "importData": "Importer les données",
+  "backupData": "Sauvegarder les données",
+  "restoreData": "Restaurer les données",
+  
+  "accountSettings": "Paramètres du compte",
+  "profile": "Profil",
+  "changePassword": "Changer le mot de passe",
+  "deleteAccount": "Supprimer le compte",
+  "deleteAccountWarning": "Cette action est irréversible. Toutes vos données seront définitivement supprimées.",
+  
+  "onboardingTitle1": "Bienvenue sur Oneiro",
+  "onboardingSubtitle1": "Découvrez les significations cachées de vos rêves grâce à l'analyse par IA",
+  "onboardingTitle2": "Suivez vos rêves",
+  "onboardingSubtitle2": "Conservez un enregistrement détaillé de vos rêves et de leurs interprétations",
+  "onboardingTitle3": "Comprenez-vous",
+  "onboardingSubtitle3": "Obtenez des aperçus de votre subconscient et de votre état émotionnel",
+  "getStarted": "Commencer",
+  "skip": "Passer",
+  "next": "Suivant",
+  
+  "permissionRequired": "Autorisation requise",
+  "notificationPermission": "Autorisation de notification",
+  "notificationPermissionDescription": "Nous avons besoin de l'autorisation de notification pour vous envoyer des rappels et mises à jour de vos rêves",
+  "grantPermission": "Accorder l'autorisation",
+  "later": "Plus tard",
+  
+  "dreamInspiration": "Inspiration des rêves",
+  "dreamAnalysisCompleted": "Analyse des rêves terminée",
+  
+  "dreamQuote1": "Les rêves sont le miroir secret qui murmure ce que l'âme ne peut dire éveillée.",
+  "dreamQuote2": "Les rêves sont la poésie que le subconscient écrit dans l'obscurité.",
+  "dreamQuote3": "Les rêves sont le voyage libre de l'esprit libéré des chaînes du temps et de l'espace.",
+  "dreamQuote4": "Les rêves sont la scène silencieuse des vérités cachées derrière le rideau de l'esprit.",
+  "dreamQuote5": "Les rêves sont un langage invisible venant des profondeurs du cœur.",
+  "dreamQuote6": "Les rêves sont une peinture mystérieuse dessinée par l'esprit la nuit."
+}

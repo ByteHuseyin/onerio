@@ -1,0 +1,147 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Oneiro",
+  "appDescription": "Приложение для анализа и отслеживания снов",
+
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@appDescription": {
+    "description": "The description of the application"
+  },
+
+  "welcome": "Добро пожаловать",
+  "login": "Войти",
+  "signup": "Регистрация",
+  "logout": "Выйти",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "confirmPassword": "Подтвердите пароль",
+  "forgotPassword": "Забыли пароль?",
+  "continueWithGoogle": "Продолжить с Google",
+  "continueWithApple": "Продолжить с Apple",
+  "dontHaveAccount": "Нет аккаунта?",
+  "alreadyHaveAccount": "Уже есть аккаунт?",
+  "signUpHere": "Зарегистрироваться здесь",
+  "loginHere": "Войти здесь",
+
+  "home": "Главная",
+  "history": "История",
+  "settings": "Настройки",
+  "aboutUs": "О нас",
+  "privacyPolicy": "Политика конфиденциальности",
+
+  "dreamAnalysis": "Анализ снов",
+  "analyzeDream": "Анализировать сон",
+  "dreamDescription": "Опишите ваш сон...",
+  "analyze": "Анализ",
+  "analyzing": "Анализируем...",
+  "interpretation": "Толкование",
+  "saveDream": "Сохранить сон",
+  "dreamSaved": "Сон успешно сохранен",
+  "dreamDeleted": "Сон успешно удален",
+
+  "noDreamsYet": "Пока нет снов",
+  "startAnalyzing": "Начните анализировать свои сны, чтобы видеть их здесь",
+  "noHistory": "Нет истории",
+  "yourDreamHistory": "История ваших снов появится здесь",
+
+  "language": "Язык",
+  "theme": "Тема",
+  "notifications": "Уведомления",
+  "darkMode": "Темная тема",
+  "lightMode": "Светлая тема",
+  "systemDefault": "Системная по умолчанию",
+
+  "turkish": "Турецкий",
+  "english": "Английский",
+
+  "aboutOneiro": "О Oneiro",
+  "oneiroDescription": "Oneiro — это приложение для анализа снов с ИИ, которое помогает понять значение ваших снов.",
+  "version": "Версия",
+  "contactUs": "Связаться с нами",
+
+  "error": "Ошибка",
+  "success": "Успех",
+  "warning": "Предупреждение",
+  "info": "Информация",
+  "ok": "ОК",
+  "cancel": "Отмена",
+  "delete": "Удалить",
+  "edit": "Редактировать",
+  "save": "Сохранить",
+  "close": "Закрыть",
+
+  "networkError": "Произошла ошибка сети",
+  "tryAgain": "Попробовать снова",
+  "somethingWentWrong": "Что-то пошло не так",
+  "pleaseTryAgain": "Пожалуйста, попробуйте снова",
+
+  "loading": "Загрузка...",
+  "pleaseWait": "Пожалуйста, подождите...",
+
+  "dreamTitle": "Название сна",
+  "dreamDate": "Дата сна",
+  "dreamTags": "Теги сна",
+  "addTags": "Добавить теги...",
+  "searchDreams": "Поиск снов...",
+
+  "emotionalState": "Эмоциональное состояние",
+  "dreamType": "Тип сна",
+  "lucidDream": "Осознанный сон",
+  "recurringDream": "Повторяющийся сон",
+  "nightmare": "Кошмар",
+  "normalDream": "Обычный сон",
+
+  "veryHappy": "Очень счастлив",
+  "happy": "Счастлив",
+  "neutral": "Нейтральный",
+  "sad": "Грустный",
+  "verySad": "Очень грустный",
+  "anxious": "Тревожный",
+  "excited": "Взволнован",
+  "confused": "Смущен",
+
+  "dreamInsights": "Впечатления от снов",
+  "psychologicalAnalysis": "Психологический анализ",
+  "symbolicMeaning": "Символическое значение",
+  "emotionalImpact": "Эмоциональное влияние",
+  "recommendations": "Рекомендации",
+
+  "exportData": "Экспорт данных",
+  "importData": "Импорт данных",
+  "backupData": "Резервное копирование",
+  "restoreData": "Восстановление данных",
+
+  "accountSettings": "Настройки аккаунта",
+  "profile": "Профиль",
+  "changePassword": "Сменить пароль",
+  "deleteAccount": "Удалить аккаунт",
+  "deleteAccountWarning": "Это действие нельзя отменить. Все ваши данные будут безвозвратно удалены.",
+
+  "onboardingTitle1": "Добро пожаловать в Oneiro",
+  "onboardingSubtitle1": "Откройте скрытый смысл ваших снов с помощью анализа на базе ИИ",
+  "onboardingTitle2": "Отслеживайте свои сны",
+  "onboardingSubtitle2": "Ведите подробный учет своих снов и их интерпретаций",
+  "onboardingTitle3": "Познавайте себя",
+  "onboardingSubtitle3": "Получайте понимание вашего подсознательного и эмоционального состояния",
+  "getStarted": "Начать",
+  "skip": "Пропустить",
+  "next": "Далее",
+
+  "permissionRequired": "Требуется разрешение",
+  "notificationPermission": "Разрешение на уведомления",
+  "notificationPermissionDescription": "Нам нужно разрешение на уведомления, чтобы отправлять напоминания и обновления о ваших снах",
+  "grantPermission": "Предоставить разрешение",
+  "later": "Позже",
+
+  "dreamInspiration": "Вдохновение снов",
+  "dreamAnalysisCompleted": "Анализ снов завершен",
+
+  "dreamQuote1": "Сны — это тайное зеркало, шепчущее то, что душа не может сказать наяву.",
+  "dreamQuote2": "Сны — это поэзия, которую подсознание пишет во тьме.",
+  "dreamQuote3": "Сны — это свободное путешествие разума, освобожденного от цепей времени и пространства.",
+  "dreamQuote4": "Сны — это тихая сцена истин, скрытых за занавесом разума.",
+  "dreamQuote5": "Сны — это невидимый язык, исходящий из глубин сердца.",
+  "dreamQuote6": "Сны — это загадочная картина, нарисованная разумом ночью."
+}

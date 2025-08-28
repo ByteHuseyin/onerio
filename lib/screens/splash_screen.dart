@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart'; // firebase_options dosyanızı içe aktarmayı unutmayın
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart'; // firebase_options dosyanızı içe aktarmayı unutmayın
 import 'package:oneiro/l10n/app_localizations.dart';
 
 class SplashScreen extends StatefulWidget {
