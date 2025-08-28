@@ -6,7 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oneiro/l10n/app_localizations.dart';
 import 'package:oneiro/services/language_service.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 
 void main() {
@@ -34,7 +33,6 @@ class AppInitializer extends StatelessWidget {
             ),
           );
         }
-
         return ChangeNotifierProvider(
           create: (_) => LanguageService(),
           child: const OneiroApp(),
@@ -54,7 +52,7 @@ class OneiroApp extends StatelessWidget {
         return MaterialApp(
           title: 'Oneiro',
           debugShowCheckedModeBanner: false,
-          
+         
           // Localization support
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -67,7 +65,7 @@ class OneiroApp extends StatelessWidget {
             Locale('tr', ''), // Turkish
           ],
           locale: languageService.currentLocale,
-          
+         
           theme: ThemeData.dark().copyWith(
             scaffoldBackgroundColor: const Color(0xFF0F0F1A),
             textTheme: GoogleFonts.nunitoTextTheme().apply(
