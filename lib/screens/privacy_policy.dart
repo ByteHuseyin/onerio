@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneiro/screens/home/home_screen.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
@@ -9,7 +10,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return _buildStaticScreen(
       context,
-      title: "Gizlilik Politikası",
+      title: AppLocalizations.of(context)!.privacyPolicy,
       content: [
         _buildSectionTitle("Veri Toplama ve Kullanım"),
         _buildSectionContent(

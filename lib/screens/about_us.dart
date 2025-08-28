@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -8,26 +9,14 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return _buildStaticScreen(
       context,
-      title: "Hakkımızda",
+      title: AppLocalizations.of(context)!.aboutUs,
       content: [
-        _buildSectionTitle("Biz Kimiz?"),
+        _buildSectionTitle(AppLocalizations.of(context)!.aboutOneiro),
         _buildSectionContent(
-          "Oneiro ekibi olarak, rüyaların gizemli dünyasını anlamlandırmak için yapay zeka teknolojisini kullanıyoruz. "
-          "Amacımız, rüyalarınızı anlamanıza ve onlardan anlam çıkarmanıza yardımcı olmaktır."
+          AppLocalizations.of(context)!.oneiroDescription
         ),
-        _buildSectionTitle("Teknolojimiz"),
+        _buildSectionTitle(AppLocalizations.of(context)!.contactUs),
         _buildSectionContent(
-          "Uygulamamız gelişmiş doğal dil işleme modelleri kullanır. "
-          "Rüya açıklamalarınızı analiz ederek psikolojik ve sembolik açıdan zengin yorumlar sunarız."
-        ),
-        _buildSectionTitle("Misyonumuz"),
-        _buildSectionContent(
-          "Rüyaların bilinçaltının kapıları olduğuna inanıyoruz. "
-          "Misyonumuz, bu kapıları aralayarak kişisel keşif yolculuğunuzda size rehberlik etmektir."
-        ),
-        _buildSectionTitle("İletişim"),
-        _buildSectionContent(
-          "Sorularınız ve geri bildirimleriniz için bize ulaşın:\n"
           "Email: destek@oneiro.app\n"
           "Telefon: +90 212 555 01 23"
         ),

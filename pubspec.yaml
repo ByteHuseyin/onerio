@@ -38,11 +38,16 @@ dependencies:
   dio: ^5.4.0
   
   # Diğer
-  intl: ^0.18.1
+  intl: ^0.20.2
   shared_preferences: ^2.2.2
   url_launcher: ^6.3.0
   font_awesome_flutter: ^10.9.0
   permission_handler: ^12.0.1 #bildirim
+  
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  
   connectivity_plus: ^5.0.2 #internet baglanti kontrolü
   
     
@@ -52,6 +57,9 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
+  
+  # Localization
+  flutter_gen_runner: ^5.4.0
 flutter:
   uses-material-design: true
 
@@ -59,6 +67,10 @@ flutter:
     - assets/images/
     - assets/animations/
     - assets/svg/
+    - assets/characters/
+    
+  # Localization
+  generate: true
     
     
   # fonts:
@@ -81,4 +93,3 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/images/icon.png"
-

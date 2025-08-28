@@ -3,8 +3,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 class InterpretationCard extends StatelessWidget {
   final String content;
+  final String? character;
 
-  const InterpretationCard({super.key, required this.content});
+  const InterpretationCard({
+    super.key, 
+    required this.content,
+    this.character,
+  });
+
+  String _getCharacterImagePath(String character) {
+    if (character.toLowerCase().contains('freud')) {
+      return 'assets/characters/freud.jpg';
+    } else if (character.toLowerCase().contains('jung')) {
+      return 'assets/characters/jung.jpg';
+    } else if (character.toLowerCase().contains('ibn') || character.toLowerCase().contains('sîrîn') || character.toLowerCase().contains('sirin')) {
+      return 'assets/characters/İbnSîrîn.jpg';
+    }
+    return 'assets/characters/onerioai.jpg';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +53,32 @@ class InterpretationCard extends StatelessWidget {
                   color: Colors.purpleAccent.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
-                child: Image.asset(
-                  'assets/images/icon.png',
-                  height: 24,
-                  width: 24,
-                ),
+                                 child: character != null && character!.isNotEmpty
+                     ? ClipOval(
+                         child: Image.asset(
+                           _getCharacterImagePath(character!),
+                           height: 24,
+                           width: 24,
+                           fit: BoxFit.cover,
+                         ),
+                       )
+                     : Image.asset(
+                         'assets/images/icon.png',
+                         height: 24,
+                         width: 24,
+                       ),
               ),
               const SizedBox(width: 12),
-              Text(
-                'Onerio Yorumu',
-                style: GoogleFonts.nunito(
-                  color: Colors.purpleAccent,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
+              Expanded(
+                child: Text(
+                  character != null && character!.isNotEmpty 
+                      ? '$character Yorumu'
+                      : 'Onerio Yorumu',
+                  style: GoogleFonts.nunito(
+                    color: Colors.purpleAccent,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                  ),
                 ),
               ),
             ],

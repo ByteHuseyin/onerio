@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,11 +19,14 @@ class ChatApi {
   static const String _cloudFunctionUrl =
       'https://europe-west1-onerioapp.cloudfunctions.net/chatWithOpenAI';
 
-  static Future<ChatResponse> sendPrompt(String prompt) async {
+  static Future<ChatResponse> sendPrompt(String prompt, String character) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception('Kullanıcı giriş yapmamış.');
 
     final idToken = await user.getIdToken();
+    
+    // Kullanıcının telefon dilini al
+    final userLanguage = PlatformDispatcher.instance.locale.languageCode;
 
     final response = await http.post(
       Uri.parse(_cloudFunctionUrl),
@@ -30,7 +34,11 @@ class ChatApi {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $idToken',
       },
-      body: jsonEncode({'prompt': prompt}),
+      body: jsonEncode({
+        'prompt': prompt,
+        'character': character,
+        'userLanguage': userLanguage,
+      }),
     );
 
     if (response.statusCode == 200) {

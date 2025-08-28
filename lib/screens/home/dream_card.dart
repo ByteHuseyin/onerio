@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class DreamCard extends StatelessWidget {
   final String content;
@@ -10,6 +11,8 @@ class DreamCard extends StatelessWidget {
   final Function(int) onEdit;
   final Function(int) onSave;
   final Function(int) onCancel;
+  final Function(String) onEditWithFloatingInput;
+  final bool isQuote;
 
   const DreamCard({
     super.key,
@@ -21,6 +24,8 @@ class DreamCard extends StatelessWidget {
     required this.onEdit,
     required this.onSave,
     required this.onCancel,
+    required this.onEditWithFloatingInput,
+    this.isQuote = false,
   });
 
   @override
@@ -51,30 +56,34 @@ class DreamCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent.withOpacity(0.15),
+                  color: isQuote 
+                      ? Colors.purpleAccent.withOpacity(0.15)
+                      : Colors.blueAccent.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.nightlight_round,
-                  color: Colors.blueAccent,
+                child: Icon(
+                  isQuote ? Icons.auto_awesome : Icons.nightlight_round,
+                  color: isQuote ? Colors.purpleAccent : Colors.blueAccent,
                   size: 24,
                 ),
               ),
               const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'Rüya analizi tamamlandı',
-                  style: GoogleFonts.nunito(
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              if (!isEditing)
+                             Expanded(
+                 child: Text(
+                   isQuote 
+                       ? AppLocalizations.of(context)!.dreamInspiration 
+                       : AppLocalizations.of(context)!.dreamAnalysisCompleted,
+                   style: GoogleFonts.nunito(
+                     color: isQuote ? Colors.purpleAccent : Colors.blueAccent,
+                     fontWeight: FontWeight.w700,
+                     fontSize: 18,
+                   ),
+                 ),
+               ),
+              if (!isEditing && !isQuote)
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.white70, size: 20),
-                  onPressed: () => onEdit(index),
+                  onPressed: () => onEditWithFloatingInput(content),
                 ),
             ],
           ),
@@ -121,14 +130,14 @@ class DreamCard extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             )
-                          : const Text('Kaydet'),
+                          : Text(AppLocalizations.of(context)!.save),
                     ),
                     const SizedBox(width: 8),
                     TextButton(
                       onPressed: isLoading ? null : () => onCancel(index),
-                      child: const Text(
-                        'İptal',
-                        style: TextStyle(color: Colors.white70),
+                      child: Text(
+                        AppLocalizations.of(context)!.cancel,
+                        style: const TextStyle(color: Colors.white70),
                       ),
                     ),
                   ],
@@ -139,9 +148,10 @@ class DreamCard extends StatelessWidget {
             Text(
               content,
               style: GoogleFonts.nunito(
-                color: Colors.white,
-                fontSize: 17,
+                color: isQuote ? Colors.white70 : Colors.white,
+                fontSize: isQuote ? 16 : 17,
                 height: 1.6,
+                fontStyle: isQuote ? FontStyle.italic : FontStyle.normal,
               ),
             ),
         ],
