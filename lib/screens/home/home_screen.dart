@@ -210,15 +210,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _startCardEdit(int index) {
-    // ... Düzenleme mantığı aynı
+    setState(() {
+      _editingIndex = index;
+      _editControllers[index] =
+          TextEditingController(text: _currentConversation[index]['content']);
+    });
   }
 
   Future<void> _saveCardEdit(int index) async {
-    // ... Düzenleme kaydetme mantığı aynı
+    final newText = _editControllers[index]?.text.trim() ?? '';
+    if (newText.isEmpty) {
+      _cancelCardEdit(index);
+      return;
+    }
+
+    setState(() {
+      _currentConversation[index]['content'] = newText;
+      _editingIndex = null;
+      _editControllers[index]?.dispose();
+      _editControllers.remove(index);
+    });
   }
 
   void _cancelCardEdit(int index) {
-    // ... Düzenleme iptal etme mantığı aynı
+    setState(() {
+      _editingIndex = null;
+      _editControllers[index]?.dispose();
+      _editControllers.remove(index);
+    });
   }
 
   void _editWithFloatingInput(String content) {
