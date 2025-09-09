@@ -9,7 +9,7 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Толкование Снов';
 
   @override
   String get appDescription => 'Приложение для анализа и отслеживания снов';
@@ -371,4 +371,37 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'Сны — это загадочная картина, нарисованная разумом ночью.';
+
+  @override
+  String get adDialogTitle => 'Посмотрите рекламу, чтобы продолжить';
+
+  @override
+  String get adDialogMessage =>
+      'Чтобы продолжить анализ вашего сна, посмотрите короткую рекламу. Это помогает нам держать приложение бесплатным для всех.';
+
+  @override
+  String get watchAndLearn => 'Смотреть и Учиться';
+
+  @override
+  String get skipAd => 'Пропустить рекламу';
+
+  @override
+  String get adLoading => 'Загрузка рекламы...';
+
+  @override
+  String get adReady => 'Реклама готова!';
+
+  @override
+  String get adNotReady => 'Реклама еще не готова';
+
+  @override
+  String get adError => 'Ошибка загрузки рекламы';
+
+  @override
+  String get adRewardEarned =>
+      'Спасибо! Теперь вы можете продолжить анализ вашего сна.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Реклама завершена. Вы можете продолжить анализ вашего сна.';
 }

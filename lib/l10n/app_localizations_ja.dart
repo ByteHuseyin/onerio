@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => '夢の解釈';
 
   @override
   String get appDescription => '夢の分析と追跡アプリ';
@@ -359,4 +359,35 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get dreamQuote6 => '夢は夜に心によって描かれた神秘的な絵です。';
+
+  @override
+  String get adDialogTitle => '続行するために広告を見る';
+
+  @override
+  String get adDialogMessage =>
+      '夢の分析を続行するために、短い広告を見てください。これにより、アプリをすべての人に無料で提供できます。';
+
+  @override
+  String get watchAndLearn => '見て学ぶ';
+
+  @override
+  String get skipAd => '広告をスキップ';
+
+  @override
+  String get adLoading => '広告を読み込み中...';
+
+  @override
+  String get adReady => '広告の準備ができました！';
+
+  @override
+  String get adNotReady => '広告はまだ準備できていません';
+
+  @override
+  String get adError => '広告の読み込みに失敗しました';
+
+  @override
+  String get adRewardEarned => 'ありがとうございます！夢の分析を続行できます。';
+
+  @override
+  String get adRewardNotEarned => '広告が完了しました。夢の分析を続行できます。';
 }

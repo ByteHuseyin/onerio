@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneiro/l10n/app_localizations.dart';
+import 'package:oneiro/widgets/ad_dialog.dart';
 
 class FloatingInput extends StatefulWidget {
   final TextEditingController controller;
@@ -55,7 +56,7 @@ class _FloatingInputState extends State<FloatingInput> {
               Row(
                 children: [
                   Expanded(
-                                                                                   child: TextField(
+                        child: TextField(
                         controller: widget.controller,
                         focusNode: widget.focusNode,
                         maxLines: 3,
@@ -128,7 +129,7 @@ class _FloatingInputState extends State<FloatingInput> {
                   ),
                 ),
                                  const SizedBox(height: 24),
-                 _buildCharacterOption(context, 'onerioai', 'OnerioAI'),
+                 _buildCharacterOption(context, 'onerioai', 'OneiroAI'),
                  const SizedBox(height: 16),
                  _buildCharacterOption(context, 'freud', 'Sigmund Freud'),
                  const SizedBox(height: 16),
@@ -147,7 +148,10 @@ class _FloatingInputState extends State<FloatingInput> {
     return InkWell(
              onTap: () {
          Navigator.of(context).pop();
-         widget.onSend(name);
+         
+         // Karakter seçimi sonrası reklam dialog'u göster
+         print('Karakter seçimi: $name seçildi, reklam dialog\'u gösteriliyor...');
+         _showAdDialog(context, name);
        },
       borderRadius: BorderRadius.circular(15),
       child: Container(
@@ -196,6 +200,27 @@ class _FloatingInputState extends State<FloatingInput> {
           ],
         ),
       ),
+    );
+  }
+
+  // Reklam dialog'u göster
+  void _showAdDialog(BuildContext context, String characterName) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Kullanıcı dialog'u kapatamaz
+      builder: (BuildContext context) {
+        return AdDialog(
+          characterName: characterName,
+          onContinue: (String character) {
+            print('AdMob: Dialog\'dan karakter seçimi tamamlanıyor: $character');
+            widget.onSend(character);
+          },
+          onCancel: () {
+            print('AdMob: Kullanıcı vazgeçti, rüya tabiri gösterilmeyecek');
+            // Vazgeç butonuna basıldığında hiçbir şey yapma
+          },
+        );
+      },
     );
   }
 

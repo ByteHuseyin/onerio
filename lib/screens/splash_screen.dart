@@ -115,15 +115,18 @@ class _SplashScreenState extends State<SplashScreen>
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ).createShader(bounds),
-                      child: const Text(
-                        'Onerio',
-                        style: TextStyle(
-                          fontSize: 46,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'SpaceGrotesk',
-                          color: Colors.white,
-                          letterSpacing: 1.5,
-                          height: 1.2,
+                      child: Center(
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          AppLocalizations.of(context)!.appTitle,
+                          style: TextStyle(
+                            fontSize: 46,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'SpaceGrotesk',
+                            color: Colors.white,
+                            letterSpacing: 1.5,
+                            height: 1.2,
+                          ),
                         ),
                       ),
                     ),
@@ -134,13 +137,16 @@ class _SplashScreenState extends State<SplashScreen>
                       animation: _fadeController,
                       builder: (_, __) => Opacity(
                         opacity: _fadeController.value > 0.5 ? 1.0 : 0.0,
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          AppLocalizations.of(context)!.onboardingSubtitle1,
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 18,
-                            letterSpacing: 1.2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            AppLocalizations.of(context)!.onboardingSubtitle1,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 18,
+                              letterSpacing: 1.2,
+                            ),
                           ),
                         ),
                       ),

@@ -9,7 +9,7 @@ class AppLocalizationsEl extends AppLocalizations {
   AppLocalizationsEl([String locale = 'el']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Ερμηνεία Ονείρων';
 
   @override
   String get appDescription => 'Εφαρμογή ανάλυσης και παρακολούθησης ονείρων';
@@ -372,4 +372,37 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'Τα όνειρα είναι ένας μυστηριώδης πίνακας ζωγραφισμένος από το μυαλό τη νύχτα.';
+
+  @override
+  String get adDialogTitle => 'Παρακολουθήστε διαφήμιση για να συνεχίσετε';
+
+  @override
+  String get adDialogMessage =>
+      'Για να συνεχίσετε την ανάλυση του ονείρου σας, παρακαλώ παρακολουθήστε μια σύντομη διαφήμιση. Αυτό μας βοηθά να κρατάμε την εφαρμογή δωρεάν για όλους.';
+
+  @override
+  String get watchAndLearn => 'Παρακολουθήστε και Μάθετε';
+
+  @override
+  String get skipAd => 'Παράλειψη διαφήμισης';
+
+  @override
+  String get adLoading => 'Φόρτωση διαφήμισης...';
+
+  @override
+  String get adReady => 'Η διαφήμιση είναι έτοιμη!';
+
+  @override
+  String get adNotReady => 'Η διαφήμιση δεν είναι ακόμα έτοιμη';
+
+  @override
+  String get adError => 'Αποτυχία φόρτωσης διαφήμισης';
+
+  @override
+  String get adRewardEarned =>
+      'Ευχαριστούμε! Τώρα μπορείτε να συνεχίσετε την ανάλυση του ονείρου σας.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Η διαφήμιση ολοκληρώθηκε. Μπορείτε να συνεχίσετε την ανάλυση του ονείρου σας.';
 }

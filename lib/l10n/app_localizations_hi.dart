@@ -9,7 +9,7 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'सपनों की व्याख्या';
 
   @override
   String get appDescription => 'सपनों का विश्लेषण और ट्रैकिंग एप्लिकेशन';
@@ -370,4 +370,37 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'सपने रात में मन द्वारा बनाई गई एक रहस्यमय पेंटिंग हैं।';
+
+  @override
+  String get adDialogTitle => 'जारी रखने के लिए विज्ञापन देखें';
+
+  @override
+  String get adDialogMessage =>
+      'अपने सपने के विश्लेषण को जारी रखने के लिए, कृपया एक छोटा विज्ञापन देखें। यह हमें सभी के लिए ऐप को मुफ्त रखने में मदद करता है।';
+
+  @override
+  String get watchAndLearn => 'देखें और सीखें';
+
+  @override
+  String get skipAd => 'विज्ञापन छोड़ें';
+
+  @override
+  String get adLoading => 'विज्ञापन लोड हो रहा है...';
+
+  @override
+  String get adReady => 'विज्ञापन तैयार है!';
+
+  @override
+  String get adNotReady => 'विज्ञापन अभी तैयार नहीं है';
+
+  @override
+  String get adError => 'विज्ञापन लोड करने में विफल';
+
+  @override
+  String get adRewardEarned =>
+      'धन्यवाद! अब आप अपने सपने के विश्लेषण को जारी रख सकते हैं।';
+
+  @override
+  String get adRewardNotEarned =>
+      'विज्ञापन पूरा हुआ। आप अपने सपने के विश्लेषण को जारी रख सकते हैं।';
 }

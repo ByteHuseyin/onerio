@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "appTitle": "Oneiro",
+  "appTitle": "Rüya Yorumlama",
   "appDescription": "Rüya analiz ve takip uygulaması",
   
   "welcome": "Hoş Geldiniz",
@@ -136,5 +136,16 @@
   "dreamQuote3": "Rüya, zamanın ve mekânın zincirlerinden kurtulmuş zihnin özgür yolculuğudur.",
   "dreamQuote4": "Rüya, zihnin perde arkasında sakladığı hakikatlerin sessiz sahnesidir.",
   "dreamQuote5": "Rüya, kalbin derinliklerinden gelen görünmez bir dildir.",
-  "dreamQuote6": "Rüya, zihnin gecede çizdiği gizemli bir tabludur."
+  "dreamQuote6": "Rüya, zihnin gecede çizdiği gizemli bir tabludur.",
+  
+  "adDialogTitle": "Devam Etmek İçin Reklam İzle",
+  "adDialogMessage": "Rüya analizinize devam etmek için lütfen kısa bir reklam izleyin. Bu, uygulamayı herkes için ücretsiz tutmamıza yardımcı olur.",
+  "watchAndLearn": "İzle ve Öğren",
+  "skipAd": "Reklamı Atla",
+  "adLoading": "Reklam yükleniyor...",
+  "adReady": "Reklam hazır!",
+  "adNotReady": "Reklam henüz hazır değil",
+  "adError": "Reklam yükleme başarısız",
+  "adRewardEarned": "Teşekkürler! Artık rüya analizinize devam edebilirsiniz.",
+  "adRewardNotEarned": "Reklam tamamlandı. Rüya analizinize devam edebilirsiniz."
 }

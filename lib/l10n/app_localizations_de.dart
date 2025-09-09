@@ -9,7 +9,7 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Traumdeutung';
 
   @override
   String get appDescription =>
@@ -373,4 +373,37 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'Träume sind ein geheimnisvolles Gemälde, das vom Geist in der Nacht erschaffen wird.';
+
+  @override
+  String get adDialogTitle => 'Werbung ansehen um fortzufahren';
+
+  @override
+  String get adDialogMessage =>
+      'Um mit Ihrer Traumanalyse fortzufahren, schauen Sie bitte eine kurze Werbung an. Das hilft uns, die App für alle kostenlos zu halten.';
+
+  @override
+  String get watchAndLearn => 'Ansehen und Lernen';
+
+  @override
+  String get skipAd => 'Werbung überspringen';
+
+  @override
+  String get adLoading => 'Werbung wird geladen...';
+
+  @override
+  String get adReady => 'Werbung ist bereit!';
+
+  @override
+  String get adNotReady => 'Werbung ist noch nicht bereit';
+
+  @override
+  String get adError => 'Fehler beim Laden der Werbung';
+
+  @override
+  String get adRewardEarned =>
+      'Danke! Sie können jetzt mit Ihrer Traumanalyse fortfahren.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Werbung abgeschlossen. Sie können mit Ihrer Traumanalyse fortfahren.';
 }

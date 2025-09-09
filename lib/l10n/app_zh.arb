@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "appTitle": "Oneiro",
+  "appTitle": "梦境解析",
   "appDescription": "梦境分析和追踪应用",
   
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "梦是心灵从时间与空间束缚中解放的自由旅程。",
   "dreamQuote4": "梦是心灵帷幕后隐藏真理的静默舞台。",
   "dreamQuote5": "梦是来自内心深处的无形语言。",
-  "dreamQuote6": "梦是夜晚心灵描绘的神秘画作。"
+  "dreamQuote6": "梦是夜晚心灵描绘的神秘画作。",
+  
+  "adDialogTitle": "观看广告以继续",
+  "adDialogMessage": "要继续您的梦境分析，请观看一个简短的广告。这有助于我们为所有人免费提供应用程序。",
+  "watchAndLearn": "观看学习",
+  "skipAd": "跳过广告",
+  "adLoading": "正在加载广告...",
+  "adReady": "广告已准备就绪！",
+  "adNotReady": "广告尚未准备就绪",
+  "adError": "广告加载失败",
+  "adRewardEarned": "谢谢！您现在可以继续您的梦境分析。",
+  "adRewardNotEarned": "广告已完成。您可以继续您的梦境分析。"
 }

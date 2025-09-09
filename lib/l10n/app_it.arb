@@ -1,6 +1,6 @@
 {
   "@@locale": "it",
-  "appTitle": "Oneiro",
+  "appTitle": "Interpretazione dei Sogni",
   "appDescription": "Applicazione per l'analisi e il monitoraggio dei sogni",
 
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "I sogni sono il viaggio libero della mente liberata dalle catene del tempo e dello spazio.",
   "dreamQuote4": "I sogni sono il palcoscenico silenzioso delle verità nascoste dietro il sipario della mente.",
   "dreamQuote5": "I sogni sono un linguaggio invisibile che proviene dalle profondità del cuore.",
-  "dreamQuote6": "I sogni sono un misterioso dipinto disegnato dalla mente di notte."
+  "dreamQuote6": "I sogni sono un misterioso dipinto disegnato dalla mente di notte.",
+  
+  "adDialogTitle": "Guarda un annuncio per continuare",
+  "adDialogMessage": "Per continuare con l'analisi del tuo sogno, guarda un breve annuncio. Questo ci aiuta a mantenere l'app gratuita per tutti.",
+  "watchAndLearn": "Guarda e Impara",
+  "skipAd": "Salta annuncio",
+  "adLoading": "Caricamento annuncio...",
+  "adReady": "L'annuncio è pronto!",
+  "adNotReady": "L'annuncio non è ancora pronto",
+  "adError": "Errore nel caricamento dell'annuncio",
+  "adRewardEarned": "Grazie! Ora puoi continuare con l'analisi del tuo sogno.",
+  "adRewardNotEarned": "Annuncio completato. Puoi continuare con l'analisi del tuo sogno."
 }

@@ -1,6 +1,6 @@
 {
   "@@locale": "pt",
-  "appTitle": "Oneiro",
+  "appTitle": "Interpretação de Sonhos",
   "appDescription": "Aplicativo para análise e acompanhamento de sonhos",
 
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "Os sonhos são a jornada livre da mente, libertada das correntes do tempo e do espaço.",
   "dreamQuote4": "Os sonhos são o palco silencioso das verdades escondidas atrás da cortina da mente.",
   "dreamQuote5": "Os sonhos são uma linguagem invisível vinda das profundezas do coração.",
-  "dreamQuote6": "Os sonhos são uma pintura misteriosa feita pela mente à noite."
+  "dreamQuote6": "Os sonhos são uma pintura misteriosa feita pela mente à noite.",
+  
+  "adDialogTitle": "Assista a um anúncio para continuar",
+  "adDialogMessage": "Para continuar com a análise do seu sonho, assista a um anúncio curto. Isso nos ajuda a manter o aplicativo gratuito para todos.",
+  "watchAndLearn": "Assistir e Aprender",
+  "skipAd": "Pular anúncio",
+  "adLoading": "Carregando anúncio...",
+  "adReady": "O anúncio está pronto!",
+  "adNotReady": "O anúncio ainda não está pronto",
+  "adError": "Falha ao carregar o anúncio",
+  "adRewardEarned": "Obrigado! Agora você pode continuar com a análise do seu sonho.",
+  "adRewardNotEarned": "Anúncio concluído. Você pode continuar com a análise do seu sonho."
 }

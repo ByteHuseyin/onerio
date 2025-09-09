@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "appTitle": "Oneiro",
+  "appTitle": "夢の解釈",
   "appDescription": "夢の分析と追跡アプリ",
 
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "夢は時間と空間の鎖から解放された心の自由な旅です。",
   "dreamQuote4": "夢は心のカーテンの裏に隠された真実の静かな舞台です。",
   "dreamQuote5": "夢は心の奥深くから来る見えない言語です。",
-  "dreamQuote6": "夢は夜に心によって描かれた神秘的な絵です。"
+  "dreamQuote6": "夢は夜に心によって描かれた神秘的な絵です。",
+  
+  "adDialogTitle": "続行するために広告を見る",
+  "adDialogMessage": "夢の分析を続行するために、短い広告を見てください。これにより、アプリをすべての人に無料で提供できます。",
+  "watchAndLearn": "見て学ぶ",
+  "skipAd": "広告をスキップ",
+  "adLoading": "広告を読み込み中...",
+  "adReady": "広告の準備ができました！",
+  "adNotReady": "広告はまだ準備できていません",
+  "adError": "広告の読み込みに失敗しました",
+  "adRewardEarned": "ありがとうございます！夢の分析を続行できます。",
+  "adRewardNotEarned": "広告が完了しました。夢の分析を続行できます。"
 }

@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Dream Interpretation';
 
   @override
   String get appDescription => 'Dream analysis and tracking app';
@@ -370,4 +370,37 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'Dreams are a mysterious painting drawn by the mind at night.';
+
+  @override
+  String get adDialogTitle => 'Watch Ad to Continue';
+
+  @override
+  String get adDialogMessage =>
+      'To continue with your dream analysis, please watch a short ad. This helps us keep the app free for everyone.';
+
+  @override
+  String get watchAndLearn => 'Watch & Learn';
+
+  @override
+  String get skipAd => 'Skip Ad';
+
+  @override
+  String get adLoading => 'Loading ad...';
+
+  @override
+  String get adReady => 'Ad is ready!';
+
+  @override
+  String get adNotReady => 'Ad is not ready yet';
+
+  @override
+  String get adError => 'Ad loading failed';
+
+  @override
+  String get adRewardEarned =>
+      'Thank you! You can now continue with your dream analysis.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Ad completed. You can continue with your dream analysis.';
 }

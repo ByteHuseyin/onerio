@@ -9,7 +9,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => '꿈 해석';
 
   @override
   String get appDescription => '꿈 분석 및 추적 앱';
@@ -360,4 +360,35 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get dreamQuote6 => '꿈은 밤에 마음이 그린 신비로운 그림입니다.';
+
+  @override
+  String get adDialogTitle => '계속하려면 광고를 시청하세요';
+
+  @override
+  String get adDialogMessage =>
+      '꿈 분석을 계속하려면 짧은 광고를 시청해 주세요. 이는 모든 사람을 위해 앱을 무료로 유지하는 데 도움이 됩니다.';
+
+  @override
+  String get watchAndLearn => '보고 배우기';
+
+  @override
+  String get skipAd => '광고 건너뛰기';
+
+  @override
+  String get adLoading => '광고 로딩 중...';
+
+  @override
+  String get adReady => '광고가 준비되었습니다!';
+
+  @override
+  String get adNotReady => '광고가 아직 준비되지 않았습니다';
+
+  @override
+  String get adError => '광고 로딩 실패';
+
+  @override
+  String get adRewardEarned => '감사합니다! 이제 꿈 분석을 계속할 수 있습니다.';
+
+  @override
+  String get adRewardNotEarned => '광고가 완료되었습니다. 꿈 분석을 계속할 수 있습니다.';
 }

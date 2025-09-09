@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "appTitle": "Oneiro",
+  "appTitle": "Interprétation des Rêves",
   "appDescription": "Application d'analyse et de suivi des rêves",
   
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "Les rêves sont le voyage libre de l'esprit libéré des chaînes du temps et de l'espace.",
   "dreamQuote4": "Les rêves sont la scène silencieuse des vérités cachées derrière le rideau de l'esprit.",
   "dreamQuote5": "Les rêves sont un langage invisible venant des profondeurs du cœur.",
-  "dreamQuote6": "Les rêves sont une peinture mystérieuse dessinée par l'esprit la nuit."
+  "dreamQuote6": "Les rêves sont une peinture mystérieuse dessinée par l'esprit la nuit.",
+  
+  "adDialogTitle": "Regardez une publicité pour continuer",
+  "adDialogMessage": "Pour continuer votre analyse de rêve, veuillez regarder une courte publicité. Cela nous aide à garder l'application gratuite pour tous.",
+  "watchAndLearn": "Regarder et Apprendre",
+  "skipAd": "Passer la publicité",
+  "adLoading": "Chargement de la publicité...",
+  "adReady": "La publicité est prête !",
+  "adNotReady": "La publicité n'est pas encore prête",
+  "adError": "Échec du chargement de la publicité",
+  "adRewardEarned": "Merci ! Vous pouvez maintenant continuer votre analyse de rêve.",
+  "adRewardNotEarned": "Publicité terminée. Vous pouvez continuer votre analyse de rêve."
 }

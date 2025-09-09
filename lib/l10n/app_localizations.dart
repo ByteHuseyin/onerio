@@ -123,7 +123,7 @@ abstract class AppLocalizations {
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'Oneiro'**
+  /// **'Dream Interpretation'**
   String get appTitle;
 
   /// The description of the application
@@ -821,6 +821,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dreams are a mysterious painting drawn by the mind at night.'**
   String get dreamQuote6;
+
+  /// No description provided for @adDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ad to Continue'**
+  String get adDialogTitle;
+
+  /// No description provided for @adDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'To continue with your dream analysis, please watch a short ad. This helps us keep the app free for everyone.'**
+  String get adDialogMessage;
+
+  /// No description provided for @watchAndLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch & Learn'**
+  String get watchAndLearn;
+
+  /// No description provided for @skipAd.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip Ad'**
+  String get skipAd;
+
+  /// No description provided for @adLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading ad...'**
+  String get adLoading;
+
+  /// No description provided for @adReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad is ready!'**
+  String get adReady;
+
+  /// No description provided for @adNotReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad is not ready yet'**
+  String get adNotReady;
+
+  /// No description provided for @adError.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad loading failed'**
+  String get adError;
+
+  /// No description provided for @adRewardEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! You can now continue with your dream analysis.'**
+  String get adRewardEarned;
+
+  /// No description provided for @adRewardNotEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad completed. You can continue with your dream analysis.'**
+  String get adRewardNotEarned;
 }
 
 class _AppLocalizationsDelegate

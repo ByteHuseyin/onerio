@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "appTitle": "Oneiro",
+  "appTitle": "Traumdeutung",
   "appDescription": "Anwendung zur Analyse und Verfolgung von Träumen",
 
   "@appTitle": {
@@ -143,5 +143,16 @@
   "dreamQuote3": "Träume sind die freie Reise des Geistes, befreit von den Ketten von Zeit und Raum.",
   "dreamQuote4": "Träume sind die stille Bühne der Wahrheiten, die hinter dem Vorhang des Geistes verborgen sind.",
   "dreamQuote5": "Träume sind eine unsichtbare Sprache, die aus den Tiefen des Herzens kommt.",
-  "dreamQuote6": "Träume sind ein geheimnisvolles Gemälde, das vom Geist in der Nacht erschaffen wird."
+  "dreamQuote6": "Träume sind ein geheimnisvolles Gemälde, das vom Geist in der Nacht erschaffen wird.",
+  
+  "adDialogTitle": "Werbung ansehen um fortzufahren",
+  "adDialogMessage": "Um mit Ihrer Traumanalyse fortzufahren, schauen Sie bitte eine kurze Werbung an. Das hilft uns, die App für alle kostenlos zu halten.",
+  "watchAndLearn": "Ansehen und Lernen",
+  "skipAd": "Werbung überspringen",
+  "adLoading": "Werbung wird geladen...",
+  "adReady": "Werbung ist bereit!",
+  "adNotReady": "Werbung ist noch nicht bereit",
+  "adError": "Fehler beim Laden der Werbung",
+  "adRewardEarned": "Danke! Sie können jetzt mit Ihrer Traumanalyse fortfahren.",
+  "adRewardNotEarned": "Werbung abgeschlossen. Sie können mit Ihrer Traumanalyse fortfahren."
 }

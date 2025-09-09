@@ -1,8 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- AdMob için gerekli izinler -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
     <application
-        android:label="oneiro"
+        android:label="Dream Interpretation"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
+        <!-- AdMob App ID -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7299067074949548~5714724354"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Interprétation des Rêves';
 
   @override
   String get appDescription => 'Application d\'analyse et de suivi des rêves';
@@ -371,4 +371,37 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'Les rêves sont une peinture mystérieuse dessinée par l\'esprit la nuit.';
+
+  @override
+  String get adDialogTitle => 'Regardez une publicité pour continuer';
+
+  @override
+  String get adDialogMessage =>
+      'Pour continuer votre analyse de rêve, veuillez regarder une courte publicité. Cela nous aide à garder l\'application gratuite pour tous.';
+
+  @override
+  String get watchAndLearn => 'Regarder et Apprendre';
+
+  @override
+  String get skipAd => 'Passer la publicité';
+
+  @override
+  String get adLoading => 'Chargement de la publicité...';
+
+  @override
+  String get adReady => 'La publicité est prête !';
+
+  @override
+  String get adNotReady => 'La publicité n\'est pas encore prête';
+
+  @override
+  String get adError => 'Échec du chargement de la publicité';
+
+  @override
+  String get adRewardEarned =>
+      'Merci ! Vous pouvez maintenant continuer votre analyse de rêve.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Publicité terminée. Vous pouvez continuer votre analyse de rêve.';
 }

@@ -9,7 +9,7 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Interpretazione dei Sogni';
 
   @override
   String get appDescription =>
@@ -372,4 +372,37 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get dreamQuote6 =>
       'I sogni sono un misterioso dipinto disegnato dalla mente di notte.';
+
+  @override
+  String get adDialogTitle => 'Guarda un annuncio per continuare';
+
+  @override
+  String get adDialogMessage =>
+      'Per continuare con l\'analisi del tuo sogno, guarda un breve annuncio. Questo ci aiuta a mantenere l\'app gratuita per tutti.';
+
+  @override
+  String get watchAndLearn => 'Guarda e Impara';
+
+  @override
+  String get skipAd => 'Salta annuncio';
+
+  @override
+  String get adLoading => 'Caricamento annuncio...';
+
+  @override
+  String get adReady => 'L\'annuncio è pronto!';
+
+  @override
+  String get adNotReady => 'L\'annuncio non è ancora pronto';
+
+  @override
+  String get adError => 'Errore nel caricamento dell\'annuncio';
+
+  @override
+  String get adRewardEarned =>
+      'Grazie! Ora puoi continuare con l\'analisi del tuo sogno.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Annuncio completato. Puoi continuare con l\'analisi del tuo sogno.';
 }

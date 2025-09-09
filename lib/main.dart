@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart'; // 🔹 Nunito font için eklen
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oneiro/l10n/app_localizations.dart';
 import 'package:oneiro/services/language_service.dart';
+import 'package:oneiro/services/admob_service.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -18,9 +19,7 @@ class AppInitializer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ),
+      future: _initializeApp(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return const MaterialApp(
@@ -39,6 +38,18 @@ class AppInitializer extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> _initializeApp() async {
+    print('Uygulama: Firebase başlatılıyor...');
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print('Uygulama: Firebase başarıyla başlatıldı');
+    
+    print('Uygulama: AdMob başlatılıyor...');
+    await AdMobService.initialize();
+    print('Uygulama: AdMob başarıyla başlatıldı');
   }
 }
 

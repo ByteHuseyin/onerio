@@ -9,7 +9,7 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => 'Rüya Yorumlama';
 
   @override
   String get appDescription => 'Rüya analiz ve takip uygulaması';
@@ -369,4 +369,37 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get dreamQuote6 => 'Rüya, zihnin gecede çizdiği gizemli bir tabludur.';
+
+  @override
+  String get adDialogTitle => 'Devam Etmek İçin Reklam İzle';
+
+  @override
+  String get adDialogMessage =>
+      'Rüya analizinize devam etmek için lütfen kısa bir reklam izleyin. Bu, uygulamayı herkes için ücretsiz tutmamıza yardımcı olur.';
+
+  @override
+  String get watchAndLearn => 'İzle ve Öğren';
+
+  @override
+  String get skipAd => 'Reklamı Atla';
+
+  @override
+  String get adLoading => 'Reklam yükleniyor...';
+
+  @override
+  String get adReady => 'Reklam hazır!';
+
+  @override
+  String get adNotReady => 'Reklam henüz hazır değil';
+
+  @override
+  String get adError => 'Reklam yükleme başarısız';
+
+  @override
+  String get adRewardEarned =>
+      'Teşekkürler! Artık rüya analizinize devam edebilirsiniz.';
+
+  @override
+  String get adRewardNotEarned =>
+      'Reklam tamamlandı. Rüya analizinize devam edebilirsiniz.';
 }

@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Oneiro';
+  String get appTitle => '梦境解析';
 
   @override
   String get appDescription => '梦境分析和追踪应用';
@@ -358,4 +358,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dreamQuote6 => '梦是夜晚心灵描绘的神秘画作。';
+
+  @override
+  String get adDialogTitle => '观看广告以继续';
+
+  @override
+  String get adDialogMessage => '要继续您的梦境分析，请观看一个简短的广告。这有助于我们为所有人免费提供应用程序。';
+
+  @override
+  String get watchAndLearn => '观看学习';
+
+  @override
+  String get skipAd => '跳过广告';
+
+  @override
+  String get adLoading => '正在加载广告...';
+
+  @override
+  String get adReady => '广告已准备就绪！';
+
+  @override
+  String get adNotReady => '广告尚未准备就绪';
+
+  @override
+  String get adError => '广告加载失败';
+
+  @override
+  String get adRewardEarned => '谢谢！您现在可以继续您的梦境分析。';
+
+  @override
+  String get adRewardNotEarned => '广告已完成。您可以继续您的梦境分析。';
 }
