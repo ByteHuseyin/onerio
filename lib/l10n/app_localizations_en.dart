@@ -111,6 +111,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yourDreamHistory => 'Your dream history will appear here';
 
   @override
+  String get reminderTime => 'Reminder Time';
+
+  @override
+  String get memoryCompletion => 'Memory Completion';
+
+  @override
+  String get savedDreams => 'Saved';
+
+  @override
+  String get progress => 'Progress';
+
+  @override
+  String get latestDream => 'Latest Dream';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character Interpretation';
+  }
+
+  @override
+  String get onerioInterpretation => 'Onerio Interpretation';
+
+  @override
   String get language => 'Language';
 
   @override

@@ -111,6 +111,29 @@ class AppLocalizationsZh extends AppLocalizations {
   String get yourDreamHistory => '你的梦境历史将显示在这里';
 
   @override
+  String get reminderTime => '提醒时间';
+
+  @override
+  String get memoryCompletion => '记忆完成';
+
+  @override
+  String get savedDreams => '已保存';
+
+  @override
+  String get progress => '进度';
+
+  @override
+  String get latestDream => '最新的梦';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character 解析';
+  }
+
+  @override
+  String get onerioInterpretation => 'Onerio 解析';
+
+  @override
   String get language => '语言';
 
   @override

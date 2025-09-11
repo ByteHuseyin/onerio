@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneiro/l10n/app_localizations.dart';
 
 class InterpretationCard extends StatelessWidget {
   final String content;
@@ -70,17 +71,17 @@ class InterpretationCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
-                  character != null && character!.isNotEmpty 
-                      ? '$character Yorumu'
-                      : 'Onerio Yorumu',
-                  style: GoogleFonts.nunito(
-                    color: Colors.purpleAccent,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
+  child: Text(
+    character != null && character!.isNotEmpty
+? AppLocalizations.of(context)!.characterInterpretation(character!)
+: AppLocalizations.of(context)!.onerioInterpretation,
+    style: GoogleFonts.nunito(
+      color: Colors.purpleAccent,
+      fontWeight: FontWeight.w700,
+      fontSize: 18,
+    ),
+  ),
+),
             ],
           ),
           const SizedBox(height: 16),

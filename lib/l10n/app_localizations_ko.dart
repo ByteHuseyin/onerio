@@ -111,6 +111,29 @@ class AppLocalizationsKo extends AppLocalizations {
   String get yourDreamHistory => '여기에 꿈 기록이 표시됩니다';
 
   @override
+  String get reminderTime => '알림 시간';
+
+  @override
+  String get memoryCompletion => '기억 완료';
+
+  @override
+  String get savedDreams => '저장됨';
+
+  @override
+  String get progress => '진행';
+
+  @override
+  String get latestDream => '최근 꿈';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character 해석';
+  }
+
+  @override
+  String get onerioInterpretation => '오네리오 해석';
+
+  @override
   String get language => '언어';
 
   @override

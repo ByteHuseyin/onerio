@@ -112,6 +112,29 @@ class AppLocalizationsRu extends AppLocalizations {
   String get yourDreamHistory => 'История ваших снов появится здесь';
 
   @override
+  String get reminderTime => 'Время напоминания';
+
+  @override
+  String get memoryCompletion => 'Завершение памяти';
+
+  @override
+  String get savedDreams => 'Сохранено';
+
+  @override
+  String get progress => 'Прогресс';
+
+  @override
+  String get latestDream => 'Последний сон';
+
+  @override
+  String characterInterpretation(String character) {
+    return 'Интерпретация $character';
+  }
+
+  @override
+  String get onerioInterpretation => 'Интерпретация Onerio';
+
+  @override
   String get language => 'Язык';
 
   @override

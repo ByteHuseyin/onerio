@@ -45,6 +45,22 @@
   "startAnalyzing": "अपने सपनों का विश्लेषण करना शुरू करें और उन्हें यहाँ देखें",
   "noHistory": "कोई इतिहास नहीं",
   "yourDreamHistory": "आपके सपनों का इतिहास यहाँ दिखाई देगा",
+  "reminderTime": "अनुस्मारक समय",
+  "memoryCompletion": "स्मृति पूर्णता",
+  "savedDreams": "सहेजे गए",
+  "progress": "प्रगति",
+  "latestDream": "आखिरी सपना",
+  
+  "characterInterpretation": "{character} की व्याख्या",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+       "type": "String"
+     }
+   }
+  },
+  "onerioInterpretation": "Onerio की व्याख्या",
 
   "language": "भाषा",
   "theme": "थीम",

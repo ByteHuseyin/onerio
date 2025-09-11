@@ -111,6 +111,29 @@ class AppLocalizationsJa extends AppLocalizations {
   String get yourDreamHistory => 'あなたの夢の履歴はここに表示されます';
 
   @override
+  String get reminderTime => 'リマインダー時間';
+
+  @override
+  String get memoryCompletion => 'メモリ完了';
+
+  @override
+  String get savedDreams => '保存済み';
+
+  @override
+  String get progress => '進捗';
+
+  @override
+  String get latestDream => '最新の夢';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character の解釈';
+  }
+
+  @override
+  String get onerioInterpretation => 'オネリオの解釈';
+
+  @override
   String get language => '言語';
 
   @override

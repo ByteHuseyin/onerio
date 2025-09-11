@@ -45,6 +45,23 @@
   "startAnalyzing": "Начните анализировать свои сны, чтобы видеть их здесь",
   "noHistory": "Нет истории",
   "yourDreamHistory": "История ваших снов появится здесь",
+  "reminderTime": "Время напоминания",
+  "memoryCompletion": "Завершение памяти",
+  "savedDreams": "Сохранено",
+  "progress": "Прогресс",
+  "latestDream": "Последний сон",
+  
+  "characterInterpretation": "Интерпретация {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Интерпретация Onerio",
+
 
   "language": "Язык",
   "theme": "Тема",

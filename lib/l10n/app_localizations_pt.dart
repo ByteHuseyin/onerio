@@ -112,6 +112,29 @@ class AppLocalizationsPt extends AppLocalizations {
   String get yourDreamHistory => 'O histórico de seus sonhos aparecerá aqui';
 
   @override
+  String get reminderTime => 'Hora do Lembrete';
+
+  @override
+  String get memoryCompletion => 'Conclusão da Memória';
+
+  @override
+  String get savedDreams => 'Salvos';
+
+  @override
+  String get progress => 'Progresso';
+
+  @override
+  String get latestDream => 'Último Sonho';
+
+  @override
+  String characterInterpretation(String character) {
+    return 'Interpretação de $character';
+  }
+
+  @override
+  String get onerioInterpretation => 'Interpretação Onerio';
+
+  @override
   String get language => 'Idioma';
 
   @override

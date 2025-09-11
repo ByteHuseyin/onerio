@@ -113,6 +113,29 @@ class AppLocalizationsEl extends AppLocalizations {
       'Το ιστορικό των ονείρων σας θα εμφανιστεί εδώ';
 
   @override
+  String get reminderTime => 'Ώρα Υπενθύμισης';
+
+  @override
+  String get memoryCompletion => 'Ολοκλήρωση Μνήμης';
+
+  @override
+  String get savedDreams => 'Αποθηκευμένα';
+
+  @override
+  String get progress => 'Πρόοδος';
+
+  @override
+  String get latestDream => 'Τελευταίο Όνειρο';
+
+  @override
+  String characterInterpretation(String character) {
+    return 'Ερμηνεία $character';
+  }
+
+  @override
+  String get onerioInterpretation => 'Ερμηνεία Onerio';
+
+  @override
   String get language => 'Γλώσσα';
 
   @override

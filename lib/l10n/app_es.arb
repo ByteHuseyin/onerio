@@ -45,6 +45,22 @@
   "startAnalyzing": "Comienza a analizar tus sueños para verlos aquí",
   "noHistory": "Sin historial",
   "yourDreamHistory": "El historial de tus sueños aparecerá aquí",
+  "reminderTime": "Hora de Recordatorio",
+  "memoryCompletion": "Completitud de Memoria",
+  "savedDreams": "Guardados",
+  "progress": "Progreso",
+  "latestDream": "Último Sueño",
+
+  "characterInterpretation": "Interpretación de {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Interpretación de Onerio",
 
   "language": "Idioma",
   "theme": "Tema",

@@ -45,6 +45,22 @@
   "startAnalyzing": "夢の分析を始めて、ここで確認してください",
   "noHistory": "履歴なし",
   "yourDreamHistory": "あなたの夢の履歴はここに表示されます",
+  "reminderTime": "リマインダー時間",
+  "memoryCompletion": "メモリ完了",
+  "savedDreams": "保存済み",
+  "progress": "進捗",
+  "latestDream": "最新の夢",
+  
+  "characterInterpretation": "{character} の解釈",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+"onerioInterpretation": "オネリオの解釈",
 
   "language": "言語",
   "theme": "テーマ",

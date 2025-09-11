@@ -38,7 +38,23 @@
   "startAnalyzing": "Rüyalarınızı analiz etmeye başlayın, burada görünecekler",
   "noHistory": "Geçmiş yok",
   "yourDreamHistory": "Rüya geçmişiniz burada görünecek",
-  
+  "reminderTime": "Hatırlatıcı Saati",
+  "memoryCompletion": "Hafıza Tamamlama",
+  "savedDreams": "Kayıtlı",
+  "progress": "Gelişim",
+  "latestDream": "Son Rüya",
+
+  "characterInterpretation": "{character} Yorumu",
+  "@characterInterpretation": {
+    "description": "Karakter seçildiğinde yorum başlığı",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Onerio Yorumu",
+
   "language": "Dil",
   "theme": "Tema",
   "notifications": "Bildirimler",

@@ -45,6 +45,22 @@
   "startAnalyzing": "Ξεκινήστε να αναλύετε τα όνειρά σας για να τα δείτε εδώ",
   "noHistory": "Χωρίς ιστορικό",
   "yourDreamHistory": "Το ιστορικό των ονείρων σας θα εμφανιστεί εδώ",
+  "reminderTime": "Ώρα Υπενθύμισης",
+  "memoryCompletion": "Ολοκλήρωση Μνήμης",
+  "savedDreams": "Αποθηκευμένα",
+  "progress": "Πρόοδος",
+  "latestDream": "Τελευταίο Όνειρο",
+
+  "characterInterpretation": "Ερμηνεία {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Ερμηνεία Onerio",
 
   "language": "Γλώσσα",
   "theme": "Θέμα",

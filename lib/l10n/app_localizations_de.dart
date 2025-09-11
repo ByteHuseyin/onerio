@@ -114,6 +114,29 @@ class AppLocalizationsDe extends AppLocalizations {
       'Der Verlauf deiner Träume wird hier angezeigt';
 
   @override
+  String get reminderTime => 'Erinnerungszeit';
+
+  @override
+  String get memoryCompletion => 'Speicherfortschritt';
+
+  @override
+  String get savedDreams => 'Gespeichert';
+
+  @override
+  String get progress => 'Fortschritt';
+
+  @override
+  String get latestDream => 'Letzter Traum';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character Deutung';
+  }
+
+  @override
+  String get onerioInterpretation => 'Onerio Deutung';
+
+  @override
   String get language => 'Sprache';
 
   @override

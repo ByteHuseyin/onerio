@@ -36,19 +36,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int? _editingIndex;
   final Map<int, TextEditingController> _editControllers = {};
-  
+    // Önceki locale'i takip etmek için
+  Locale? _previousLocale;
   // Rastgele rüya cümleleri
-  List<String> _getDreamQuotes(BuildContext context) {
-    return [
-      AppLocalizations.of(context)!.dreamQuote1,
-      AppLocalizations.of(context)!.dreamQuote2,
-      AppLocalizations.of(context)!.dreamQuote3,
-      AppLocalizations.of(context)!.dreamQuote4,
-      AppLocalizations.of(context)!.dreamQuote5,
-      AppLocalizations.of(context)!.dreamQuote6,
-    ];
-  }
+List<String> _getDreamQuotes(BuildContext context) {
+  final t = AppLocalizations.of(context)!;
+  return [
+    t.dreamQuote1,
+    t.dreamQuote2,
+    t.dreamQuote3,
+    t.dreamQuote4,
+    t.dreamQuote5,
+    t.dreamQuote6,
+  ];
+}
 
+// _currentConversation içindeki alıntı kartlarını güncelleyen yardımcı metot
+void _updateDreamQuotes() {
+  final quotes = _getDreamQuotes(context);
+  
+  for (var card in _currentConversation) {
+    if (card['isQuote'] == true && card['quoteIndex'] != null) {
+      // Eski quote index'ini kullanarak yeni dildeki karşılığını al
+      final quoteIndex = card['quoteIndex'] as int;
+      if (quoteIndex >= 0 && quoteIndex < quotes.length) {
+        card['content'] = quotes[quoteIndex];
+      }
+    }
+  }
+}
   @override
   void initState() {
     super.initState();
@@ -62,15 +78,24 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
   
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    
-    // İlk kez çağrıldığında rastgele rüya cümlesi ekle
-    if (_currentConversation.isEmpty) {
-      _addRandomDreamQuote();
-    }
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  
+  final currentLocale = Localizations.localeOf(context);
+  
+  // İlk açılış
+  if (_currentConversation.isEmpty) {
+    _addRandomDreamQuote();
+  } 
+  // Dil değişikliği kontrolü
+  else if (_previousLocale != null && _previousLocale != currentLocale) {
+    _updateDreamQuotes();
+    setState(() {}); // Ekranı yeniden çiz
   }
+  
+  _previousLocale = currentLocale;
+}
 
   void _scrollListener() {
     final current = _scrollController.offset;
@@ -86,19 +111,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   
   void _addRandomDreamQuote() {
-    final random = Random();
-    final dreamQuotes = _getDreamQuotes(context);
-    final randomQuote = dreamQuotes[random.nextInt(dreamQuotes.length)];
-    
-    setState(() {
-      _currentConversation.add({
-        'type': 'dream',
-        'content': randomQuote,
-        'timestamp': DateTime.now(),
-        'isQuote': true, // Bu bir alıntı olduğunu belirtmek için
-      });
+  final random = Random();
+  final dreamQuotes = _getDreamQuotes(context);
+  final randomIndex = random.nextInt(dreamQuotes.length);
+  final randomQuote = dreamQuotes[randomIndex];
+  
+  setState(() {
+    _currentConversation.add({
+      'type': 'dream',
+      'content': randomQuote,
+      'timestamp': DateTime.now(),
+      'isQuote': true, // Bu bir alıntı olduğunu belirtmek için
+      'quoteIndex': randomIndex, // Hangi quote olduğunu kaydet
     });
-  }
+  });
+}
 
   Future<void> _sendPrompt(String character) async {
     final prompt = _controller.text.trim();
@@ -174,40 +201,40 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Bu metot, geçmiş konuşmaları tekrar ekrana getirir
-  void _loadHistoryChat(int index) {
-    setState(() {
-      // Mevcut konuşmayı kaydetmeden geçmişten yükle
-      _currentConversation.clear();
-      _currentConversation.addAll(List.from(_chatHistory[index]));
-    });
-    Navigator.pop(context); // Menüyü kapat
-  }
+  // void _loadHistoryChat(int index) {
+  //   setState(() {
+  //     // Mevcut konuşmayı kaydetmeden geçmişten yükle
+  //     _currentConversation.clear();
+  //     _currentConversation.addAll(List.from(_chatHistory[index]));
+  //   });
+  //   Navigator.pop(context); // Menüyü kapat
+  // }
 
-  void _showHistoryDrawer() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          color: const Color(0xFF0F0F1A),
-          child: ListView.builder(
-            itemCount: _chatHistory.length,
-            itemBuilder: (context, index) {
-              final firstPrompt = _chatHistory[index][0]['content'];
-              return ListTile(
-                title: Text(
-                  firstPrompt,
-                  style: const TextStyle(color: Colors.white70),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                onTap: () => _loadHistoryChat(index),
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
+  // void _showHistoryDrawer() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) {
+  //       return Container(
+  //         color: const Color(0xFF0F0F1A),
+  //         child: ListView.builder(
+  //           itemCount: _chatHistory.length,
+  //           itemBuilder: (context, index) {
+  //             final firstPrompt = _chatHistory[index][0]['content'];
+  //             return ListTile(
+  //               title: Text(
+  //                 firstPrompt,
+  //                 style: const TextStyle(color: Colors.white70),
+  //                 maxLines: 1,
+  //                 overflow: TextOverflow.ellipsis,
+  //               ),
+  //               onTap: () => _loadHistoryChat(index),
+  //             );
+  //           },
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   void _startCardEdit(int index) {
     setState(() {

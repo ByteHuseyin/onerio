@@ -45,7 +45,23 @@
   "startAnalyzing": "꿈을 분석하여 여기에 표시하세요",
   "noHistory": "기록 없음",
   "yourDreamHistory": "여기에 꿈 기록이 표시됩니다",
+  "reminderTime": "알림 시간",
+  "memoryCompletion": "기억 완료",
+  "savedDreams": "저장됨",
+  "progress": "진행",
+  "latestDream": "최근 꿈",
   
+  "characterInterpretation": "{character} 해석",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "오네리오 해석",
+
   "language": "언어",
   "theme": "테마",
   "notifications": "알림",

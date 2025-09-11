@@ -45,7 +45,23 @@
   "startAnalyzing": "Start analyzing your dreams to see them here",
   "noHistory": "No history",
   "yourDreamHistory": "Your dream history will appear here",
-  
+  "reminderTime": "Reminder Time",
+  "memoryCompletion": "Memory Completion",
+  "savedDreams": "Saved",
+  "progress": "Progress",
+  "latestDream": "Latest Dream",
+
+  "characterInterpretation": "{character} Interpretation",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Onerio Interpretation",
+
   "language": "Language",
   "theme": "Theme",
   "notifications": "Notifications",

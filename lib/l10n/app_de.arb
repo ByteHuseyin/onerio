@@ -45,6 +45,22 @@
   "startAnalyzing": "Beginne damit, deine Träume zu analysieren, um sie hier zu sehen",
   "noHistory": "Kein Verlauf",
   "yourDreamHistory": "Der Verlauf deiner Träume wird hier angezeigt",
+  "reminderTime": "Erinnerungszeit",
+  "memoryCompletion": "Speicherfortschritt",
+  "savedDreams": "Gespeichert",
+  "progress": "Fortschritt",
+  "latestDream": "Letzter Traum",
+
+  "characterInterpretation": "{character} Deutung",
+  "@characterInterpretation": {
+  "description": "Interpretation title with the selected character",
+  "placeholders": {
+    "character": {
+      "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Onerio Deutung",
 
   "language": "Sprache",
   "theme": "Thema",

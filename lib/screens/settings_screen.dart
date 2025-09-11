@@ -332,12 +332,10 @@ Future<void> _loadUserSettings() async {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                "Hafıza Tamamlama: %$progressPercentStr",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: _darkMode
-                                        ? Colors.amber[100]
-                                        : Colors.amber[800]),
+                              "${AppLocalizations.of(context)!.memoryCompletion}: %$progressPercentStr",
+                              style: TextStyle(
+                              fontSize: 12,
+                              color: _darkMode ? Colors.amber[100] : Colors.amber[800]),
                               )
                             ],
                           ),
@@ -375,12 +373,12 @@ Future<void> _loadUserSettings() async {
                      },
                    ),
                     _buildTimePickerTile(
-                    title: "Hatırlatıcı Saati",
-                    selectedTime: _reminderTime,
-                    onTimePicked: (time) {
-                    setState(() => _reminderTime = time);
-                    saveReminderTime(time); // Yeni zamanı kaydet
-                    },
+                      title: AppLocalizations.of(context)!.reminderTime,
+                      selectedTime: _reminderTime,
+                      onTimePicked: (time) {
+                      setState(() => _reminderTime = time);
+                      saveReminderTime(time);
+                      },
                     ),
                   ],
                 ),
@@ -491,11 +489,9 @@ Future<void> _loadUserSettings() async {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildStatItem(Icons.bookmark, dreamCount.toString(), "Kayıtlı"),
-        _buildStatItem(Icons.auto_awesome, "$progressPercentStr%", "Gelişim"),
-        _buildStatItem(Icons.history,
-            lastDreamDate != null ? _formatRelativeDate(lastDreamDate) : "-",
-            "Son Rüya"),
+        _buildStatItem(Icons.bookmark, dreamCount.toString(), AppLocalizations.of(context)!.savedDreams),
+        _buildStatItem(Icons.auto_awesome, "$progressPercentStr%", AppLocalizations.of(context)!.progress),
+        _buildStatItem(Icons.history, lastDreamDate != null ? _formatRelativeDate(lastDreamDate) : "-", AppLocalizations.of(context)!.latestDream),
       ],
     );
   }

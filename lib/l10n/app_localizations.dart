@@ -324,6 +324,48 @@ abstract class AppLocalizations {
   /// **'Your dream history will appear here'**
   String get yourDreamHistory;
 
+  /// No description provided for @reminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder Time'**
+  String get reminderTime;
+
+  /// No description provided for @memoryCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory Completion'**
+  String get memoryCompletion;
+
+  /// No description provided for @savedDreams.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get savedDreams;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
+  /// No description provided for @latestDream.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest Dream'**
+  String get latestDream;
+
+  /// Interpretation title with the selected character
+  ///
+  /// In en, this message translates to:
+  /// **'{character} Interpretation'**
+  String characterInterpretation(String character);
+
+  /// No description provided for @onerioInterpretation.
+  ///
+  /// In en, this message translates to:
+  /// **'Onerio Interpretation'**
+  String get onerioInterpretation;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
