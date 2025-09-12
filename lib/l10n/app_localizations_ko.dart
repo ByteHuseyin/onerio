@@ -158,6 +158,17 @@ class AppLocalizationsKo extends AppLocalizations {
   String get english => '영어';
 
   @override
+  String get today => '오늘';
+
+  @override
+  String get yesterday => '어제';
+
+  @override
+  String daysAgo(String count) {
+    return '$count일 전';
+  }
+
+  @override
   String get aboutOneiro => 'Oneiro 소개';
 
   @override

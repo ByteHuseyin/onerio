@@ -72,6 +72,14 @@
   "turkish": "Τούρκικα",
   "english": "Αγγλικά",
 
+  "today": "Σήμερα",
+  "yesterday": "Χθες",
+  "daysAgo": "Πριν από {count} ημέρες",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Σχετικά με το Oneiro",
   "oneiroDescription": "Το Oneiro είναι μια εφαρμογή ανάλυσης ονείρων με τεχνητή νοημοσύνη που σας βοηθά να κατανοήσετε το νόημα των ονείρων σας.",
   "version": "Έκδοση",

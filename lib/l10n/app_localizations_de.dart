@@ -161,6 +161,17 @@ class AppLocalizationsDe extends AppLocalizations {
   String get english => 'Englisch';
 
   @override
+  String get today => 'Heute';
+
+  @override
+  String get yesterday => 'Gestern';
+
+  @override
+  String daysAgo(String count) {
+    return 'Vor $count Tagen';
+  }
+
+  @override
   String get aboutOneiro => 'Über Oneiro';
 
   @override

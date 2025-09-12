@@ -414,6 +414,24 @@ abstract class AppLocalizations {
   /// **'English'**
   String get english;
 
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// Relative time: x days ago
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgo(String count);
+
   /// No description provided for @aboutOneiro.
   ///
   /// In en, this message translates to:

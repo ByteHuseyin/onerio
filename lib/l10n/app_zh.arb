@@ -73,6 +73,14 @@
   "turkish": "土耳其语",
   "english": "英语",
   
+  "today": "今天",
+  "yesterday": "昨天",
+  "daysAgo": "{count}天前",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "关于 Oneiro",
   "oneiroDescription": "Oneiro 是一款 AI 驱动的梦境分析应用，帮助你理解梦境背后的意义。",
   "version": "版本",

@@ -338,14 +338,14 @@ class _HistoryCardState extends State<_HistoryCard>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Rüya Analizi',
-                        style: GoogleFonts.nunito(
-                          color: Colors.purple[200],
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    Text(
+                    AppLocalizations.of(context)!.dreamAnalysis,
+                    style: GoogleFonts.nunito(
+                    color: Colors.purple[200],
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
                       ),
+                    ),
                       const SizedBox(height: 8),
                       Container(
                         padding: const EdgeInsets.all(16),

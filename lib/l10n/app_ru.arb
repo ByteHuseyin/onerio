@@ -73,6 +73,14 @@
   "turkish": "Турецкий",
   "english": "Английский",
 
+  "today": "Сегодня",
+  "yesterday": "Вчера",
+  "daysAgo": "{count} дней назад",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "О Oneiro",
   "oneiroDescription": "Oneiro — это приложение для анализа снов с ИИ, которое помогает понять значение ваших снов.",
   "version": "Версия",

@@ -72,6 +72,14 @@
   "turkish": "トルコ語",
   "english": "英語",
 
+  "today": "今日",
+  "yesterday": "昨日",
+  "daysAgo": "{count}日前",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Oneiroについて",
   "oneiroDescription": "OneiroはAI搭載の夢分析アプリで、夢の意味を理解するのに役立ちます。",
   "version": "バージョン",

@@ -72,6 +72,14 @@
   "turkish": "Turco",
   "english": "Inglese",
 
+  "today": "Oggi",
+  "yesterday": "Ieri",
+  "daysAgo": "{count} giorni fa",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Informazioni su Oneiro",
   "oneiroDescription": "Oneiro è un'applicazione di analisi dei sogni basata sull'IA che ti aiuta a comprendere il significato dei tuoi sogni.",
   "version": "Versione",

@@ -159,6 +159,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get english => 'İngilizce';
 
   @override
+  String get today => 'Bugün';
+
+  @override
+  String get yesterday => 'Dün';
+
+  @override
+  String daysAgo(String count) {
+    return '$count gün önce';
+  }
+
+  @override
   String get aboutOneiro => 'Oneiro Hakkında';
 
   @override

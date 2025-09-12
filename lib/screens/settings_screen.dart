@@ -173,14 +173,16 @@ Future<void> _loadUserSettings() async {
 }
 
   String _formatRelativeDate(DateTime date) {
-    final now = DateTime.now();
-    final difference = now.difference(date).inDays;
-    if (difference == 0) return "Bugün";
-    if (difference == 1) return "Dün";
-    if (difference <= 7) return "$difference gün önce";
-    return "${date.day.toString().padLeft(2, '0')}/"
-        "${date.month.toString().padLeft(2, '0')}/"
-        "${date.year}";
+  final now = DateTime.now();
+  final difference = now.difference(date).inDays;
+  
+  if (difference == 0) return AppLocalizations.of(context)!.today;
+  if (difference == 1) return AppLocalizations.of(context)!.yesterday;
+  if (difference <= 7) return AppLocalizations.of(context)!.daysAgo(difference.toString());
+  
+  return "${date.day.toString().padLeft(2, '0')}/"
+      "${date.month.toString().padLeft(2, '0')}/"
+      "${date.year}";
   }
 
   @override

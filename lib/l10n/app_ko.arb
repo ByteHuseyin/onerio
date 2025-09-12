@@ -72,6 +72,14 @@
   "turkish": "터키어",
   "english": "영어",
   
+  "today": "오늘",
+  "yesterday": "어제",
+  "daysAgo": "{count}일 전",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Oneiro 소개",
   "oneiroDescription": "Oneiro는 AI 기반 꿈 분석 앱으로, 꿈의 의미를 이해하는 데 도움을 줍니다.",
   "version": "버전",

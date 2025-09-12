@@ -72,6 +72,14 @@
   "turkish": "तुर्की",
   "english": "अंग्रेज़ी",
 
+  "today": "आज",
+  "yesterday": "कल",
+  "daysAgo": "{count} दिन पहले",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Oneiro के बारे में",
   "oneiroDescription": "Oneiro एक AI-संचालित सपना विश्लेषण ऐप है जो आपको आपके सपनों के पीछे का अर्थ समझने में मदद करता है।",
   "version": "संस्करण",

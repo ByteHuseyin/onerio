@@ -62,6 +62,18 @@
   "lightMode": "Aydınlık Mod",
   "systemDefault": "Sistem Varsayılanı",
   
+  "today": "Bugün",
+  "yesterday": "Dün",
+  "daysAgo": "{count} gün önce", 
+  "@daysAgo": {
+    "description": "Göreceli zaman: x gün önce",
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+
   "turkish": "Türkçe",
   "english": "İngilizce",
   

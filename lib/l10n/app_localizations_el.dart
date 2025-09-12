@@ -160,6 +160,17 @@ class AppLocalizationsEl extends AppLocalizations {
   String get english => 'Αγγλικά';
 
   @override
+  String get today => 'Σήμερα';
+
+  @override
+  String get yesterday => 'Χθες';
+
+  @override
+  String daysAgo(String count) {
+    return 'Πριν από $count ημέρες';
+  }
+
+  @override
   String get aboutOneiro => 'Σχετικά με το Oneiro';
 
   @override

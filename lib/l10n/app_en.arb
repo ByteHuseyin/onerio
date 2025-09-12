@@ -72,6 +72,18 @@
   "turkish": "Turkish",
   "english": "English",
   
+  "today": "Today",
+  "yesterday": "Yesterday", 
+  "daysAgo": "{count} days ago",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+
   "aboutOneiro": "About Oneiro",
   "oneiroDescription": "Oneiro is an AI-powered dream analysis application that helps you understand the meaning behind your dreams.",
   "version": "Version",

@@ -158,6 +158,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get english => '英语';
 
   @override
+  String get today => '今天';
+
+  @override
+  String get yesterday => '昨天';
+
+  @override
+  String daysAgo(String count) {
+    return '$count天前';
+  }
+
+  @override
   String get aboutOneiro => '关于 Oneiro';
 
   @override

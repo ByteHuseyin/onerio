@@ -160,6 +160,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get english => 'Inglés';
 
   @override
+  String get today => 'Hoy';
+
+  @override
+  String get yesterday => 'Ayer';
+
+  @override
+  String daysAgo(String count) {
+    return 'Hace $count días';
+  }
+
+  @override
   String get aboutOneiro => 'Acerca de Oneiro';
 
   @override

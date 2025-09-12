@@ -72,6 +72,14 @@
   "turkish": "Türkisch",
   "english": "Englisch",
 
+  "today": "Heute",
+  "yesterday": "Gestern",
+  "daysAgo": "Vor {count} Tagen",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "Über Oneiro",
   "oneiroDescription": "Oneiro ist eine KI-gestützte Traumanalyse-App, die dir hilft, die Bedeutung deiner Träume zu verstehen.",
   "version": "Version",

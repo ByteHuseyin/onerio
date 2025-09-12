@@ -159,6 +159,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get english => 'Английский';
 
   @override
+  String get today => 'Сегодня';
+
+  @override
+  String get yesterday => 'Вчера';
+
+  @override
+  String daysAgo(String count) {
+    return '$count дней назад';
+  }
+
+  @override
   String get aboutOneiro => 'О Oneiro';
 
   @override
