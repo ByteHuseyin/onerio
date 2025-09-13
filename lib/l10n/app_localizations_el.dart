@@ -109,8 +109,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get noHistory => 'Χωρίς ιστορικό';
 
   @override
-  String get yourDreamHistory =>
-      'Το ιστορικό των ονείρων σας θα εμφανιστεί εδώ';
+  String get yourDreamHistory => 'Το ιστορικό ονείρων σας';
 
   @override
   String get reminderTime => 'Ώρα Υπενθύμισης';
