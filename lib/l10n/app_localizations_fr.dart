@@ -112,6 +112,29 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yourDreamHistory => 'L\'historique de vos rêves apparaîtra ici';
 
   @override
+  String get reminderTime => 'Heure de Rappel';
+
+  @override
+  String get memoryCompletion => 'Achèvement de la Mémoire';
+
+  @override
+  String get savedDreams => 'Enregistrés';
+
+  @override
+  String get progress => 'Progrès';
+
+  @override
+  String get latestDream => 'Dernier Rêve';
+
+  @override
+  String characterInterpretation(String character) {
+    return 'Interprétation de $character';
+  }
+
+  @override
+  String get onerioInterpretation => 'Interprétation d\'Onerio';
+
+  @override
   String get language => 'Langue';
 
   @override
@@ -134,6 +157,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get english => 'Anglais';
+
+  @override
+  String get today => 'Aujourd\'hui';
+
+  @override
+  String get yesterday => 'Hier';
+
+  @override
+  String daysAgo(String count) {
+    return 'Il y a $count jours';
+  }
 
   @override
   String get aboutOneiro => 'À propos d\'Oneiro';

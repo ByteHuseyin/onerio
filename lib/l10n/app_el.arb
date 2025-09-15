@@ -44,7 +44,23 @@
   "noDreamsYet": "Δεν υπάρχουν όνειρα ακόμα",
   "startAnalyzing": "Ξεκινήστε να αναλύετε τα όνειρά σας για να τα δείτε εδώ",
   "noHistory": "Χωρίς ιστορικό",
-  "yourDreamHistory": "Το ιστορικό των ονείρων σας θα εμφανιστεί εδώ",
+  "yourDreamHistory": "Το ιστορικό ονείρων σας",
+  "reminderTime": "Ώρα Υπενθύμισης",
+  "memoryCompletion": "Ολοκλήρωση Μνήμης",
+  "savedDreams": "Αποθηκευμένα",
+  "progress": "Πρόοδος",
+  "latestDream": "Τελευταίο Όνειρο",
+
+  "characterInterpretation": "Ερμηνεία {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Ερμηνεία Onerio",
 
   "language": "Γλώσσα",
   "theme": "Θέμα",
@@ -55,6 +71,14 @@
 
   "turkish": "Τούρκικα",
   "english": "Αγγλικά",
+
+  "today": "Σήμερα",
+  "yesterday": "Χθες",
+  "daysAgo": "Πριν από {count} ημέρες",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
 
   "aboutOneiro": "Σχετικά με το Oneiro",
   "oneiroDescription": "Το Oneiro είναι μια εφαρμογή ανάλυσης ονείρων με τεχνητή νοημοσύνη που σας βοηθά να κατανοήσετε το νόημα των ονείρων σας.",

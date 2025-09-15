@@ -45,7 +45,24 @@
   "startAnalyzing": "开始分析你的梦境以显示在这里",
   "noHistory": "暂无历史记录",
   "yourDreamHistory": "你的梦境历史将显示在这里",
+  "reminderTime": "提醒时间",
+  "memoryCompletion": "记忆完成",
+  "savedDreams": "已保存",
+  "progress": "进度",
+  "latestDream": "最新的梦",
   
+  "characterInterpretation": "{character} 解析",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Onerio 解析",
+
+
   "language": "语言",
   "theme": "主题",
   "notifications": "通知",
@@ -56,6 +73,14 @@
   "turkish": "土耳其语",
   "english": "英语",
   
+  "today": "今天",
+  "yesterday": "昨天",
+  "daysAgo": "{count}天前",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
+
   "aboutOneiro": "关于 Oneiro",
   "oneiroDescription": "Oneiro 是一款 AI 驱动的梦境分析应用，帮助你理解梦境背后的意义。",
   "version": "版本",

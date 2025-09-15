@@ -109,8 +109,30 @@ class AppLocalizationsEl extends AppLocalizations {
   String get noHistory => 'Χωρίς ιστορικό';
 
   @override
-  String get yourDreamHistory =>
-      'Το ιστορικό των ονείρων σας θα εμφανιστεί εδώ';
+  String get yourDreamHistory => 'Το ιστορικό ονείρων σας';
+
+  @override
+  String get reminderTime => 'Ώρα Υπενθύμισης';
+
+  @override
+  String get memoryCompletion => 'Ολοκλήρωση Μνήμης';
+
+  @override
+  String get savedDreams => 'Αποθηκευμένα';
+
+  @override
+  String get progress => 'Πρόοδος';
+
+  @override
+  String get latestDream => 'Τελευταίο Όνειρο';
+
+  @override
+  String characterInterpretation(String character) {
+    return 'Ερμηνεία $character';
+  }
+
+  @override
+  String get onerioInterpretation => 'Ερμηνεία Onerio';
 
   @override
   String get language => 'Γλώσσα';
@@ -135,6 +157,17 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get english => 'Αγγλικά';
+
+  @override
+  String get today => 'Σήμερα';
+
+  @override
+  String get yesterday => 'Χθες';
+
+  @override
+  String daysAgo(String count) {
+    return 'Πριν από $count ημέρες';
+  }
 
   @override
   String get aboutOneiro => 'Σχετικά με το Oneiro';

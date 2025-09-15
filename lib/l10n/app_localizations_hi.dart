@@ -112,6 +112,29 @@ class AppLocalizationsHi extends AppLocalizations {
   String get yourDreamHistory => 'आपके सपनों का इतिहास यहाँ दिखाई देगा';
 
   @override
+  String get reminderTime => 'अनुस्मारक समय';
+
+  @override
+  String get memoryCompletion => 'स्मृति पूर्णता';
+
+  @override
+  String get savedDreams => 'सहेजे गए';
+
+  @override
+  String get progress => 'प्रगति';
+
+  @override
+  String get latestDream => 'आखिरी सपना';
+
+  @override
+  String characterInterpretation(String character) {
+    return '$character की व्याख्या';
+  }
+
+  @override
+  String get onerioInterpretation => 'Onerio की व्याख्या';
+
+  @override
   String get language => 'भाषा';
 
   @override
@@ -134,6 +157,17 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get english => 'अंग्रेज़ी';
+
+  @override
+  String get today => 'आज';
+
+  @override
+  String get yesterday => 'कल';
+
+  @override
+  String daysAgo(String count) {
+    return '$count दिन पहले';
+  }
 
   @override
   String get aboutOneiro => 'Oneiro के बारे में';

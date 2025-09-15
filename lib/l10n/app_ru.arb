@@ -45,6 +45,23 @@
   "startAnalyzing": "Начните анализировать свои сны, чтобы видеть их здесь",
   "noHistory": "Нет истории",
   "yourDreamHistory": "История ваших снов появится здесь",
+  "reminderTime": "Время напоминания",
+  "memoryCompletion": "Завершение памяти",
+  "savedDreams": "Сохранено",
+  "progress": "Прогресс",
+  "latestDream": "Последний сон",
+  
+  "characterInterpretation": "Интерпретация {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Интерпретация Onerio",
+
 
   "language": "Язык",
   "theme": "Тема",
@@ -55,6 +72,14 @@
 
   "turkish": "Турецкий",
   "english": "Английский",
+
+  "today": "Сегодня",
+  "yesterday": "Вчера",
+  "daysAgo": "{count} дней назад",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
 
   "aboutOneiro": "О Oneiro",
   "oneiroDescription": "Oneiro — это приложение для анализа снов с ИИ, которое помогает понять значение ваших снов.",

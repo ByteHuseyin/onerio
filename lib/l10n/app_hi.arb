@@ -45,6 +45,22 @@
   "startAnalyzing": "अपने सपनों का विश्लेषण करना शुरू करें और उन्हें यहाँ देखें",
   "noHistory": "कोई इतिहास नहीं",
   "yourDreamHistory": "आपके सपनों का इतिहास यहाँ दिखाई देगा",
+  "reminderTime": "अनुस्मारक समय",
+  "memoryCompletion": "स्मृति पूर्णता",
+  "savedDreams": "सहेजे गए",
+  "progress": "प्रगति",
+  "latestDream": "आखिरी सपना",
+  
+  "characterInterpretation": "{character} की व्याख्या",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+       "type": "String"
+     }
+   }
+  },
+  "onerioInterpretation": "Onerio की व्याख्या",
 
   "language": "भाषा",
   "theme": "थीम",
@@ -55,6 +71,14 @@
 
   "turkish": "तुर्की",
   "english": "अंग्रेज़ी",
+
+  "today": "आज",
+  "yesterday": "कल",
+  "daysAgo": "{count} दिन पहले",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
 
   "aboutOneiro": "Oneiro के बारे में",
   "oneiroDescription": "Oneiro एक AI-संचालित सपना विश्लेषण ऐप है जो आपको आपके सपनों के पीछे का अर्थ समझने में मदद करता है।",

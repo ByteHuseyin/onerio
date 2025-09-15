@@ -45,6 +45,22 @@
   "startAnalyzing": "Comienza a analizar tus sueños para verlos aquí",
   "noHistory": "Sin historial",
   "yourDreamHistory": "El historial de tus sueños aparecerá aquí",
+  "reminderTime": "Hora de Recordatorio",
+  "memoryCompletion": "Completitud de Memoria",
+  "savedDreams": "Guardados",
+  "progress": "Progreso",
+  "latestDream": "Último Sueño",
+
+  "characterInterpretation": "Interpretación de {character}",
+  "@characterInterpretation": {
+    "description": "Interpretation title with the selected character",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "onerioInterpretation": "Interpretación de Onerio",
 
   "language": "Idioma",
   "theme": "Tema",
@@ -55,6 +71,14 @@
 
   "turkish": "Turco",
   "english": "Inglés",
+
+  "today": "Hoy",
+  "yesterday": "Ayer",
+  "daysAgo": "Hace {count} días",
+  "@daysAgo": {
+    "description": "Relative time: x days ago",
+    "placeholders": { "count": { "type": "String" } }
+  },
 
   "aboutOneiro": "Acerca de Oneiro",
   "oneiroDescription": "Oneiro es una aplicación de análisis de sueños impulsada por IA que te ayuda a comprender el significado de tus sueños.",
