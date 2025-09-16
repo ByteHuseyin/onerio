@@ -30,8 +30,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         AppLocalizations.of(context)!.appTitle,
         style: GoogleFonts.nunito(
           color: Colors.white,
-          fontSize: 24,
-          fontWeight: FontWeight.w800,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
           letterSpacing: 1,
         ),
       ),

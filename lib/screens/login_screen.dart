@@ -163,8 +163,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                 children: [
                   // Logo
                   SizedBox(
-                    width: 400,
-                    height: 600,
+                    width: 200,
+                    height: 300,
                     child: Image.asset(
                       'assets/images/logo.png',
                       fit: BoxFit.contain,

@@ -402,7 +402,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Rüya, kalbin derinliklerinden gelen görünmez bir dildir.';
 
   @override
-  String get dreamQuote6 => 'Rüya, zihnin gecede çizdiği gizemli bir tabludur.';
+  String get dreamQuote6 => 'Rüya, zihnin gecede çizdiği gizemli bir tablodur.';
 
   @override
   String get adDialogTitle => 'Devam Etmek İçin Reklam İzle';

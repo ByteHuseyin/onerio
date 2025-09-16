@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "731455016634-a5ir4tfr1a5fjqu0otn7d3re0927cr92.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.codinglab.oneiro",
-            "certificate_hash": "f94be20e678c113339b71d2f74591381da755eb0"
-          }
-        },
-        {
           "client_id": "731455016634-e2m723hv481p9aa2orv2se0p7nt7r1bc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
