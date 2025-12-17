@@ -14,7 +14,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.codinglab.oneiro"
 
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.codinglab.oneiro"
