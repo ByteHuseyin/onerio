@@ -79,7 +79,7 @@ export const bildirim = onSchedule(
             console.error(`Token: ${failedToken} için hata: ${sendResponse.error}`);
 
             if (userId && (sendResponse.error?.code === "messaging/invalid-registration-token" ||
-                sendResponse.error?.code === "messaging/registration-token-not-registered")) {
+              sendResponse.error?.code === "messaging/registration-token-not-registered")) {
               db.collection("user_table").doc(userId).update({ fcmToken: null })
                 .then(() => console.log(`Geçersiz token silindi: ${userId}`))
                 .catch(err => console.error(`Token silme hatası (${userId}):`, err));
@@ -138,7 +138,7 @@ export const chatWithOpenAI = onRequest(
       const openai = new OpenAI({ apiKey });
 
       const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [
           {
             "role": "system",
@@ -155,9 +155,9 @@ export const chatWithOpenAI = onRequest(
 
       const reply = completion.choices[0]?.message?.content?.trim() ?? "";
       const usage = completion.usage ?? {};
-      res.status(200).json({ 
-      reply,
-      usage  // usage objesini ekle
+      res.status(200).json({
+        reply,
+        usage  // usage objesini ekle
       });
     } catch (err) {
       console.error("OpenAI hatası:", err);
