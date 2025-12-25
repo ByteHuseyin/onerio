@@ -18,9 +18,9 @@ class InterpretationCard extends StatelessWidget {
     } else if (character.toLowerCase().contains('jung')) {
       return 'assets/characters/jung.jpg';
     } else if (character.toLowerCase().contains('ibn') || character.toLowerCase().contains('sîrîn') || character.toLowerCase().contains('sirin')) {
-      return 'assets/characters/İbnSîrîn.jpg';
+      return 'assets/characters/ibnsirin.jpg';
     }
-    return 'assets/characters/onerioai.jpg';
+    return 'assets/characters/oneiroai.jpg';
   }
 
   @override

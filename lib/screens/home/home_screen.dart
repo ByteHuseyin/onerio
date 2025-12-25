@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:oneiro/screens/settings_screen.dart';
@@ -24,153 +25,144 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final FocusNode _focusNode = FocusNode();
-  
-  // Yalnızca aktif konuşmayı tutan liste
+
   final List<Map<String, dynamic>> _currentConversation = [];
-  // Geçmiş konuşmaları tutan liste
   final List<List<Map<String, dynamic>>> _chatHistory = [];
 
   bool _isLoading = false;
   bool _showInput = true;
-  double _lastScrollPosition = 0;
 
   int? _editingIndex;
   final Map<int, TextEditingController> _editControllers = {};
-    // Önceki locale'i takip etmek için
   Locale? _previousLocale;
-  // Rastgele rüya cümleleri
-List<String> _getDreamQuotes(BuildContext context) {
-  final t = AppLocalizations.of(context)!;
-  return [
-    t.dreamQuote1,
-    t.dreamQuote2,
-    t.dreamQuote3,
-    t.dreamQuote4,
-    t.dreamQuote5,
-    t.dreamQuote6,
-  ];
-}
 
-// _currentConversation içindeki alıntı kartlarını güncelleyen yardımcı metot
-void _updateDreamQuotes() {
-  final quotes = _getDreamQuotes(context);
-  
-  for (var card in _currentConversation) {
-    if (card['isQuote'] == true && card['quoteIndex'] != null) {
-      // Eski quote index'ini kullanarak yeni dildeki karşılığını al
-      final quoteIndex = card['quoteIndex'] as int;
-      if (quoteIndex >= 0 && quoteIndex < quotes.length) {
-        card['content'] = quotes[quoteIndex];
+  List<String> _getDreamQuotes(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    return [
+      t.dreamQuote1,
+      t.dreamQuote2,
+      t.dreamQuote3,
+      t.dreamQuote4,
+      t.dreamQuote5,
+      t.dreamQuote6,
+    ];
+  }
+
+  void _updateDreamQuotes() {
+    final quotes = _getDreamQuotes(context);
+
+    for (var card in _currentConversation) {
+      if (card['isQuote'] == true && card['quoteIndex'] != null) {
+        final quoteIndex = card['quoteIndex'] as int;
+        if (quoteIndex >= 0 && quoteIndex < quotes.length) {
+          card['content'] = quotes[quoteIndex];
+        }
       }
     }
   }
-}
+
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_scrollListener);
-    
-    // Uygulama açıldığında input'a odaklan ve klavyeyi aç
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _focusNode.requestFocus();
       }
     });
   }
-  
-@override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  
-  final currentLocale = Localizations.localeOf(context);
-  
-  // İlk açılış
-  if (_currentConversation.isEmpty) {
-    _addRandomDreamQuote();
-  } 
-  // Dil değişikliği kontrolü
-  else if (_previousLocale != null && _previousLocale != currentLocale) {
-    _updateDreamQuotes();
-    setState(() {}); // Ekranı yeniden çiz
-  }
-  
-  _previousLocale = currentLocale;
-}
 
-  void _scrollListener() {
-    final current = _scrollController.offset;
-    final scrollingDown = current > _lastScrollPosition;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-    if (scrollingDown && _showInput) {
-      setState(() => _showInput = false);
-    } else if (!scrollingDown && !_showInput) {
-      setState(() => _showInput = true);
+    final currentLocale = Localizations.localeOf(context);
+
+    if (_currentConversation.isEmpty) {
+      _addRandomDreamQuote();
+    } else if (_previousLocale != null && _previousLocale != currentLocale) {
+      _updateDreamQuotes();
+      setState(() {});
     }
 
-    _lastScrollPosition = current;
+    _previousLocale = currentLocale;
   }
-  
-  void _addRandomDreamQuote() {
-  final random = Random();
-  final dreamQuotes = _getDreamQuotes(context);
-  final randomIndex = random.nextInt(dreamQuotes.length);
-  final randomQuote = dreamQuotes[randomIndex];
-  
-  setState(() {
-    _currentConversation.add({
-      'type': 'dream',
-      'content': randomQuote,
-      'timestamp': DateTime.now(),
-      'isQuote': true, // Bu bir alıntı olduğunu belirtmek için
-      'quoteIndex': randomIndex, // Hangi quote olduğunu kaydet
-    });
-  });
-}
 
-  Future<void> _sendPrompt(String character) async {
-    final prompt = _controller.text.trim();
-    if (prompt.isEmpty || _isLoading) return;
+  void _addRandomDreamQuote() {
+    final random = Random();
+    final dreamQuotes = _getDreamQuotes(context);
+    final randomIndex = random.nextInt(dreamQuotes.length);
+    final randomQuote = dreamQuotes[randomIndex];
+
+    setState(() {
+      _currentConversation.add({
+        'type': 'dream',
+        'content': randomQuote,
+        'timestamp': DateTime.now(),
+        'isQuote': true,
+        'quoteIndex': randomIndex,
+      });
+    });
+  }
+
+  Future<void> _sendPrompt(String characterId) async {
+    final rawDream = _controller.text.trim();
+    if (rawDream.isEmpty || _isLoading) return;
 
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-    
+
+    Map<String, String> characterPrompts = {
+      'oneiroai': "",
+      'freud':
+          "GÖREV: Sen Sigmund Freud'sun. Bu rüyayı bastırılmış arzular, çocukluk travmaları, id-ego-süperego çatışması ve cinsellik sembolizmi üzerinden analiz et. Üslubun psikanalitik olsun. RÜYA METNİ: ",
+      'jung':
+          "GÖREV: Sen Carl Gustav Jung'sun. Bu rüyayı kolektif bilinçdışı, arketipler (Gölge, Anima, Persona) ve bireyleşme süreci üzerinden analiz et. Mistik ve derin bir üslup kullan. RÜYA METNİ: ",
+      'ibnsirin':
+          "GÖREV: Sen rüya tabiri alimi İbn-i Sirin'sin. Bu rüyayı kadim İslam geleneği, manevi semboller ve hikmet üzerinden hayra yorarak yorumla. RÜYA METNİ: ",
+    };
+
+    String prefix = characterPrompts[characterId] ?? "";
+    String finalPromptForAI = "$prefix $rawDream";
+
     setState(() {
-      // Önceki konuşmayı geçmişe kaydet
       if (_currentConversation.isNotEmpty) {
         _chatHistory.insert(0, List.from(_currentConversation));
       }
-      // Yeni rüya için listeyi temizle (alıntı kartı da dahil)
       _currentConversation.clear();
       _isLoading = true;
+
       _currentConversation.add({
         'type': 'dream',
-        'content': prompt,
+        'content': rawDream,
         'timestamp': DateTime.now(),
       });
+
       _controller.clear();
       _showInput = false;
     });
 
-    // Yükleme efekti için shimmer kartını ekle
     setState(() {
-      _currentConversation.add({
-        'type': 'loading',
-        'content': '',
-      });
+      _currentConversation.add({'type': 'loading', 'content': ''});
     });
 
-    _scrollToBottom();
+    // Frame çizildikten SONRA scroll yap
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToBottom();
+    });
 
     try {
-      final ChatResponse result = await ChatApi.sendPrompt(prompt, character);
+      final ChatResponse result = await ChatApi.sendPrompt(
+        finalPromptForAI,
+        characterId,
+      );
 
       setState(() {
-        // Shimmer'ı kaldır ve yorum kartını ekle
         _currentConversation.removeLast();
         _currentConversation.add({
           'type': 'interpretation',
           'content': result.reply,
-          'character': character,
+          'character': characterId,
           'timestamp': DateTime.now(),
         });
         _isLoading = false;
@@ -179,9 +171,10 @@ void didChangeDependencies() {
       await FirebaseFirestore.instance.collection('user_logs').add({
         'userId': user.uid,
         'email': user.email,
-        'prompt': prompt,
+        'prompt': rawDream,
+        'full_prompt_sent': finalPromptForAI,
         'response': result.reply,
-        'character': character,
+        'character': characterId,
         'timestamp': FieldValue.serverTimestamp(),
         'prompt_tokens': result.promptTokens,
         'response_tokens': result.responseTokens,
@@ -196,51 +189,18 @@ void didChangeDependencies() {
         });
       });
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
-
-  // Bu metot, geçmiş konuşmaları tekrar ekrana getirir
-  // void _loadHistoryChat(int index) {
-  //   setState(() {
-  //     // Mevcut konuşmayı kaydetmeden geçmişten yükle
-  //     _currentConversation.clear();
-  //     _currentConversation.addAll(List.from(_chatHistory[index]));
-  //   });
-  //   Navigator.pop(context); // Menüyü kapat
-  // }
-
-  // void _showHistoryDrawer() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (context) {
-  //       return Container(
-  //         color: const Color(0xFF0F0F1A),
-  //         child: ListView.builder(
-  //           itemCount: _chatHistory.length,
-  //           itemBuilder: (context, index) {
-  //             final firstPrompt = _chatHistory[index][0]['content'];
-  //             return ListTile(
-  //               title: Text(
-  //                 firstPrompt,
-  //                 style: const TextStyle(color: Colors.white70),
-  //                 maxLines: 1,
-  //                 overflow: TextOverflow.ellipsis,
-  //               ),
-  //               onTap: () => _loadHistoryChat(index),
-  //             );
-  //           },
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   void _startCardEdit(int index) {
     setState(() {
       _editingIndex = index;
-      _editControllers[index] =
-          TextEditingController(text: _currentConversation[index]['content']);
+      _editControllers[index] = TextEditingController(
+        text: _currentConversation[index]['content'],
+      );
     });
   }
 
@@ -273,8 +233,7 @@ void didChangeDependencies() {
       _showInput = true;
     });
     _scrollToBottom();
-    
-    // Düzenleme modunda da input'a odaklan
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _focusNode.requestFocus();
@@ -299,7 +258,6 @@ void didChangeDependencies() {
     for (final c in _editControllers.values) {
       c.dispose();
     }
-    _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     super.dispose();
   }
@@ -315,73 +273,101 @@ void didChangeDependencies() {
             MaterialPageRoute(builder: (_) => const SettingsScreen()),
           );
         },
-       // onHistoryPressed: _showHistoryDrawer,
       ),
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              // ListView artık tersine çevrilmeyecek
-              reverse: false,
-              physics: const BouncingScrollPhysics(),
-              itemCount: _currentConversation.length,
-              itemBuilder: (context, index) {
-                final card = _currentConversation[index];
-                
-                if (card['type'] == 'dream') {
-                  return DreamCard(
-                    content: card['content'],
-                    index: index,
-                    isEditing: _editingIndex == index,
-                    editController: _editControllers[index],
-                    isLoading: _isLoading,
-                    onEdit: _startCardEdit,
-                    onSave: _saveCardEdit,
-                    onCancel: _cancelCardEdit,
-                    onEditWithFloatingInput: _editWithFloatingInput,
-                    isQuote: card['isQuote'] ?? false,
-                  );
-                } else if (card['type'] == 'interpretation') {
-                  return InterpretationCard(
-                    content: card['content'],
-                    character: card['character'],
-                  );
-                } else if (card['type'] == 'loading') {
-                  return const ShimmerCard();
-                } else if (card['type'] == 'error') {
-                  return ErrorCard(message: card['content']);
+            child: NotificationListener<UserScrollNotification>(
+              onNotification: (notification) {
+                // Sadece kullanıcının dokunarak yaptığı scroll'ları dinle
+                // metrics.atEdge kontrolü ile otomatik scroll'ları görmezden gel
+                if (notification.metrics.atEdge) return true;
+
+                final direction = notification.direction;
+
+                if (direction == ScrollDirection.reverse) {
+                  if (_showInput) {
+                    setState(() => _showInput = false);
+                  }
+                } else if (direction == ScrollDirection.forward) {
+                  if (!_showInput) {
+                    setState(() => _showInput = true);
+                  }
                 }
-      
-                return ErrorCard(message: 'Beklenmeyen bir hata oluştu');
+                return true;
               },
+              child: ListView.builder(
+                controller: _scrollController,
+                reverse: false,
+                physics: const BouncingScrollPhysics(),
+                itemCount: _currentConversation.length,
+                itemBuilder: (context, index) {
+                  final card = _currentConversation[index];
+
+                  if (card['type'] == 'dream') {
+                    return DreamCard(
+                      content: card['content'],
+                      index: index,
+                      isEditing: _editingIndex == index,
+                      editController: _editControllers[index],
+                      isLoading: _isLoading,
+                      onEdit: _startCardEdit,
+                      onSave: _saveCardEdit,
+                      onCancel: _cancelCardEdit,
+                      onEditWithFloatingInput: _editWithFloatingInput,
+                      isQuote: card['isQuote'] ?? false,
+                    );
+                  } else if (card['type'] == 'interpretation') {
+                    return InterpretationCard(
+                      content: card['content'],
+                      character: card['character'],
+                    );
+                  } else if (card['type'] == 'loading') {
+                    return const ShimmerCard();
+                  } else if (card['type'] == 'error') {
+                    return ErrorCard(message: card['content']);
+                  }
+
+                  return ErrorCard(message: 'Beklenmeyen bir hata oluştu');
+                },
+              ),
             ),
           ),
-          if (_editingIndex == null) 
+          if (_editingIndex == null)
             Align(
-              alignment: _showInput ? Alignment.bottomCenter : Alignment.bottomRight,
+              alignment: _showInput
+                  ? Alignment.bottomCenter
+                  : Alignment.bottomRight,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: _showInput
-                                          ? FloatingInput(
-                        controller: _controller,
-                        isLoading: _isLoading,
-                        onSend: _sendPrompt,
-                        focusNode: _focusNode,
-                      )
-                    : PlusButton(
-                        onPressed: () {
-                          setState(() => _showInput = true);
-                          _scrollToBottom();
-                          
-                          // Plus button tıklandığında da input'a odaklan
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (mounted) {
-                              _focusNode.requestFocus();
-                            }
-                          });
-                        },
-                      ),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                        return ScaleTransition(scale: animation, child: child);
+                      },
+                  child: _showInput
+                      ? FloatingInput(
+                          key: const ValueKey('input'),
+                          controller: _controller,
+                          isLoading: _isLoading,
+                          onSend: _sendPrompt,
+                          focusNode: _focusNode,
+                        )
+                      : PlusButton(
+                          key: const ValueKey('button'),
+                          onPressed: () {
+                            setState(() => _showInput = true);
+                            _scrollToBottom();
+
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              if (mounted) {
+                                _focusNode.requestFocus();
+                              }
+                            });
+                          },
+                        ),
+                ),
               ),
             ),
         ],

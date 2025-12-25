@@ -6,7 +6,9 @@ import 'package:oneiro/widgets/ad_dialog.dart';
 class FloatingInput extends StatefulWidget {
   final TextEditingController controller;
   final bool isLoading;
-  final Function(String character) onSend;
+  // DÜZELTME: Burası sadece saf ID'yi (örn: 'freud') taşıyacak.
+  // Hazır prompt'u değil.
+  final Function(String characterId) onSend;
   final FocusNode? focusNode;
 
   const FloatingInput({
@@ -22,6 +24,15 @@ class FloatingInput extends StatefulWidget {
 }
 
 class _FloatingInputState extends State<FloatingInput> {
+  // Interpreter Listesi (Sadece veriler)
+  static const List<Map<String, String>> _interpreters = [
+    {'id': 'oneiroai', 'name': 'OneiroAI'},
+    {'id': 'freud', 'name': 'Freud'},
+    {'id': 'jung', 'name': 'Jung'},
+    {'id': 'ibnsirin', 'name': 'İbn Sîrîn'},
+  ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,52 +64,25 @@ class _FloatingInputState extends State<FloatingInput> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                        child: TextField(
-                        controller: widget.controller,
-                        focusNode: widget.focusNode,
-                        maxLines: 3,
-                        minLines: 1,
-                        textInputAction: TextInputAction.send,
-                        style: GoogleFonts.nunito(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
-                        onChanged: (value) {
-                          setState(() {});
-                        },
-                        onSubmitted: (value) {
-                           if (!widget.isLoading && value.trim().length >= 4) {
-                             _showCharacterSelectionDialog(context);
-                           }
-                         },
-                       decoration: InputDecoration(
-                         hintText: AppLocalizations.of(context)!.dreamDescription,
-                         hintStyle: TextStyle(
-                           color: Colors.white.withOpacity(0.6),
-                         ),
-                         border: InputBorder.none,
-                         contentPadding: const EdgeInsets.symmetric(
-                           horizontal: 4,
-                         ),
-                       ),
-                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  _buildSendButton(context),
-                ],
+              TextField(
+                controller: widget.controller,
+                focusNode: widget.focusNode,
+                maxLines: 3,
+                minLines: 1,
+                textInputAction: TextInputAction.newline,
+                style: GoogleFonts.nunito(color: Colors.white, fontSize: 17),
+                onChanged: (value) {
+                  setState(() {});
+                },
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context)!.dreamDescription,
+                  hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                ),
               ),
-              // const SizedBox(height: 8),
-              // Text(
-              //   AppLocalizations.of(context)!.onboardingSubtitle2,
-              //   style: GoogleFonts.nunito(
-              //     color: Colors.white70,
-              //     fontSize: 13,
-              //     fontStyle: FontStyle.italic,
-              //   ),
-              // ),
+              const SizedBox(height: 16),
+              _buildInterpreterAvatars(context),
             ],
           ),
         ),
@@ -106,164 +90,110 @@ class _FloatingInputState extends State<FloatingInput> {
     );
   }
 
-  void _showCharacterSelectionDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          backgroundColor: const Color(0xFF1A1A2A),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.dreamAnalysis,
-                  style: GoogleFonts.nunito(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                                 const SizedBox(height: 24),
-                 _buildCharacterOption(context, 'onerioai', 'OneiroAI'),
-                 const SizedBox(height: 16),
-                 _buildCharacterOption(context, 'freud', 'Sigmund Freud'),
-                 const SizedBox(height: 16),
-                 _buildCharacterOption(context, 'jung', 'Carl Jung'),
-                 const SizedBox(height: 16),
-                 _buildCharacterOption(context, 'İbnSîrîn', 'İbn Sîrîn'),
-              ],
-            ),
-          ),
+  Widget _buildInterpreterAvatars(BuildContext context) {
+    final bool isEnabled =
+        !widget.isLoading && widget.controller.text.trim().length >= 4;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: _interpreters.map((interpreter) {
+        return _buildInterpreterAvatar(
+          context,
+          interpreter['id']!,
+          interpreter['name']!,
+          isEnabled,
         );
-      },
+      }).toList(),
     );
   }
 
-  Widget _buildCharacterOption(BuildContext context, String character, String name) {
-    return InkWell(
-             onTap: () {
-         Navigator.of(context).pop();
-         
-         // Karakter seçimi sonrası reklam dialog'u göster
-         print('Karakter seçimi: $name seçildi, reklam dialog\'u gösteriliyor...');
-         _showAdDialog(context, name);
-       },
-      borderRadius: BorderRadius.circular(15),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF2A2A3A),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-            color: Colors.purpleAccent.withOpacity(0.3),
-            width: 1,
+  Widget _buildInterpreterAvatar(
+    BuildContext context,
+    String characterId,
+    String name,
+    bool isEnabled,
+  ) {
+    return GestureDetector(
+      onTap: isEnabled
+          ? () {
+              print('Interpreter seçildi: $name ($characterId)');
+              _showAdDialog(context, characterId);
+            }
+          : null,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('assets/characters/$characterId.jpg'),
+                fit: BoxFit.cover,
+                colorFilter: isEnabled
+                    ? null
+                    : ColorFilter.mode(
+                        Colors.black.withOpacity(0.5),
+                        BlendMode.darken,
+                      ),
+              ),
+              border: Border.all(
+                color: isEnabled
+                    ? Colors.purpleAccent.withOpacity(0.7)
+                    : Colors.grey.withOpacity(0.3),
+                width: 2,
+              ),
+              boxShadow: isEnabled
+                  ? [
+                      BoxShadow(
+                        color: Colors.purpleAccent.withOpacity(0.3),
+                        blurRadius: 8,
+                        spreadRadius: 1,
+                      ),
+                    ]
+                  : null,
+            ),
           ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('assets/characters/$character.jpg'),
-                  fit: BoxFit.cover,
-                ),
-                border: Border.all(
-                  color: Colors.purpleAccent.withOpacity(0.5),
-                  width: 2,
-                ),
-              ),
+          const SizedBox(height: 6),
+          Text(
+            name,
+            style: GoogleFonts.nunito(
+              color: isEnabled
+                  ? Colors.white.withOpacity(0.9)
+                  : Colors.white.withOpacity(0.4),
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                name,
-                style: GoogleFonts.nunito(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white.withOpacity(0.6),
-              size: 16,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  // Reklam dialog'u göster
-  void _showAdDialog(BuildContext context, String characterName) {
+  void _showAdDialog(BuildContext context, String characterId) {
     showDialog(
       context: context,
-      barrierDismissible: false, // Kullanıcı dialog'u kapatamaz
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AdDialog(
-          characterName: characterName,
-          onContinue: (String character) {
-            print('AdMob: Dialog\'dan karakter seçimi tamamlanıyor: $character');
-            widget.onSend(character);
+          characterName: characterId,
+          onContinue: (String _) {
+            // DÜZELTME:
+            // Burada artık prompt birleştirmiyoruz.
+            // Sadece saf ID'yi (örn: 'freud') parent'a yolluyoruz.
+
+            print(
+              'AdMob: Dialog kapandı, Seçilen ID gönderiliyor: $characterId',
+            );
+            widget.onSend(characterId);
           },
           onCancel: () {
-            print('AdMob: Kullanıcı vazgeçti, rüya tabiri gösterilmeyecek');
-            // Vazgeç butonuna basıldığında hiçbir şey yapma
+            print('AdMob: Kullanıcı vazgeçti');
           },
         );
       },
-    );
-  }
-
-         Widget _buildSendButton(BuildContext context) {
-     final bool isEnabled = !widget.isLoading && widget.controller.text.trim().length >= 4;
-    
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: isEnabled 
-          ? const LinearGradient(
-              colors: [Color(0xFF9D50BB), Color(0xFF6A3BED)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            )
-          : null,
-        color: isEnabled ? null : Colors.grey.withOpacity(0.3),
-        boxShadow: isEnabled ? [
-          BoxShadow(
-            color: Colors.purpleAccent.withOpacity(0.4),
-            blurRadius: 10,
-            spreadRadius: 2,
-            offset: const Offset(0, 4),
-          ),
-        ] : null,
-      ),
-      child: IconButton(
-                 icon: widget.isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Colors.white,
-                ),
-              )
-            : Icon(
-                Icons.send_rounded, 
-                color: isEnabled ? Colors.white : Colors.white.withOpacity(0.3), 
-                size: 28
-              ),
-        onPressed: isEnabled ? () => _showCharacterSelectionDialog(context) : null,
-      ),
     );
   }
 }
